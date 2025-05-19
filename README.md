@@ -18,6 +18,8 @@ MongoDB (BD de documentos)
 
 Neo4J (BD de grafos)
 
+pgAdmin (cliente de banco de dados PostgreSQL)
+
 ## Linguagens utilizadas
 
 JavaScript (para React)
@@ -54,3 +56,5 @@ PostgreSQL: 5432
 MongoDB: 27017
 
 Neo4J: 7474
+
+pgAdmin: 8080
