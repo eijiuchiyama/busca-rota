@@ -1,0 +1,57 @@
+services:
+  backend:
+    build:
+      context: ./busca_rota_django
+    volumes:
+      - ./busca_rota_django:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/busca-rota-postgres
+
+  frontend:
+    build:
+      context: ./busca-rota-react
+    volumes:
+      - ./busca-rota-react:/app
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: busca-rota-postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      
+  neo4j:
+    image: neo4j:5
+    environment:
+      NEO4J_AUTH: neo4j/your_password_here
+    ports:
+      - "7474:7474"   # HTTP interface
+      - "7687:7687"   # Bolt protocol
+    volumes:
+      - neo4jdata:/data
+      
+  mongo:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+
+volumes:
+  pgdata:
+  neo4jdata:
+  mongodata:
+
+
