@@ -1,5 +1,5 @@
 CREATE TABLE Usuario(
-	username VARCHAR(63),
+	username VARCHAR(63) PRIMARY KEY,
 	senha VARCHAR(63),
 	nickname VARCHAR(63),
 	data_cadastro DATE,
@@ -7,23 +7,25 @@ CREATE TABLE Usuario(
 );
 
 CREATE TABLE Comentario(
-	id: SERIAL PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	conteudo VARCHAR(4095),
 	horario_postagem TIMESTAMP
 );
 
 CREATE TABLE Aviao(
+	id SERIAL PRIMARY KEY,
 	marca VARCHAR(255),
 	modelo VARCHAR(255)
 );
 
 CREATE TABLE CompanhiaAerea(
+	id SERIAL PRIMARY KEY,
 	sigla VARCHAR(63),
 	nome VARCHAR(255)
 );
 
 CREATE TABLE Aeroporto(
-	iata VARCHAR(7),
+	iata VARCHAR(7) PRIMARY KEY,
 	icao VARCHAR(7),
 	pais VARCHAR(63),
 	cidade VARCHAR(63),
@@ -31,8 +33,3 @@ CREATE TABLE Aeroporto(
 	latitude DOUBLE PRECISION,
 	longitude DOUBLE PRECISION
 );
-
-\COPY Aeroporto FROM 'airports_filtered.dat' DELIMITER ',' CSV;
-\COPY CompanhiaAerea FROM 'airlines_filtered.dat' DELIMITER ',' CSV;
-\COPY Aviao FROM 'planes_filtered.dat' DELIMITER ',' CSV;
-
