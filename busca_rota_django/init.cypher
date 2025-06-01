@@ -1,20 +1,22 @@
+LOAD CSV WITH HEADERS FROM 'file:///aeroportos_filtrado.csv' AS row
+WITH row
+WHERE row.iata IS NOT NULL AND row.iata <> ''
 CREATE (:Aeroporto {
-  nome: "Goroka Airport",
-  cidade: "Goroka",
-  pais: "Papua New Guinea",
-  iata: "GKA",
-  icao: "AYGA",
-  latitude: -6.081689834590001,
-  longitude: 145.391998291
-});
+	iata: row.iata
+})
 
-CREATE (:Aeroporto {
-  nome: "Madang Airport",
-  cidade: "Madang",
-  pais: "Papua New Guinea",
-  iata: "MAG",
-  icao: "AYMD",
-  latitude: -5.20707988739,
-  longitude: 145.789001465
-});
+LOAD CSV WITH HEADERS FROM 'file:///paths.csv' AS row
+CREATE (:Trajeto {
+	distancia: row.distancia,
+})
 
+LOAD CSV WITH HEADERS FROM 'file:///flights.csv' AS row
+CREATE (:Voo {
+	horario_partida: row.horario_partida,
+	horario_chegada:  row.horario_chegada,
+	companhia:  row.companhia,
+	aviao:  row.aviao,
+	preco_economica:  row.preco_economica,
+	preco_executiva:  row.preco_executiva,
+	preco_primeira:  row.preco_primeira
+})
