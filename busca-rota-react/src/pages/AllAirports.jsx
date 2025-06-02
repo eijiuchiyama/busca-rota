@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BackToMenuButton from '../components/BackToMenuButton';
+import StringInput from '../components/StringInput';
 
 function AllAirports() {
+  const [airport, setAirport] = useState('');
+
   return (
     <div>
       <BackToMenuButton />
-      <h1>All Airports</h1>
-      <p>List of all airports will be displayed here.</p>
-      {/* You can add a component to fetch and display the airports data */}
+      <h1 style={{ textAlign: 'center', marginTop: '50px', fontSize: '96px', fontFamily: "Turret Road"}}>Aeroportos</h1>
+      <StringInput
+          placeholder={"Filtro de nome dos Aeroportos"}
+          parameter={airport}
+          onOptionChange={(e) => setAirport(e.target.value)}
+          style={{ margin: '20px auto', display: 'block', width: '600px' }}
+      />
     </div>
   );
 }

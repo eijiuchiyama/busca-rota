@@ -30,7 +30,7 @@ function Home() {
       <div style={{ position: 'absolute', top: 24, left: 24 }}>
         <NavigationDropdown />
       </div>
-      <h1 style={{ textAlign: 'center', marginTop: '60px' }}>Busca-Rota</h1>
+      <h1 style={{ textAlign: 'center', marginTop: '50px', fontSize: '96px', fontFamily: "Turret Road"}}>Busca-Rota</h1>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '16px', marginTop: '32px' }}>
         <StringInput
           placeholder={"Aeroporto de Partida"}
@@ -47,7 +47,19 @@ function Home() {
           selectedOption={selectedOption}
           onOptionChange={(e) => setSelectedOption(e.target.value)}
         />
-        <button onClick={onSearch}> Pesquisar </button>
+        <button
+          onClick={onSearch}
+          style={{
+          borderRadius: '12px',
+          padding: '12px 24px',
+          fontSize: '1.2rem',
+          border: '0px',
+          outline: 'none',
+          width: '260px',
+          boxSizing: 'border-box',
+          background: 'rgb(58, 226, 43)',
+          appearance: 'none',
+          }}> Pesquisar </button>
       </div>
     </div>
   );
