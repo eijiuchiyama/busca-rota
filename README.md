@@ -45,6 +45,15 @@ Para parar o container, use:
 sudo docker-compose down
 ```
 
+E para remover os dados dos bancos de dados, use:
+
+```
+sudo docker-compose down -v
+```
+
+Os dados do banco de dados relacional são adicionados apenas na primeira primeira vez que o volume é criado. Para testar novamente, é 
+preciso utilizar o comando acima.
+
 São utilizadas as seguintes portas:
 
 Back-end: 8000
