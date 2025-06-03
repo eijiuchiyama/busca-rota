@@ -6,29 +6,29 @@ O Busca-Rota é um site web que permite a seus usuários pesquisar rotas aéreas
 
 ## Ferramentas utilizadas
 
-Docker
+- Docker
 
-React
+- React (com Vite)
 
-Django
+- Django
 
-PostgreSQL (BD relacional)
+- PostgreSQL (BD relacional)
 
-MongoDB (BD de documentos)
+- MongoDB (BD de documentos)
 
-Neo4J (BD de grafos)
+- Neo4J (BD de grafos)
 
-pgAdmin (cliente de banco de dados PostgreSQL)
+- pgAdmin (cliente de banco de dados PostgreSQL)
 
 ## Linguagens utilizadas
 
-JavaScript (para React)
+- JavaScript (para React)
 
-Python (para Django)
+- Python (para Django)
 
-SQL (para PostgreSQL)
+- SQL (para PostgreSQL)
 
-Cypher (para o Neo4J)
+- Cypher (para o Neo4J)
 
 ## Como executar
 
@@ -52,18 +52,31 @@ sudo docker-compose down -v
 ```
 
 Os dados do banco de dados relacional são adicionados apenas na primeira primeira vez que o volume é criado. Para testar novamente, é 
-preciso utilizar o comando acima.
+preciso utilizar o comando acima para apagar o banco de dados e subir novamente o Docker.
 
 São utilizadas as seguintes portas:
 
-Back-end: 8000
+- Back-end: 8000
 
-Front-end: 3000
+- Front-end: 3000
 
-PostgreSQL: 5432
+- PostgreSQL: 5432
 
-MongoDB: 27017
+- MongoDB: 27017
 
-Neo4J: 7474
+- Neo4J: 7474
 
-pgAdmin: 8080
+- pgAdmin: 8080
+
+Ao acessar localhost:\<porta do serviço\>, podemos utilizar o serviço ou ver os bancos de dados. No caso do PostgreSQL, usamos o pgAdmin para ver as tabelas e dados.
+Para usar o pgAdmin, deve-se criar um novo server e preencher com os dados do banco de dados PostgreSQL:
+
+- Host name/address: busca-rota-postgres-1
+
+- Port: 5432
+
+- Maintenance database: busca-rota-postgres
+
+- Username: postgres
+
+- Password: postgres
