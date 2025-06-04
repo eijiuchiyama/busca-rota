@@ -80,3 +80,23 @@ Para usar o pgAdmin, deve-se criar um novo server e preencher com os dados do ba
 - Username: postgres
 
 - Password: postgres
+
+Para acessar os dados do MongoDB de forma visual é preciso instalar o MongoDB Compass.
+
+## Senhas e usuários:
+
+### pgAdmin:
+
+- Usuário: admin@teste.com
+- Senha: admin123
+
+### Neo4J:
+
+- Connect URL: bolt://localhost:7687
+- Usuário: neo4j
+- Senha: neo4jneo4j
+
+
+
+
+
