@@ -1,8 +1,12 @@
 #!/bin/bash
 
-# Espera o Neo4j estar pronto
 echo "Aguardando Neo4j iniciar..."
-sleep 10
+until cypher-shell -a bolt://neo4j:7687 -u neo4j -p neo4jneo4j "RETURN 1" > /dev/null 2>&1; do
+  echo "Aguardando conexão com Neo4j..."
+  sleep 2
+done
 
-# Executa o Cypher via cypher-shell
-cypher-shell -u neo4j -p neo < /data/init.cypher
+echo "Neo4j está pronto. Executando init.cypher..."
+cypher-shell -a bolt://neo4j:7687 -u neo4j -p neo4jneo4j < /data/init.cypher
+
+

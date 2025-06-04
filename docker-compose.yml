@@ -31,12 +31,12 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./busca_rota_django:/docker-entrypoint-initdb.d
+      - ./busca_rota_django/postgres-init:/docker-entrypoint-initdb.d
       
   neo4j:
     image: neo4j:5
     environment:
-      NEO4J_AUTH: neo4j/neo
+      NEO4J_AUTH: neo4j/neo4jneo4j
     ports:
       - "7474:7474"   # HTTP interface
       - "7687:7687"   # Bolt protocol

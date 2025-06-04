@@ -1,16 +1,16 @@
-LOAD CSV WITH HEADERS FROM 'file:///aeroportos_filtrado.csv' AS row
+LOAD CSV WITH HEADERS FROM 'file:///airports_filtered.dat' AS row
 WITH row
 WHERE row.iata IS NOT NULL AND row.iata <> ''
 CREATE (:Aeroporto {
 	iata: row.iata
 })
 
-LOAD CSV WITH HEADERS FROM 'file:///paths.csv' AS row
+LOAD CSV WITH HEADERS FROM 'file:///paths.dat' AS row
 CREATE (:Trajeto {
-	distancia: row.distancia,
+	distancia: row.distancia
 })
 
-LOAD CSV WITH HEADERS FROM 'file:///flights.csv' AS row
+LOAD CSV WITH HEADERS FROM 'file:///flights.dat' AS row
 CREATE (:Voo {
 	horario_partida: row.horario_partida,
 	horario_chegada:  row.horario_chegada,
