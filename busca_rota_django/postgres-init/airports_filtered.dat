@@ -510,7 +510,7 @@
 "KRS","ENCN","Norway","Kristiansand","Kristiansand Airport",58.204201,8.08537
 "DLD","ENDI","Norway","Geilo","Geilo Airport Dagali",60.417301177978516,8.518349647521973
 "BDU","ENDU","Norway","Bardufoss","Bardufoss Airport",69.055801391602,18.540399551392
-"Norway","EVE","Harstad/Narvik", Evenes","Harstad/Narvik Airport,"ENEV",68.491302490234,16.683824
+"EVE","ENEV","Norway","Evenes","Harstad/Narvik Airport",68.491302490234,16.683824
 "VDB","ENFG","Norway","Fagernes","Leirin Airport",61.015598297119,9.2880601882935
 "FRO","ENFL","Norway","Floro","Florø Airport",61.583599090576,5.0247201919556
 "OSL","ENGM","Norway","Oslo","Oslo Lufthavn",60.121,11.0502
@@ -525,13 +525,13 @@
 "NTB","ENNO","Norway","Notodden","Notodden Airport",59.565701,9.21222
 "OLA","ENOL","Norway","Orland","Ørland Airport",63.69889831542969,9.604000091552734
 "RRS","ENRO","Norway","Roros","Røros Airport",62.578399658203,11.342300415039
-"RYG","Norway","Rygge", Rygge","Moss Airport,"ENRY",59.378817,10.7820308
-"LYR","Norway","Svalbard", Longyear","Svalbard Airport,"ENSB",78.246101379395,15.4907193
+"RYG","ENRY","Norway","Rygge", Rygge","Moss Airport,59.378817,10.7820308
+"LYR","ENSB","Norway","Longyear","Svalbard Airport",78.246101379395,15.4907193
 "SKE","ENSN","Norway","Skien","Skien Airport",59.185001373291016,9.566940307617188
 "SRP","ENSO","Norway","Stord","Stord Airport",59.791900634765625,5.340849876403809
 "SSJ","ENST","Norway","Sandnessjoen","Sandnessjøen Airport (Stokka)",65.956802368164,12.468899726868
-"TOS","Norway","Tromso",","Tromsø Airport,"ENTC",69.68329620361328,18.9142585
-"TRF","Norway","Sandefjord", Torp","Sandefjord Airport,"ENTO",59.1866989136,10.2562946
+"TOS","ENTC","Norway","Tromso","Tromsø Airport",69.68329620361328,18.9142585
+"TRF","ENTO","Norway","Torp","Sandefjord Airport",59.1866989136,10.2562946
 "TRD","ENVA","Norway","Trondheim","Trondheim Airport Værnes",63.4578018,10.9239998
 "SVG","ENZV","Norway","Stavanger","Stavanger Airport Sola",58.876701354,5.6377801895
 "GDN","EPGD","Poland","Gdansk","Gdańsk Lech Wałęsa Airport",54.377601623535156,18.46619987487793
@@ -3166,7 +3166,6 @@
 "PMI","LEPA","Spain","Palma de Mallorca","Palma De Mallorca Airport",39.551700592,2.73881006241
 "DRW","YPDN","Australia","Darwin","Darwin International Airport",-12.41469955444336,130.8769989013672
 "URT","VTSB","Thailand","Surat Thani","Surat Thani Airport",9.13259983063,99.135597229
-"NSB",\N,"Bahamas","Bimini","Bimini North Seaplane Base",25.767,-79.25
 "TKA","PATK","United States","Talkeetna","Talkeetna Airport",62.320499420166,-150.09399414062
 "GZM","LMMG","Malta","Gozo","Xewkija Heliport",36.027199,14.2728
 "HVN","KHVN","United States","New Haven","Tweed New Haven Airport",41.26369858,-72.88680267
@@ -3198,8 +3197,6 @@
 "TSS","NONE","United States","New York","East 34th Street Heliport",40.7425,-73.971944
 "LJG","ZPLJ","China","Lijiang","Lijiang Airport",26.6800003052,100.246002197
 "GSP","KGSP","United States","Greenville","Greenville Spartanburg International Airport",34.8956985474,-82.2189025879
-"QKL",\N,"Germany","Cologne","Cologne Railway",50.9425,6.958056
-"ZWS",\N,"Germany","Stuttgart","Stuttgart Railway Station",48.783611,9.181667
 "BMI","KBMI","United States","Bloomington","Central Illinois Regional Airport at Bloomington-Normal",40.47710037,-88.91590118
 "GPT","KGPT","United States","Gulfport","Gulfport Biloxi International Airport",30.40730094909668,-89.07009887695312
 "AZO","KAZO","United States","Kalamazoo","Kalamazoo Battle Creek International Airport",42.234901428222656,-85.5521011352539
@@ -3229,7 +3226,6 @@
 "DWH","KDWH","United States","Houston","David Wayne Hooks Memorial Airport",30.0618000031,-95.55280303960001
 "SRQ","KSRQ","United States","Sarasota","Sarasota Bradenton International Airport",27.39539909362793,-82.55439758300781
 "BDA","TXKF","Bermuda","Bermuda","L.F. Wade International International Airport",32.36399841308594,-64.67870330810547
-"X21",\N,"United States","Titusville","Arthur Dunn Airpark",28.622552,-80.83541
 "VNY","KVNY","United States","Van Nuys","Van Nuys Airport",34.209800720215,-118.48999786377
 "MLI","KMLI","United States","Moline","Quad City International Airport",41.44850158691406,-90.50749969482422
 "PFN","KPFN","United States","Panama City","Panama City-Bay Co International Airport",30.212099,-85.6828
@@ -3238,7 +3234,6 @@
 "INU","ANYN","Nauru","Nauru","Nauru International Airport",-0.547458,166.919006
 "FUN","NGFU","Tuvalu","Funafuti","Funafuti International Airport",-8.525,179.195999
 "OVB","UNNT","Russia","Novosibirsk","Tolmachevo Airport",55.012599945068,82.650703430176
-"DWS",\N,"United States","Orlando","Orlando",28.398,-81.57
 "XKH","VLXK","Laos","Phon Savan","Xieng Khouang Airport",19.450001,103.157997
 "BIS","KBIS","United States","Bismarck","Bismarck Municipal Airport",46.772701263427734,-100.74600219726562
 "TEX","KTEX","United States","Telluride","Telluride Regional Airport",37.9538002,-107.9079971
@@ -3322,7 +3317,6 @@
 "JMO","VNJS","Nepal","Jomsom","Jomsom Airport",28.780426,83.723
 "NGX","VNMA","Nepal","Manang","Manang Airport",28.641399,84.089203
 "PPL","VNPL","Nepal","Phaplu","Phaplu Airport",27.517787,86.584454
-"TMK",\N,"Nepal","Thamkharka","Thamkharka",27.052222,86.861944
 "RUM","VNRT","Nepal","Rumjatar","Rumjatar Airport",27.303499221801758,86.55039978027344
 "DNP","VNDG","Nepal","Dang","Tulsipur Airport",28.111099243164062,82.29419708251953
 "RUK","VNRK","Nepal","Rukumkot","Rukum Chaurjahari Airport",28.627001,82.195
@@ -3355,7 +3349,6 @@
 "NOD","EDWS","Germany","Norden","Norden-Norddeich Airport",53.633056640599996,7.19027805328
 "JUI","EDWJ","Germany","Juist","Juist Airport",53.68111038208008,7.055832862854004
 "BPS","SBPS","Brazil","Porto Seguro","Porto Seguro Airport",-16.438601,-39.080898
-"GDA",\N,"Central African Republic","Gounda","Gounda Airport",9.272222,21.197222
 "QIG","SNIG","Brazil","Iguatu","Iguatu Airport",-6.346640110015869,-39.293800354003906
 "PMW","SBPJ","Brazil","Palmas","Brigadeiro Lysias Rodrigues Airport",-10.291500091600001,-48.35699844359999
 "CLV","SBCN","Brazil","Caldas Novas","Nelson Ribeiro Guimarães Airport",-17.725299835205,-48.607498168945
@@ -3381,7 +3374,6 @@
 "TAH","NVVW","Vanuatu","Tanna","Tanna Airport",-19.45509910583496,169.2239990234375
 "YPC","CYPC","Canada","Paulatuk","Paulatuk (Nora Aliqatchialuk Ruben) Airport",69.3608381154,-124.075469971
 "SRZ","SLET","Bolivia","Santa Cruz","El Trompillo Airport",-17.8115997314,-63.1715011597
-"KUS",\N,"Greenland","Kulusuk","Kulusuk",65.566667,-37.1166667
 "SAB","TNCS","Netherlands Antilles","Saba","Juancho E. Yrausquin Airport",17.645000457763672,-63.220001220703125
 "EGE","KEGE","United States","Vail","Eagle County Regional Airport",39.64260101,-106.9179993
 "SKN","ENSK","Norway","Stokmarknes","Stokmarknes Skagen Airport",68.578826904297,15.033416748047
@@ -3393,12 +3385,8 @@
 "FLG","KFLG","United States","Flagstaff","Flagstaff Pulliam Airport",35.13850021,-111.6709976
 "TVL","KTVL","United States","South Lake Tahoe","Lake Tahoe Airport",38.89390182495117,-119.99500274658203
 "TWF","KTWF","United States","Twin Falls","Joslin Field Magic Valley Regional Airport",42.4818,-114.487999
-"MCM",\N,"Monaco","Monaco","Monaco",43.73333333,7.41666666
 "MVY","KMVY","United States","Vineyard Haven MA","Martha's Vineyard Airport",41.3931007385,-70.6143035889
-"UUU",\N,"United States","Newport RI","Newport State",41.533056,-71.282222
-"VSF",\N,"United States","Springfield VT","Hartness State",43.343333,-72.517222
 "CON","KCON","United States","Concord NH","Concord Municipal Airport",43.20270157,-71.50229645
-"SFM",\N,"United States","Sanford ME","Sanford Regional",43.39383,-70.708
 "GON","KGON","United States","Groton CT","Groton New London Airport",41.330101013183594,-72.04509735107422
 "STC","KSTC","United States","Saint Cloud","St Cloud Regional Airport",45.546600341796875,-94.05989837646484
 "BPE","ZBDH","Burma","Bagan","Qinhuangdao Beidaihe Airport",39.666389,119.058889
@@ -3413,7 +3401,6 @@
 "CRW","KCRW","United States","Charleston","Yeager Airport",38.37310028076172,-81.59320068359375
 "AVP","KAVP","United States","Scranton","Wilkes Barre Scranton International Airport",41.338500976599995,-75.72339630130001
 "BJI","KBJI","United States","Bemidji","Bemidji Regional Airport",47.50939941,-94.93370056
-"BAK",\N,"Azerbaijan","Baku","Heydar Aliyev",40.4675,50.046667
 "THG","YTNG","Australia","Biloela","Thangool Airport",-24.493900299072266,150.5760040283203
 "FGI","NSFI","Samoa","Apia","Fagali'i Airport",-13.848699569699999,-171.740005493
 "BNK","YBNA","Australia","Ballina Byron Bay","Ballina Byron Gateway Airport",-28.8339004517,153.56199646
@@ -3442,7 +3429,6 @@
 "BME","YBRM","Australia","Broome","Broome International Airport",-17.944700241088867,122.23200225830078
 "NTL","YWLM","Australia","Newcastle","Newcastle Airport",-32.79499816894531,151.83399963378906
 "KLU","LOWK","Austria","Klagenfurt","Klagenfurt Airport",46.642502,14.3377
-"CGU",\N,"Venezuela","Ciudad Guayana","General Manuel Carlos Piar",8.288527,-62.760361
 "HFT","ENHF","Norway","Hammerfest","Hammerfest Airport",70.679702758789,23.668600082397
 "HVG","ENHV","Norway","Honningsvag","Valan Airport",71.009696960449,25.983600616455
 "MEH","ENMH","Norway","Mehamn","Mehamn Airport",71.02970123291,27.826700210571
@@ -3452,7 +3438,7 @@
 "UIK","UIBS","Russia","Ust Ilimsk","Ust-Ilimsk Airport",58.13610076904297,102.56500244140625
 "MEI","KMEI","United States","Meridian","Key Field",32.33259963989258,-88.75189971923828
 "SPI","KSPI","United States","Springfield","Abraham Lincoln Capital Airport",39.84410095,-89.67790222
-"HKV","LB14","Bulgaria","Haskovo","Uzundzhovo",41.976375,25.589817
+"HKV","LBHS","Bulgaria","Haskovo","Uzundzhovo",41.976375,25.589817
 "CEZ","KCEZ","United States","Cortez","Cortez Municipal Airport",37.3030014038,-108.627998352
 "HDN","KHDN","United States","Hayden","Yampa Valley Airport",40.48120117,-107.2180023
 "GUP","KGUP","United States","Gallup","Gallup Municipal Airport",35.511100769,-108.789001465
@@ -3460,7 +3446,7 @@
 "LAA","KLAA","United States","Lamar","Lamar Municipal Airport",38.069698333699996,-102.68800354
 "GLD","KGLD","United States","Goodland","Renner Field-Goodland Municipal Airport",39.37060165,-101.6989975
 "COD","KCOD","United States","Cody","Yellowstone Regional Airport",44.520198822,-109.024002075
-"HOV","Norway","ENOV","Orsta-Volda","Ørsta-Volda Airport",62.180000305176,6.0769181
+"HOV","ENOV","Norway","Orsta-Volda","Ørsta-Volda Airport",62.180000305176,6.0769181
 "ISC","EGHE","United Kingdom","ST MARY\'S","St. Mary's Airport",49.913299560546875,-6.291669845581055
 "SGF","KSGF","United States","Springfield","Springfield Branson National Airport",37.24570084,-93.38860321
 "NVK","ENNK","Norway","Narvik","Narvik Framnes Airport",68.436897277832,17.386699676514
@@ -3499,7 +3485,6 @@
 "OAJ","KOAJ","United States","Jacksonville NC","Albert J Ellis Airport",34.8292007446,-77.61209869380001
 "TCL","KTCL","United States","Tuscaloosa AL","Tuscaloosa Regional Airport",33.220600128174,-87.611396789551
 "DBQ","KDBQ","United States","Dubuque IA","Dubuque Regional Airport",42.40200043,-90.70950317
-"FDE",\N,"Norway","Forde","Forde Bringeland",61.392,5.763
 "HHP","VHST","Hong Kong","Hong Kong","Shun Tak Heliport",22.2893714905,114.152153015
 "ATD","AGAT","Solomon Islands","Atoifi","Uru Harbour Airport",-8.87333,161.011002
 "AKS","AGGA","Solomon Islands","Auki","Gwaunaru'u Airport",-8.70257,160.682007
@@ -3550,29 +3535,6 @@
 "GRY","BIGR","Iceland","Grímsey","Grímsey Airport",66.5458,-18.0173
 "THO","BITN","Iceland","Thorshofn","Thorshofn Airport",66.21849822998047,-15.335599899291992
 "VPN","BIVO","Iceland","Vopnafjörður","Vopnafjörður Airport",65.72059631347656,-14.850600242614746
-"CUK",\N,"Belize","Caye Caulker","Caye Caulker Airport",17.7347,-88.0325
-"PND",\N,"Belize","Punta Gorda","Punta Gorda Airport",16.1024,-88.8083
-"YWS","CAE5","Canada","Whistler","Whistler/Green Lake Water Aerodrome",50.1436004639,-122.948997498
-"YAA","CAJ4","Canada","Anahim Lake","Anahim Lake Airport",52.45249938964844,-125.3030014038086
-"YWM","CCA6","Canada","Williams Harbour","Williams Harbour Airport",52.566898345947266,-55.784698486328125
-"YFX","CCK4","Canada","St. Lewis","St. Lewis (Fox Harbour) Airport",52.372798919677734,-55.67390060424805
-"YHA","CCP4","Canada","Port Hope Simpson","Port Hope Simpson Airport",52.528099060058594,-56.28609848022461
-"YRG","CCZ2","Canada","Rigolet","Rigolet Airport",54.1796989440918,-58.45750045776367
-"YCK","CEB3","Canada","Colville Lake","Colville Lake Airport",67.0392,-126.08
-"YLE","CEM3","Canada","Whatì","Whatì Airport",63.13169860839844,-117.24600219726562
-"SUR","CJV7","Canada","Summer Beaver","Summer Beaver Airport",52.70859909057617,-88.54190063476562
-"YAX","CKB6","Canada","Angling Lake","Wapekeka Airport",53.84920120239258,-89.57939910888672
-"WNN","CKL3","Canada","Wunnumin Lake","Wunnumin Lake Airport",52.89390182495117,-89.28919982910156
-"YNO","CKQ3","Canada","North Spirit Lake","North Spirit Lake Airport",52.4900016784668,-92.97109985351562
-"XBE","CNE3","Canada","Bearskin Lake","Bearskin Lake Airport",53.965599060058594,-91.0271987915039
-"KIF","CNM5","Canada","Kingfisher Lake","Kingfisher Lake Airport",53.01250076293945,-89.85530090332031
-"YOG","CNT3","Canada","Ogoki Post","Ogoki Post Airport",51.6585998535,-85.9017028809
-"YHP","CPV7","Canada","Poplar Hill","Poplar Hill Airport",52.1133,-94.2556
-"YKU","CSU2","Canada","Chisasibi","Chisasibi Airport",53.805599212646484,-78.91690063476562
-"ZTB","CTB6","Canada","Tête-à-la-Baleine","Tête-à-la-Baleine Airport",50.674400329589844,-59.38359832763672
-"ZLT","CTU5","Canada","La Tabatière","La Tabatière Airport",50.8307991027832,-58.97560119628906
-"NTG",\N,"China","Nantong","Nantong Airport",32.0708,120.976
-"TCD",\N,"Colombia","Tarapacá","Tarapacá Airport",-2.867,-69.733
 "YAC","CYAC","Canada","Cat Lake","Cat Lake Airport",51.72719955444336,-91.82440185546875
 "YAG","CYAG","Canada","Fort Frances","Fort Frances Municipal Airport",48.65420150756836,-93.439697265625
 "XKS","CYAQ","Canada","Kasabonika","Kasabonika Airport",53.52470016479492,-88.6427993774414
@@ -3691,8 +3653,6 @@
 "AGH","ESTA","Sweden","Ängelholm","Ängelholm-Helsingborg Airport",56.29610061645508,12.847100257873535
 "SQO","ESUD","Sweden","Mohed","Storuman Airport",64.96089935302734,17.69659996032715
 "HMV","ESUT","Sweden","Hemavan","Hemavan Airport",65.80609893798828,15.082799911499023
-"HIL",\N,"Ethiopia","Shilavo","Shilavo Airport",6.08333,44.7667
-"SHC",\N,"Ethiopia","Shire Indasilase","Shire Inda Selassie Airport",14.0781,38.2725
 "VNT","EVVA","Latvia","Ventspils","Ventspils International Airport",57.35779953,21.5442008972
 "QRA","FAGM","South Africa","Johannesburg","Rand Airport",-26.2425003052,28.1511993408
 "MQP","FAKN","South Africa","Mpumalanga","Kruger Mpumalanga International Airport",-25.3831996918,31.1056003571
@@ -3726,7 +3686,6 @@
 "MJL","FOGM","Gabon","Mouila","Mouilla Ville Airport",-1.845139980316162,11.056699752807617
 "TCH","FOOT","Gabon","Tchibanga","Tchibanga Airport",-2.8499999046325684,11.017000198364258
 "VPY","FQCH","Mozambique","Chimoio","Chimoio Airport",-19.15130043029785,33.42900085449219
-"JCA",\N,"France","Cannes","Croisette Heliport",43.536,7.03736
 "SRH","FTTA","Chad","Sarh","Sarh Airport",9.14444,18.374399
 "CMK","FWCM","Malawi","Club Makokola","Club Makokola Airport",-14.306900024414062,35.13249969482422
 "LUD","FYLZ","Namibia","Luderitz","Luderitz Airport",-26.687400817871094,15.242899894714355
@@ -3743,20 +3702,13 @@
 "TSH","FZUK","Congo (Kinshasa)","Tshikapa","Tshikapa Airport",-6.43833,20.794701
 "LJA","FZVA","Congo (Kinshasa)","Lodja","Lodja Airport",-3.4170000553131104,23.450000762939453
 "PFR","FZVS","Congo (Kinshasa)","Ilebo","Ilebo Airport",-4.329919,20.590124
-"GAX",\N,"Gabon","Gamba","Gamba",-2.71016,9.96062
-"FOA",\N,"United Kingdom","Foula","Foula Airport",60.121,-2.052
 "OUK","EGOU","United Kingdom","Outer Skerries","Outer Skerries Airport",60.4252,-0.75
-"PSV",\N,"United Kingdom","Papa Stour","Papa Stour Airport",60.3217,-1.69306
 "GMZ","GCGM","Spain","La Gomera","La Gomera Airport",28.029600143432617,-17.214599609375
-"CRU",\N,"Grenada","Carriacou Island","Lauriston Airport",12.4761,-61.4728
 "JCU","GECT","Spain","Ceuta","Ceuta Heliport",35.8969,-5.29908
 "BTE","GFBN","Sierra Leone","Bonthe","Sherbro International Airport",7.5324201583862305,-12.518899917602539
 "KBS","GFBO","Sierra Leone","Bo","Bo Airport",7.944399833679199,-11.76099967956543
 "KEN","GFKE","Sierra Leone","Kenema","Kenema Airport",7.891290187835693,-11.176600456237793
 "OXB","GGOV","Guinea-Bissau","Bissau","Osvaldo Vieira International Airport",11.894800186157227,-15.65369987487793
-"JGR",\N,"Greenland","Groennedal","Groennedal Heliport",61.2333,-48.1
-"QCU",\N,"Greenland","Akunnaaq","Akunnaaq Heliport",68.75,-52.3333
-"QFI",\N,"Greenland","Iginniarfik","Iginniarfik Heliport",68.7,-52.9667
 "SMW","GMMA","Western Sahara","Smara","Smara Airport",26.7318,-11.6847
 "VIL","GMMH","Western Sahara","Dakhla","Dakhla Airport",23.7183,-15.932
 "ESU","GMMI","Morocco","Essadouira","Mogador Airport",31.3974990845,-9.6816701889
@@ -3799,8 +3751,7 @@
 "TBO","HTTB","Tanzania","Tabora","Tabora Airport",-5.076389789581299,32.83330154418945
 "RUA","HUAR","Uganda","Arua","Arua Airport",3.049999952316284,30.91699981689453
 "ULU","HUGU","Uganda","Gulu","Gulu Airport",2.8055601119995117,32.27180099487305
-"DIU","VA1P","India","Diu","Diu Airport",20.71310043334961,70.92109680175781
-"TQR",\N,"Italy","Tremiti Islands","San Domino Island Heliport",42.1025,15.488
+"DIU","VADU","India","Diu","Diu Airport",20.71310043334961,70.92109680175781
 "ABR","KABR","United States","Aberdeen","Aberdeen Regional Airport",45.449100494384766,-98.42179870605469
 "ABY","KABY","United States","Albany","Southwest Georgia Regional Airport",31.535499572753906,-84.19450378417969
 "AHN","KAHN","United States","Athens","Athens Ben Epps Airport",33.94860076904297,-83.32630157470703
@@ -3830,7 +3781,6 @@
 "GRI","KGRI","United States","Grand Island","Central Nebraska Regional Airport",40.967498779296875,-98.30960083007812
 "HOT","KHOT","United States","Hot Springs","Memorial Field",34.47800064086914,-93.09619903564453
 "HTS","KHTS","United States","Huntington","Tri-State/Milton J. Ferguson Field",38.36669922,-82.55799866
-"KIO","Q51","Marshall Islands","Kili Island","Kili Airport",5.644515,169.119507
 "IRK","KIRK","United States","Kirksville","Kirksville Regional Airport",40.09349822998047,-92.5448989868164
 "JMS","KJMS","United States","Jamestown","Jamestown Regional Airport",46.92969894,-98.67819977
 "LAR","KLAR","United States","Laramie","Laramie Regional Airport",41.31209945678711,-105.67500305175781
@@ -3865,7 +3815,6 @@
 "VCT","KVCT","United States","Victoria","Victoria Regional Airport",28.85260009765625,-96.91850280761719
 "VLD","KVLD","United States","Valdosta","Valdosta Regional Airport",30.782499313354492,-83.27670288085938
 "WRL","KWRL","United States","Worland","Worland Municipal Airport",43.9656982421875,-107.95099639892578
-"KWY",\N,"Kenya","Kiwayu","Kiwayu (Mkononi) Airport",-1.96056,41.2975
 "YKM","KYKM","United States","Yakima","Yakima Air Terminal McAllister Field",46.56819916,-120.5439987
 "ECN","LCEN","Cyprus","Nicosia","Ercan International Airport",35.154701232910156,33.49610137939453
 "RJL","LELO","Spain","Logroño-Agoncillo","Logroño-Agoncillo Airport",42.4609534888,-2.32223510742
@@ -3888,8 +3837,6 @@
 "ISE","LTFC","Turkey","Isparta","Süleyman Demirel International Airport",37.8554000854,30.368400573699997
 "EDO","LTFD","Turkey","Balikesir Korfez","Balıkesir Körfez Airport",39.554599762,27.0137996674
 "SZF","LTFH","Turkey","Samsun","Samsun Çarşamba Airport",41.254501,36.567101
-"MRA",\N,"Libya","Misratah","Misratah Airport",32.325,15.061
-"QUB",\N,"Libya","Ubari","Ubari Airport",26.5675,12.8231
 "ILZ","LZZI","Slovakia","Žilina","Žilina Airport",49.231498718299996,18.6135005951
 "GDT","MBGT","Turks and Caicos Islands","Cockburn Town","JAGS McCartney International Airport",21.444499969482422,-71.14230346679688
 "MDS","MBMC","Turks and Caicos Islands","Middle Caicos","Middle Caicos Airport",21.82602,-71.8025
@@ -3898,23 +3845,6 @@
 "JBQ","MDJB","Dominican Republic","La Isabela","La Isabela International Airport",18.572500228881836,-69.98560333251953
 "PBR","MGPB","Guatemala","Puerto Barrios","Puerto Barrios Airport",15.7309,-88.583801
 "AAZ","MGQZ","Guatemala","Quezaltenango","Quezaltenango Airport",14.8656,-91.501999
-"UTK","03N","Marshall Islands","Utirik Island","Utirik Airport",11.222,169.852005
-"AIM",\N,"Marshall Islands","Ailuk Island","Ailuk Airport",10.2168,169.983
-"AUL",\N,"Marshall Islands","Aur Atoll","Aur Island Airport",8.14528,171.173
-"BII",\N,"Marshall Islands","Bikini Atoll","Enyu Airfield",11.5225,165.565
-"JAT",\N,"Marshall Islands","Ailinglapalap Atoll","Jabot Airport",7.45235,168.552
-"JEJ",\N,"Marshall Islands","Ailinglapalap Atoll","Jeh Airport",7.56535,168.962
-"KBT",\N,"Marshall Islands","Kaben","Kaben Airport",8.90056,170.844
-"LIK",\N,"Marshall Islands","Likiep Island","Likiep Airport",9.82316,169.308
-"MAV",\N,"Marshall Islands","Maloelap Island","Maloelap Island Airport",8.70444,171.23
-"MJB","Q30","Marshall Islands","Mejit Atoll","Mejit Atoll Airport",10.2833,170.883
-"MJE",\N,"Marshall Islands","Majkin","Majkin Airport",7.833,168.167
-"NDK","3N0","Marshall Islands","Namorik Atoll","Namorik Atoll Airport",5.63167,168.125
-"RNP",\N,"Marshall Islands","Rongelap Island","Rongelap Island Airport",11.1572,166.887
-"UIT","N55","Marshall Islands","Jabor Jaluit Atoll","Jaluit Airport",5.90924,169.637
-"WJA",\N,"Marshall Islands","Majuro Atoll","Woja Airport",7.083,171.133
-"WTE","N36","Marshall Islands","Wotje Atoll","Wotje Atoll Airport",9.46667,170.233
-"WTO",\N,"Marshall Islands","Wotho Island","Wotho Island Airport",10.1733,166.003
 "AHS","MHAH","Honduras","Ahuas","Ahuas Airport",15.4722,-84.352203
 "PEU","MHPL","Honduras","Puerto Lempira","Puerto Lempira Airport",15.2622,-83.781197
 "MIJ","MLIP","Marshall Islands","Mili Island","Mili Island Airport",6.08333,171.733002
@@ -3934,8 +3864,6 @@
 "JEE","MTJE","Haiti","Jeremie","Jérémie Airport",18.66309928894043,-74.17030334472656
 "PAX","MTPX","Haiti","Port-de-Paix","Port-de-Paix Airport",19.9335994720459,-72.84860229492188
 "TND","MUTD","Cuba","Trinidad","Alberto Delgado Airport",21.788299560546875,-79.99720001220703
-"SCX","MM57","Mexico","Salina Cruz","Salina Cruz Naval Air Station",16.2126,-95.2016
-"LBP",\N,"Malaysia","Long Banga","Long Banga Airport",3.18495,115.454
 "COX","MYAK","Bahamas","Andros","Congo Town Airport",24.158701,-77.589798
 "ATC","MYCA","Bahamas","Arthur's Town","Arthur's Town Airport",24.6294,-75.673797
 "TBI","MYCB","Bahamas","Cat Island","New Bight Airport",24.3153,-75.452301
@@ -3966,7 +3894,6 @@
 "VBV","NFVB","Fiji","Vanua Balavu","Vanua Balavu Airport",-17.268999099731445,-178.9759979248047
 "IUE","NIUE","Niue","Alofi","Niue International Airport",-19.079030990600586,-169.92559814453125
 "FUT","NLWF","Wallis and Futuna","Futuna Island","Pointe Vele Airport",-14.3114004135,-178.065994263
-"MWP",\N,"Nepal","Mountain","Mountain Airport",28,85.333
 "MXS","NSMA","Samoa","Savaii Island","Maota Airport",-13.742300033569336,-172.25799560546875
 "APK","NTGD","French Polynesia","Apataki","Apataki Airport",-15.5736,-146.414993
 "AHE","NTHE","French Polynesia","Ahe","Ahe Airport",-14.428099632263184,-146.2570037841797
@@ -4033,10 +3960,6 @@
 "ISU","ORSU","Iraq","Sulaymaniyah","Sulaymaniyah International Airport",35.5617485046,45.316738128699996
 "KAC","OSKL","Syria","Kamishly","Kamishly Airport",37.020599365234375,41.19139862060547
 "GXF","OYSY","Yemen","Sayun Intl","Sayun International Airport",15.9660997391,48.78829956049999
-"BFQ",\N,"Panama","Bahia Piña","Bahia Piña Airport",7.583,-78.2
-"ELE",\N,"Panama","El Real","EL Real Airport",8.133,-77.7
-"OTD",\N,"Panama","Contadora Island","Contadora Airport",8.62876,-79.0347
-"SAX",\N,"Panama","Boca de Sábalo","Sambu Airport",8.017,-78.2
 "ADK","PADK","United States","Adak Island","Adak Airport",51.87799835205078,-176.64599609375
 "GST","PAGS","United States","Gustavus","Gustavus Airport",58.4253006,-135.7070007
 "SGY","PAGY","United States","Skagway","Skagway Airport",59.46009826660156,-135.3159942626953
@@ -4048,25 +3971,8 @@
 "ANI","PANI","United States","Aniak","Aniak Airport",61.581600189208984,-159.54299926757812
 "VAK","PAVA","United States","Chevak","Chevak Airport",61.5409,-165.6005
 "WRG","PAWG","United States","Wrangell","Wrangell Airport",56.48429871,-132.3699951
-"ATP",\N,"Papua New Guinea","Aitape","Tadji Airport",-3.18985,142.43
-"GMI",\N,"Papua New Guinea","Gasmata Island","Gasmata Island Airport",-6.27111,150.331
-"IHU",\N,"Papua New Guinea","Ihu","Ihu Airport",-7.89756,145.396
-"IIS",\N,"Papua New Guinea","Nissan Island","Nissan Island Airport",-4.49972,154.226
-"JAQ",\N,"Papua New Guinea","Jacquinot Bay","Jacquinot Bay Airport",-5.6525,151.507
-"KDR",\N,"Papua New Guinea","Kandrian","Kandrian Airport",-6.183,149.533
-"KKD",\N,"Papua New Guinea","Kokoda","Kokoda Airport",-8.88468,147.731
-"KUY",\N,"Papua New Guinea","Kamusi","Kamusi Airport",-7.42035,143.122
-"LMY",\N,"Papua New Guinea","Lake Murray","Lake Murray Airport",-7.00992,141.494
-"LNV",\N,"Papua New Guinea","Londolovit","Londolovit Airport",-3.04361,152.629
-"LSA",\N,"Papua New Guinea","Losuia","Losuia Airport",-8.50582,151.081
-"OBX",\N,"Papua New Guinea","Obo","Obo Airport",-7.583,141.317
 "OPU","AYBM","Papua New Guinea","Balimo","Balimo Airport",-8.05000019073,142.932998657
-"SKC",\N,"Papua New Guinea","Suki","Suki Airport",-8.033,141.717
-"TFI",\N,"Papua New Guinea","Tufi","Tufi Airport",-9.07595,149.32
-"UKU",\N,"Papua New Guinea","Nuku","Nuku Airport",-3.667,142.483
 "VMU","AYBA","Papua New Guinea","Baimuru","Baimuru Airport",-7.49686002731,144.819900513
-"WPM",\N,"Papua New Guinea","Wipim","Wipim Airport",-8.78822,142.882
-"ENI",\N,"Philippines","El Nido","El Nido Airport",11.202,119.417
 "LUP","PHLU","United States","Molokai","Kalaupapa Airport",21.21100044,-156.973999
 "ENT","PKMA","Marshall Islands","Eniwetok Atoll","Eniwetok Airport",11.340700149536133,162.3280029296875
 "LZN","RCFG","Taiwan","Matsu Islands","Matsu Nangan Airport",26.1598,119.958
@@ -4137,8 +4043,6 @@
 "SRJ","SLSB","Bolivia","San Borja","Capitán Av. German Quiroga G. Airport",-14.859199523925781,-66.73750305175781
 "ORG","SMZO","Suriname","Paramaribo","Zorg en Hoop Airport",5.81108,-55.190701
 "MVS","SNMU","Brazil","Mucuri","Mucuri Airport",-18.048900604248047,-39.864200592041016
-"BXX",\N,"Somalia","Boorama","Boorama Airport",9.933,43.15
-"GTA",\N,"Solomon Islands","Gatokae","Gatokae Airport",-8.75,158.2
 "CJA","SPJR","Peru","Cajamarca","Mayor General FAP Armando Revoredo Iglesias Airport",-7.1391801834106445,-78.4894027709961
 "HUU","SPNC","Peru","Huánuco","Alferez Fap David Figueroa Fernandini Airport",-9.878809928894043,-76.20480346679688
 "NZC","SPZA","Peru","Nazca","Maria Reiche Neuman Airport",-14.854000091600001,-74.9615020752
@@ -4167,7 +4071,6 @@
 "CKH","UESO","Russia","Chokurdah","Chokurdakh Airport",70.62310028076172,147.90199279785156
 "CYX","UESS","Russia","Cherskiy","Cherskiy Airport",68.7406005859375,161.33799743652344
 "IKS","UEST","Russia","Tiksi","Tiksi Airport",71.697700500488,128.90299987793
-"OYG",\N,"Uganda","Moyo","Moyo Airport",3.633,31.75
 "KXK","UHKK","Russia","Komsomolsk-on-Amur","Komsomolsk-on-Amur Airport",50.409000396728516,136.9340057373047
 "DYR","UHMA","Russia","Anadyr","Ugolny Airport",64.734902,177.740997
 "OHO","UHOO","Russia","Okhotsk","Okhotsk Airport",59.410064697265625,143.05650329589844
@@ -4196,17 +4099,9 @@
 "NAL","URMN","Russia","Nalchik","Nalchik Airport",43.512901306152344,43.636600494384766
 "OGZ","URMO","Russia","Beslan","Beslan Airport",43.2051010132,44.6066017151
 "ESL","URWI","Russia","Elista","Elista Airport",46.3739013671875,44.33089828491211
-"WKK","5A8","United States","Aleknagik","Aleknagik / New Airport",59.2826004028,-158.617996216
-"BKX","BKX","United States","Brookings","Brookings Regional Airport",44.3048,-96.8169
 "BLF","KBLF","United States","Bluefield","Mercer County Airport",37.295799255371094,-81.20770263671875
-"EAR","EAR","United States","Kearney","Kearney Municipal Airport",40.727,-99.0068
 "GLH","KGLH","United States","Greenville","Mid Delta Regional Airport",33.4828987121582,-90.98560333251953
-"IFP","IFP","United States","Bullhead","Laughlin-Bullhead Intl",35.1574,-114.56
-"IGM","IGM","United States","Kingman","Kingman Airport",35.2595,-113.938
 "PSC","KPSC","United States","Pasco","Tri Cities Airport",46.26470184326172,-119.11900329589844
-"KQA","KQA","United States","Akutan","Akutan Seaplane Base",54.1337704415,-165.778895617
-"SVC","SVC","United States","Silver City","Grant County Airport",32.6365,-108.156
-"LPS","S31","United States","Lopez","Lopez Island Airport",48.4838981628418,-122.93800354003906
 "SLY","USDD","Russia","Salekhard","Salekhard Airport",66.5907974243164,66.61100006103516
 "HMA","USHH","Russia","Khanty-Mansiysk","Khanty Mansiysk Airport",61.028499603271484,69.08609771728516
 "NYA","USHN","Russia","Nyagan","Nyagan Airport",62.110001,65.614998
@@ -4248,7 +4143,6 @@
 "TEZ","VETZ","India","Tezpur","Tezpur Airport",26.7091007232666,92.78469848632812
 "BZL","VGBR","Bangladesh","Barisal","Barisal Airport",22.801000595092773,90.30120086669922
 "HOE","VLHS","Laos","Huay Xai","Ban Huoeisay Airport",20.2572994232,100.43699646
-"KON",\N,"Vietnam","Kontum","Kontum Airport",14.35,108.017
 "BHR","VNBP","Nepal","Bharatpur","Bharatpur Airport",27.678101,84.429398
 "BDP","VNCG","Nepal","Chandragarhi","Bhadrapur Airport",26.5708007812,88.07959747310001
 "MEY","VNMG","Nepal","Meghauli","Meghauli Airport",27.5774,84.22875
@@ -4485,7 +4379,6 @@
 "JNZ","ZYJZ","China","Jinzhou","Jinzhou Airport",41.10139846801758,121.06199645996094
 "NDG","ZYQQ","China","Qiqihar","Qiqihar Sanjiazi Airport",47.239601135253906,123.91799926757812
 "YNJ","ZYYJ","China","Yanji","Yanji Chaoyangchuan Airport",42.8828010559,129.451004028
-"WKL","HI07","United States","Waikoloa Village","Waikoloa Heliport",19.9205,-155.8607
 "WME","YMNE","Australia","Mount Keith","Mount Keith Airport",-27.286399841308594,120.55500030517578
 "LRV","SVRS","Venezuela","Los Roques","Los Roques Airport",11.9499998093,-66.66999816890001
 "IOR","EIIM","Ireland","Inis Mor","Inishmore Aerodrome",53.1067008972168,-9.653610229492188
@@ -4500,19 +4393,13 @@
 "DDG","ZYDD","China","Dandong","Dandong Airport",40.0247,124.286003
 "DSN","ZBDS","China","Dongsheng","Ordos Ejin Horo Airport",39.49,109.861388889
 "PZI","ZUZH","China","Panzhihua","Bao'anying Airport",26.54,101.79852
-"ZVE",\N,"United States","New Haven","New Haven Rail Station",41.298669,-72.925992
-"XOZ",\N,"Qatar","Doha","Doha Free Zone Airport",24.8333,50.9166
 "PWT","KPWT","United States","Bremerton","Bremerton National Airport",47.490200042725,-122.76499938965
 "SPW","KSPW","United States","Spencer","Spencer Municipal Airport",43.165500640869,-95.202796936035
 "JEF","KJEF","United States","Jefferson City","Jefferson City Memorial Airport",38.5912017822,-92.15609741210001
-"GCW",\N,"United States","Grand Canyon West","Grand Canyon West Airport",35.5925,-113.4859
 "BLD","KBVU","United States","Boulder City","Boulder City Municipal Airport",35.5651,-114.514
 "UNT","EGPW","United Kingdom","Unst","Unst Airport",60.74720001220703,-0.8538500070571899
 "PVC","KPVC","United States","Provincetown","Provincetown Municipal Airport",42.0718994141,-70.2213973999
-"LKE","KW55","United States","Seattle","Kenmore Air Harbor Seaplane Base",47.629,-122.339
-"%u0","%u04","Russia","Nazran","Magas",43.323815,45.017761
 "SBH","TFFJ","France","Gustavia","Gustaf III Airport",17.904399871826172,-62.84360122680664
-"TZA",\N,"Belize","Belize","Belize City Municipal Airport",17.5344,-88.298
 "KMW","UUBA","Russia","Kostroma","Kostroma Sokerkino Airport",57.7969017029,41.019401550299996
 "SUI","UGSS","Georgia","Sukhumi","Sukhumi Dranda Airport",42.8582000732,41.128101348899996
 "TBW","UUOT","Russia","Tambow","Donskoye Airport",52.806098937988,41.482799530029
@@ -4522,18 +4409,13 @@
 "CVF","LFLJ","France","Courcheval","Courchevel Airport",45.39670181274414,6.6347198486328125
 "FUL","KFUL","United States","Fullerton","Fullerton Municipal Airport",33.8720016479,-117.980003357
 "USA","KJQF","United States","Concord","Concord-Padgett Regional Airport",35.387798,-80.709099
-"FWM",\N,"United Kingdom","Fort William","Fort William Heliport",56.816666,-5.116667
 "NVI","UTSA","Uzbekistan","Navoi","Navoi Airport",40.1171989440918,65.1707992553711
-"JPU",\N,"France","Paris","La Defense Heliport",48.86667,2.333333
-"RRA",\N,"Spain","Ronda","Ronda Airport",36.75,-5.166667
 "QSF","DAAS","Algeria","Setif","Ain Arnat Airport",36.178100585900005,5.3244900703399995
 "LRH","LFBH","France","La Rochelle","La Rochelle-Île de Ré Airport",46.17919921875,-1.1952799558639526
 "SUN","KSUN","United States","Hailey","Friedman Memorial Airport",43.50439835,-114.2959976
-"PME",\N,"United Kingdom","Portsmouth","Portsmouth Airport",50.8,-1.083333
 "MCW","KMCW","United States","Mason City","Mason City Municipal Airport",43.157798767100005,-93.3312988281
 "AZA","KIWA","United States","Mesa","Phoenix-Mesa-Gateway Airport",33.30780029,-111.6549988
 "XAU","SOOS","French Guiana","Saul","Saúl Airport",3.61361,-53.204201
-"ZWU",\N,"United States","Washington","Washington Union Station",38.89746,-77.00643
 "AKP","PAKP","United States","Anaktuvuk Pass","Anaktuvuk Pass Airport",68.13359833,-151.7429962
 "ANV","PANV","United States","Anvik","Anvik Airport",62.646702,-160.190994
 "ATK","PATQ","United States","Atqasuk","Atqasuk Edward Burnell Sr Memorial Airport",70.46730041503906,-157.43600463867188
@@ -4625,7 +4507,6 @@
 "NSO","YSCO","Australia","Scone","Scone Airport",-32.037200927734375,150.83200073242188
 "DGE","YMDG","Australia","Mudgee","Mudgee Airport",-32.5625,149.610992432
 "MTL","YMND","Australia","Maitland","Maitland Airport",-32.701265,151.492912
-"EAP",\N,"France","Mulhouse","EuroAirport",47.589583,7.529914
 "CPX","TJCP","Puerto Rico","Culebra Island","Benjamin Rivera Noriega Airport",18.313289,-65.304324
 "MWA","KMWA","United States","Marion","Williamson County Regional Airport",37.75500107,-89.01110077
 "OCN","KOKB","Australia","Fraser Island","Oceanside Municipal Airport",33.217300415039,-117.35399627686
@@ -4636,61 +4517,32 @@
 "AET","PFAL","United States","Allakaket","Allakaket Airport",66.5518035889,-152.621994019
 "MGC","KMGC","United States","Michigan City","Michigan City Municipal Airport",41.703300476100004,-86.8211975098
 "SWD","PAWD","United States","Seward","Seward Airport",60.12689971923828,-149.41900634765625
-"MXY",\N,"United States","McCarthy","McCarthy Airport",61.4370608,-142.90307372
-"NPZ",\N,"United States","Valparaiso","Porter County Municipal Airport",41.4539722,-87.0070833
 "GRM","KCKC","United States","Grand Marais","Grand Marais Cook County Airport",47.8382987976,-90.38289642330001
-"MCD",\N,"United States","Mackinac Island","Mackinac Island Airport",45.8649344,-84.637344
-"IWD",\N,"United States","Ironwood","Gogebic Iron County Airport",46.5274747,-90.1313967
-"C47",\N,"United States","Portage","Portage Municipal Airport",43.5603136,-89.4828607
 "AUW","KAUW","United States","Wausau","Wausau Downtown Airport",44.9262008667,-89.6266021729
-"GEN",\N,"Norway","Oslo","Gardermoen Airport",60.1939,11.1004
 "MYP","UTAM","Turkmenistan","Mary","Mary Airport",37.6194,61.896702
-"MQB",\N,"United States","Macomb","Macomb Municipal Airport",40.5200833,-90.6523889
-"1RL","K1RL","United States","Point Roberts","Point Roberts Airpark",48.9797222,-123.0788889
-"XYD",\N,"France","Lyon","Lyon Part-Dieu Railway",45.760556,4.859444
 "MVA","BIRL","Iceland","Myvatn","Reykjahlíð Airport",65.65579986572266,-16.918100357055664
 "QSA","LELL","Spain","Sabadell","Sabadell Airport",41.52090072631836,2.1050798892974854
-"RAF",\N,"Argentina","Rafaela","Aeropuerto de Rafaela",-31.282072,-61.501594
 "WSY","YWHI","Australia","Airlie Beach","Whitsunday Island Airport",-20.27611,148.755
 "MIE","KMIE","United States","Muncie","Delaware County Johnson Field",40.2422981262207,-85.3958969116211
-"OXD",\N,"United States","Oxford","Miami University Airport",39.5022607,-84.7843814
 "LAF","KLAF","United States","Lafayette","Purdue University Airport",40.41230010986328,-86.93689727783203
-"DKB",\N,"United States","De Kalb","De Kalb Taylor Municipal Airport",41.9338342,-88.7056864
-"C02",\N,"United States","Lake Geneva","Grand Geneva Resort Airport",42.6149167,-88.3895833
 "VGT","KVGT","United States","Las Vegas","North Las Vegas Airport",36.21070098877,-115.19400024414
 "ENW","KENW","United States","Kenosha","Kenosha Regional Airport",42.59569931,-87.92780304
-"1CS",\N,"United States","Bolingbrook","Clow International Airport",41.6959744,-88.1292306
 "MTJ","KMTJ","United States","Montrose CO","Montrose Regional Airport",38.509799957300004,-107.893997192
 "RIW","KRIW","United States","Riverton WY","Riverton Regional Airport",43.064201355,-108.459999084
-"TYE",\N,"United States","Tyonek","Tyonek Airport",61.076667,-151.138056
 "PDT","KPDT","United States","Pendleton","Eastern Oregon Regional At Pendleton Airport",45.695098877,-118.841003418
-"0P2",\N,"United States","Stewartstown","Shoestring Aviation Airfield",39.7948244,-76.6471914
-"SUE",\N,"United States","Sturgeon Bay","Door County Cherryland Airport",44.8436667,-87.4215556
 "LYM","EGMK","United Kingdom","Lympne","Lympne Airport",51.08,1.013
 "PKH","LGHL","Greece","Porto Heli","Porto Cheli Airport",37.297501,23.1478
-"QDU",\N,"Germany","Dusseldorf","Dusseldorf Hauptbahnhof",51.220278,6.792778
-"CDI",\N,"United States","Cambridge","Cambridge Municipal Airport",39.9750278,-81.5775833
-"C91",\N,"United States","Dowagiac","Dowagiac Municipal Airport",41.9929342,-86.1280125
-"4I7",\N,"United States","Greencastle","Putnam County Airport",39.6335556,-86.8138056
-"X01",\N,"United States","Everglades","Everglades Airpark",25.8488611,-81.3902778
-"10C",\N,"United States","Greenwood","Galt Field Airport",42.4028889,-88.3751111
 "KTR","YPTN","Australia","Katherine","Tindal Airport",-14.521100044250488,132.3780059814453
 "NOA","YSNW","Australia","Nowra","Nowra Airport",-34.94889831542969,150.53700256347656
-"UES",\N,"United States","Waukesha","Waukesha County Airport",43.0410278,-88.2370556
-"BEH",\N,"United States","Benton Harbor","Southwest Michigan Regional Airport",42.1285833,-86.4285
 "UCK","UKLC","Ukraine","Lutsk","Lutsk Airport",50.678404,25.487165
 "CEJ","UKRR","Ukraine","Chernigov","Chernihiv Shestovitsa Airport",51.4021987915,31.1583003998
 "BQT","UMBB","Belarus","Brest","Brest Airport",52.108299,23.8981
 "OSH","KOSH","United States","Oshkosh","Wittman Regional Airport",43.98440170288086,-88.55699920654297
 "AGE","EDWG","Germany","Wangerooge","Wangerooge Airport",53.782779693603516,7.913888931274414
-"JDR",\N,"Brazil","Sao Joao del Rei","Aeroporto Prefeito Octavio de Almeida Neves",-21.0864,-44.2258
 "BXG","YBDG","Australia","Bendigo","Bendigo Airport",-36.7393989563,144.330001831
 "EAT","KEAT","United States","Wenatchee","Pangborn Memorial Airport",47.3988990784,-120.207000732
 "ARE","TJAB","Puerto Rico","Arecibo","Antonio Nery Juarbe Pol Airport",18.4500007629,-66.6753005981
 "RIN","AGRC","Solomon Islands","Ringi Cove","Ringi Cove Airport",-8.12639045715332,157.14300537109375
-"BNY",\N,"Solomon Islands","Bellona","Bellona",-11.302,159.8
-"BN1",\N,"Solomon Islands","Bellona","Bellona",15.981666666667,-11.3
-"1OH",\N,"United States","St. Marys","Fortman Airport",40.5553253,-84.3866186
 "KCK","UIKK","Russia","Kirensk","Kirensk Airport",57.773,108.064
 "UKX","UITT","Russia","Ust-Kut","Ust-Kut Airport",56.8567008972168,105.7300033569336
 "RMT","NTAM","French Polynesia","Rimatara","Rimatara Airport",-22.63725,-152.8059
@@ -4701,7 +4553,6 @@
 "GDZ","URKG","Russia","Gelendzhik","Gelendzhik Airport",44.5820926295,38.0124807358
 "ZIA","UUBW","Russia","Ramenskoe","Zhukovsky International Airport",55.553299,38.150002
 "IAR","UUDL","Russia","Yaroslavl","Tunoshna Airport",57.560699462890625,40.15739822387695
-"DAQ",\N,"China","Daqing","Daqing Saertu Airport",46.583333,125
 "OHE","ZYMH","China","Mohe County","Gu-Lian Airport",52.912777777799995,122.43
 "JNG","ZLJN","China","Jining","Jining Qufu Airport",35.292778,116.346667
 "DRK","MRDK","Costa Rica","Puntarenas","Drake Bay Airport",8.71889019012,-83.6417007446
@@ -4710,7 +4561,6 @@
 "FWH","KNFW","United States","Dallas","NAS Fort Worth JRB/Carswell Field",32.76919937,-97.4414978
 "NYT","VYEL","Burma","Naypyidaw","Naypyidaw Airport",19.623501,96.200996
 "VBP","VYBP","Burma","Bokepyin","Bokpyinn Airport",11.1494,98.735901
-"HHA",\N,"China","Changsha","Huanghua Intl",28.189158,113.219633
 "NZH","ZBMZ","China","Manzhouli","Manzhouli Xijiao Airport",49.566667,117.33
 "WUA","ZBUH","China","Wuhai","Wuhai Airport",39.7934,106.7993
 "GYY","KGYY","United States","Gary","Gary Chicago International Airport",41.61629867553711,-87.41280364990234
@@ -4722,22 +4572,12 @@
 "BKG","KBBG","United States","Branson","Branson Airport",36.532082,-93.200544
 "TEN","ZUTR","China","Tongren","Tongren Fenghuang Airport",27.883333,109.308889
 "JGS","ZSJA","China","Jian","Jinggangshan Airport",26.856899261499997,114.736999512
-"ZBP",\N,"United States","Baltimore","Penn Station",39.307222,-76.615556
-"ZYP",\N,"United States","New York","Penn Station",40.7505,-73.9935
 "NIU","NTKN","French Polynesia","Niau","Naiu Airport",-16.1191,-146.3683
 "SCH","KSCH","United States","Scotia NY","Schenectady County Airport",42.852500915527,-73.928901672363
 "NBC","UWKE","Russia","Nizhnekamsk","Begishevo Airport",55.564701080322266,52.092498779296875
 "QRW","DNSU","Nigeria","Osubi","Warri Airport",5.59611,5.81778
 "IAO","RPNS","Philippines","Siargao","Siargao Airport",9.8591,126.014
 "LGO","EDWL","Germany","Langeoog","Langeoog Airport",53.74250030517578,7.497777938842773
-"FNE",\N,"Papua New Guinea","Fane","Fane Airport",-8.55,147.083
-"ITK",\N,"Papua New Guinea","Itokama","Itokama Airport",-9.2,148.25
-"ONB",\N,"Papua New Guinea","Ononge","Ononge Airport",-8.583,147.2
-"TPI",\N,"Papua New Guinea","Tapini","Tapini Airport",-8.35,146.983
-"AGL",\N,"Papua New Guinea","Wanigela","Wanigela Airport",-9.333,149.15
-"WTP",\N,"Papua New Guinea","Woitape","Woitape Airport",-8.533,147.25
-"AWB",\N,"Papua New Guinea","Awaba","Awaba Airport",-8.014,142.75
-"TFM",\N,"Papua New Guinea","Telefomin","Telefomin Airport",-5.117,141.633
 "NLP","FANS","South Africa","Nelspruit","Nelspruit Airport",-25.5,30.9137992859
 "CKC","UKKE","Ukraine","Cherkassy","Cherkasy International Airport",49.41559982299805,31.99530029296875
 "UST","KSGJ","United States","St. Augustine Airport","Northeast Florida Regional Airport",29.9592,-81.339798
@@ -4750,10 +4590,6 @@
 "BMC","KBMC","United States","Brigham City","Brigham City Regional Airport",41.552399,-112.061996
 "ASE","KASE","United States","Aspen","Aspen-Pitkin Co/Sardy Field",39.22320175,-106.8690033
 "ULV","UWLL","Russia","Ulyanovsk","Ulyanovsk Baratayevka Airport",54.26829910279999,48.226699829100006
-"GSS",\N,"South Africa","Sabi Sabi","Sabi Sabi Airport",-24.9415,31.4446
-"ZFV",\N,"United States","Philadelphia","Philadelphia 30th St Station",39.9557,-75.182
-"BWD",\N,"United States","Brownwood","KBWD",31.7936111,-98.9565
-"LXY",\N,"United States","Mexia","Mexia - Limestone County Airport",31.6411783,-96.5144594
 "ERV","KERV","United States","Kerrville","Kerrville Municipal Louis Schreiner Field",29.9766998291,-99.08570098879999
 "GED","KGED","United States","Georgetown","Sussex County Airport",38.68920135,-75.35890198
 "ZSW","CZSW","Canada","Prince Rupert","Prince Rupert/Seal Cove Seaplane Base",54.33330154418945,-130.2830047607422
@@ -4770,25 +4606,18 @@
 "AVX","KAVX","United States","Catalina Island","Catalina Airport",33.4049,-118.416
 "MHV","KMHV","United States","Mojave","Mojave Airport",35.05939865,-118.1520004
 "ZIN","LSMI","Switzerland","Interlaken","Interlaken Air Base",46.6766014,7.8790798
-"KEH",\N,"United States","Kenmore","Kenmore Air Harbor Inc Seaplane Base",47.7548,-122.259
-"CZH",\N,"Belize","Corozal","Municipal",18.3822,-88.4119
 "INQ","EIIR","Ireland","Inisheer","Inisheer Aerodrome",53.064701080322266,-9.510899543762207
 "SWT","UNSS","Russia","Strezhevoy","Strezhevoy Airport",60.709400177,77.66000366210001
 "HUT","KHUT","United States","Hutchinson","Hutchinson Municipal Airport",38.0654983521,-97.86060333250002
 "OAI","OAIX","Afghanistan","Kabul","Bagram Air Base",34.9460983276,69.26499938959999
 "AKH","OEPS","Saudi Arabia","Al Kharj","Prince Sultan Air Base",24.062700271606445,47.580501556396484
-"EGA",\N,"United States","Eagle","Eagle County Airport",39.6427611,-106.9159347
 "STJ","KSTJ","United States","Rosecrans","Rosecrans Memorial Airport",39.771900177002,-94.909698486328
-"ZRT",\N,"United States","Hartford","Hartford Union Station",41.76888,-72.6815
-"ZTF",\N,"United States","Stamford","Stamford Amtrak Station",41.046937,-73.541493
-"ZRP",\N,"United States","Newark","Newark Penn Station",40.734722,-74.164167
 "VOK","KVOK","United States","Camp Douglas","Volk Field",43.938999176025,-90.253402709961
 "GUC","KGUC","United States","Gunnison","Gunnison Crested Butte Regional Airport",38.53390121,-106.9329987
-"SIA","ZLSN","China","Xi\'AN","Xi'an Xiguan Airport",34.376701,109.120003
+"SIA","ZLSN","China","Xi'an","Xi'an Xiguan Airport",34.376701,109.120003
 "TOA","KTOA","United States","Torrance","Zamperini Field",33.803398132324,-118.33999633789
 "MBL","KMBL","United States","Manistee","Manistee Co Blacker Airport",44.2723999,-86.24690247
 "PGD","KPGD","United States","Punta Gorda","Charlotte County Airport",26.92020035,-81.9905014
-"JGC",\N,"United States","Grand Canyon","Grand Canyon Heliport",35.96666666,-112.13333333
 "WFK","KFVE","United States","Frenchville","Northern Aroostook Regional Airport",47.2854995728,-68.31279754639999
 "JHW","KJHW","United States","Jamestown","Chautauqua County-Jamestown Airport",42.15340042,-79.25800323
 "YTM","CYFJ","Canada","Mont-Tremblant","La Macaza / Mont-Tremblant International Inc Airport",46.409400939899996,-74.7799987793
@@ -4815,7 +4644,6 @@
 "MMH","KMMH","United States","Mammoth Lakes","Mammoth Yosemite Airport",37.62409973,-118.8379974
 "FRD","KFHR","United States","Friday Harbor","Friday Harbor Airport",48.5219993591,-123.024002075
 "ESD","KORS","United States","Eastsound","Orcas Island Airport",48.7081985474,-122.910003662
-"OTS",\N,"United States","Anacortes","Anacortes Airport",48.498889,-122.6625
 "AST","KAST","United States","Astoria","Astoria Regional Airport",46.158000946,-123.878997803
 "ONP","KONP","United States","Newport","Newport Municipal Airport",44.580399,-124.057999
 "EMK","PAEM","United States","Emmonak","Emmonak Airport",62.78609848,-164.4909973
@@ -4830,27 +4658,17 @@
 "KWK","PAGG","United States","Kwigillingok","Kwigillingok Airport",59.876499,-163.169005
 "MLL","PADM","United States","Marshall","Marshall Don Hunter Sr Airport",61.8642997742,-162.026000977
 "RSH","PARS","United States","Russian Mission","Russian Mission Airport",61.7788848877,-161.319458008
-"WTL",\N,"United States","Tuntutuliak","Tuntutuliak Airport",60.335278,-162.666944
-"KEK",\N,"United States","Ekwok","Ekwok Airport",59.356944,-157.471111
 "KGK","PAJZ","United States","Koliganek","Koliganek Airport",59.726600647,-157.259002686
-"KLL",\N,"United States","Levelock","Levelock Airport",59.128056,-156.858611
 "KMO","PAMB","United States","Manokotak","Manokotak Airport",58.990200042699996,-159.050003052
-"TWA",\N,"United States","Twin Hills","Twin Hills Airport",59.074444,-160.275
 "CIK","PACI","United States","Chalkyitsik","Chalkyitsik Airport",66.6449966431,-143.740005493
 "EAA","PAEG","United States","Eagle","Eagle Airport",64.77639771,-141.151001
 "HUS","PAHU","United States","Hughes","Hughes Airport",66.04109955,-154.2630005
 "HSL","PAHL","United States","Huslia","Huslia Airport",65.69789886,-156.3509979
-"LIV",\N,"United States","Livingood","Livingood Airport",65.531111,-148.541111
-"MNT",\N,"United States","Minto","Minto Airport",65.143611,-149.37
 "NUL","PANU","United States","Nulato","Nulato Airport",64.729301,-158.074005
-"RMP",\N,"United States","Rampart","Rampart Airport",65.507778,-150.140833
-"TAL",\N,"United States","Tanana","Tanana Airport",65.179556,-152.075833
 "VEE","PAVE","United States","Venetie","Venetie Airport",67.0086975098,-146.365997314
 "WBQ","PAWB","United States","Beaver","Beaver Airport",66.362197876,-147.406997681
 "CEM","PACE","United States","Central","Central Airport",65.57379913,-144.7830048
 "SHG","PAGH","United States","Shungnak","Shungnak Airport",66.88809967041,-157.16200256348
-"KBC",\N,"United States","Brich Creek","Birch Creek Airport",66.256708,-145.815319
-"CXF",\N,"United States","Coldfoot","Coldfoot Airport",67.251389,-150.176111
 "IYK","KIYK","United States","Inyokern","Inyokern Airport",35.65879822,-117.8300018
 "VIS","KVIS","United States","Visalia","Visalia Municipal Airport",36.3186988831,-119.392997742
 "MCE","KMCE","United States","Merced","Merced Regional Macready Field",37.28469849,-120.5139999
@@ -4862,45 +4680,17 @@
 "AYK","UAUR","Kazakhstan","Arkalyk","Arkalyk North Airport",50.318599700927734,66.95279693603516
 "AGN","PAGN","United States","Angoon","Angoon Seaplane Base",57.503601,-134.585007
 "ELV","PAEL","United States","Elfin Cove","Elfin Cove Seaplane Base",58.195201873799995,-136.347000122
-"TKE",\N,"United States","Tenakee Springs","Tenakee Seaplane Base",57.779722,-135.218333
-"PEC",\N,"United States","Pelican","Pelican Seaplane Base",57.955278,-136.236389
-"CYM",\N,"United States","Sitka","Chatham Seaplane Base",57.515,-134.946111
 "FNR","PANR","United States","Funter Bay","Funter Bay Seaplane Base",58.2543983459,-134.897994995
-"EXI",\N,"United States","Excursion Inlet","Excursion Inlet Seaplane Base",58.420556,-135.449167
 "HNH","PAOH","United States","Hoonah","Hoonah Airport",58.0961,-135.410111
-"CGA",\N,"United States","Craig","Craig Seaplane Base",55.478889,-133.147778
-"HYL",\N,"United States","Hollis","Hollis Seaplane Base",55.481667,-132.646111
 "MTM","PAMM","United States","Metakatla","Metlakatla Seaplane Base",55.131001,-131.578003
-"KTB",\N,"United States","Thorne Bay","Thorne Bay Seaplane Base",55.688056,-132.536667
 "HYG","PAHY","United States","Hydaburg","Hydaburg Seaplane Base",55.206298828125,-132.8280029296875
-"WHD",\N,"United States","Hyder","Hyder Seaplane Base",55.903333,-130.006667
-"KPB",\N,"United States","Point Baker","Point Baker Seaplane Base",56.351944,-133.6225
-"PPV",\N,"United States","Port Protection","Port Protection Seaplane Base",56.328889,-133.61
-"WWP",\N,"United States","North Whale Pass","North Whale Seaplane Base",56.116389,-133.121667
-"KCQ",\N,"United States","Chignik Lake","Chignik Lake Airport",56.255,-158.775278
 "EGX","PAII","United States","Egegik","Egegik Airport",58.1855010986,-157.375
-"KCL",\N,"United States","Chignik Lagoon","Chignik Lagoon Airport",56.311111,-158.534167
-"KBW",\N,"United States","Chignik","Chignik Bay Seaplane Base",56.295556,-158.401398
 "KPV","PAPE","United States","Perryville","Perryville Airport",55.905998,-159.162993
 "PIP","PAPN","United States","Pilot Point","Pilot Point Airport",57.5803985596,-157.572006226
 "WSN","PFWS","United States","South Naknek","South Naknek Nr 2 Airport",58.7033996582,-157.007995605
 "AKK","PAKH","United States","Akhiok","Akhiok Airport",56.9387016296,-154.182998657
 "KYK","PAKY","United States","Karluk","Karluk Airport",57.5671005249,-154.449996948
 "KLN","PALB","United States","Larsen Bay","Larsen Bay Airport",57.5350990295,-153.977996826
-"OLH",\N,"United States","Old Harbor","Old Harbor Airport",57.218056,-153.269722
-"KOZ",\N,"United States","Ouzinkie","Ouzinkie Airport",57.922876,-152.500511
-"ORI",\N,"United States","Port Lions","Port Lions Airport",57.885278,-152.846111
-"ALZ",\N,"United States","Lazy Bay","Alitak Seaplane Base",56.899444,-154.247778
-"AOS",\N,"United States","Amook Bay","Amook Bay Seaplane Base",57.471389,-153.815278
-"KKB",\N,"United States","Kitoi Bay","Kitoi Bay Seaplane Base",58.190833,-152.370556
-"KMY",\N,"United States","Moser Bay","Moser Bay Seaplane Base",57.025556,-154.145833
-"KOY",\N,"United States","Olga Bay","Olga Bay Seaplane Base",57.161389,-154.229722
-"KPY",\N,"United States","Port Bailey","Port Bailey Seaplane Base",57.93,-153.040556
-"KPR",\N,"United States","Port Williams","Port Williams Seaplane Base",58.49,-152.582222
-"SYB",\N,"United States","Seal Bay","Seal Bay Seaplane Base",58.166667,-152.5
-"WSJ",\N,"United States","San Juan","San Juan - Uganik Seaplane Base",57.730278,-153.320556
-"KWP",\N,"United States","West Point","West Point Village Seaplane Base",57.77,-153.548889
-"KZB",\N,"United States","Zachar Bay","Zachar Bay Seaplane Base",57.55,-153.75
 "ABL","PAFM","United States","Ambler","Ambler Airport",67.1063,-157.856989
 "BKC","PABL","United States","Buckland","Buckland Airport",65.9815979004,-161.149002075
 "IAN","PAIK","United States","Kiana","Bob Baker Memorial Airport",66.9759979248,-160.43699646
@@ -4913,18 +4703,14 @@
 "TLA","PATE","United States","Teller","Teller Airport",65.2404022217,-166.339004517
 "WAA","PAIW","United States","Wales","Wales Airport",65.622593,-168.095
 "WMO","PAWM","United States","White Mountain","White Mountain Airport",64.689201355,-163.412994385
-"CIL",\N,"United States","Council","Council Airport",64.897778,-163.703333
 "KKA","PAKK","United States","Koyuk","Koyuk Alfred Adams Airport",64.9394989014,-161.154006958
 "SMK","PAMK","United States","St. Michael","St Michael Airport",63.49010086,-162.1100006
 "SKK","PFSH","United States","Shaktoolik","Shaktoolik Airport",64.37110138,-161.223999
-"WBB",\N,"United States","Stebbins","Stebbins Airport",63.515833,-162.278056
 "TNC","PATC","United States","Tin City","Tin City Long Range Radar Station Airport",65.56310272,-167.9219971
 "AKB","PAAK","United States","Atka","Atka Airport",52.22029877,-174.2059937
 "IKO","PAKO","United States","Nikolski","Nikolski Air Station",52.94160079956055,-168.8489990234375
-"ICY",\N,"United States","Icy Bay","Icy Bay Airport",59.968889,-141.661667
 "CYT","PACY","United States","Yakataga","Yakataga Airport",60.080974,-142.494541
 "AUK","PAUK","United States","Alakanuk","Alakanuk Airport",62.680042266799994,-164.659927368
-"SXP",\N,"United States","Nunam Iqua","Sheldon Point Airport",62.520556,-164.847778
 "KPN","PAKI","United States","Kipnuk","Kipnuk Airport",59.932998657199995,-164.031005859
 "KFP","PAKF","United States","False Pass","False Pass Airport",54.8474006652832,-163.41000366210938
 "NLG","PAOU","United States","Nelson Lagoon","Nelson Lagoon Airport",56.007499694824,-161.16000366211
@@ -4935,41 +4721,21 @@
 "KYU","PFKU","United States","Koyukuk","Koyukuk Airport",64.8760986328,-157.727005005
 "SCM","PACM","United States","Scammon Bay","Scammon Bay Airport",61.845298767100005,-165.570999146
 "NNL","PANO","United States","Nondalton","Nondalton Airport",59.980201721191,-154.8390045166
-"PDB",\N,"United States","Pedro Bay","Pedro Bay Airport",59.782222,-154.1325
-"NUP",\N,"United States","Nunapitchuk","Nunapitchuk Airport",60.905833,-162.439167
 "KKH","PADY","United States","Kongiganak","Kongiganak Airport",59.960800170899994,-162.880996704
 "NIB","PAFS","United States","Nikolai","Nikolai Airport",63.0186,-154.358002
-"TCT",\N,"United States","Takotna","Takotna Airport",62.971944,-156.082778
-"PQS",\N,"United States","Pilot Station","Pilot Station Airport",61.934444,-162.899444
 "AKI","PFAK","United States","Akiak","Akiak Airport",60.9029006958,-161.231002808
-"TLT",\N,"United States","Tuluksak","Tuluksak Airport",61.096944,-160.969444
-"KGX",\N,"United States","Grayling","Grayling Airport",62.894444,-160.065
 "AIN","PAWI","United States","Wainwright","Wainwright Airport",70.6380004883,-159.994995117
 "APZ","SAHZ","Argentina","ZAPALA","Zapala Airport",-38.975498,-70.113602
 "RDS","SAHS","Argentina","Rincon de los Sauces","Rincon De Los Sauces Airport",-37.3905982971,-68.9041976929
-"OLN",\N,"Argentina","Colonia Sarmiento","Colonia Sarmiento",-45.6,-69.083333
-"RYO",\N,"Argentina","Rio Turbio","Rio Turbio",-51.533333,-72.3
 "PNT","SCNT","Chile","Puerto Natales","Tte. Julio Gallardo Airport",-51.67150115966797,-72.52839660644531
-"CVI",\N,"Argentina","Caleta Olivia","Caleta Olivia",-46.4333,-67.5333
 "SGV","SAVS","Argentina","Sierra Grande","Sierra Grande Airport",-41.5917015076,-65.33940124509999
 "IGB","SAVJ","Argentina","Ingeniero Jacobacci","Cabo F.A.A. H. R. Bordón Airport",-41.320899963399995,-69.5748977661
-"ELX",\N,"Argentina","El Chalten","El Chalten",-49.328889,-72.93
 "NCN","PFCB","United States","Chenega","Chenega Bay Airport",60.0773010254,-147.992004395
-"CZN",\N,"United States","Chisana","Chisana Airport",62.071111,-142.048333
 "TKJ","PFTO","United States","Tok","Tok Junction Airport",63.32949829,-142.9539948
 "IRC","PACR","United States","Circle","Circle City /New/ Airport",65.830498,-144.076008
-"KCC",\N,"United States","Coffman Cove","Coffman Cove Seaplane Base",56.014722,-132.833889
-"CKD",\N,"United States","Crooked Creek","Crooked Creek Airport",61.867778,-158.135
-"RDV",\N,"United States","Red Devil","Red Devil Airport",61.788056,-157.350278
 "SLQ","PASL","United States","Sleetmute","Sleetmute Airport",61.7005004883,-157.166000366
-"SRV",\N,"United States","Stony River","Stony River 2 Airport",61.7875,-156.591111
-"KAE",\N,"United States","Kake","Kake Seaplane Base",56.973056,-133.945556
 "LMA","PAMH","United States","Lake Minchumina","Minchumina Airport",63.886002,-152.302002
 "MLY","PAML","United States","Manley Hot Springs","Manley Hot Springs Airport",64.99759674069999,-150.643997192
-"TEK",\N,"United States","Tatitlek","Tatitlek Airport",60.8725,-146.691111
-"WFB",\N,"United States","Ketchikan","Ketchikan harbor Seaplane Base",55.344444,-131.663333
-"YNP","CNH2","Canada","Natuashish","Natuashish Airport",55.913898,-61.184399
-"YSO","CCD4","Canada","Postville","Postville Airport",54.9105,-59.78507
 "YWB","CYKG","Canada","Kangiqsujuaq","Kangiqsujuaq (Wakeham Bay) Airport",61.5886001587,-71.929397583
 "YTF","CYTF","Canada","Alma","Alma Airport",48.50889968869999,-71.64189910889999
 "YGV","CYGV","Canada","Havre-Saint-Pierre","Havre St Pierre Airport",50.281898498535156,-63.61140060424805
@@ -4983,20 +4749,8 @@
 "YRS","CYRS","Canada","Red Sucker Lake","Red Sucker Lake Airport",54.167198181152344,-93.55719757080078
 "YOP","CYOP","Canada","Rainbow Lake","Rainbow Lake Airport",58.49140167236328,-119.40799713134766
 "YBY","CYBF","Canada","Bonnyville","Bonnyville Airport",54.304199,-110.744003
-"ZNA","CAC8","Canada","Nanaimo","Nanaimo Harbour Water Airport",49.1833000183,-123.949996948
-"YGG","CAX6","Canada","Ganges","Ganges Seaplane Base",48.8545,-123.4969
-"XQU",\N,"Canada","Qualicum Beach","Qualicum Beach Airport",49.337222,-124.393889
 "YDT","CZBB","Canada","Boundary Bay","Boundary Bay Airport",49.0742,-123.012001
 "YLY","CYNJ","Canada","Langley Township","Langley Airport",49.10079956049999,-122.630996704
-"YHS",\N,"Canada","Sechelt-Gibsons","Sechelt Aerodrome",49.460556,-123.718611
-"YFJ","CFJ2","Canada","Wekweeti","Wekweètì Airport",64.190804,-114.077002
-"PVP",\N,"Mexico","San Bruno","Palo Verde Airport",27.093056,-112.098889
-"ZYR",\N,"Belgium","Brussels","Brussels Gare du Midi",50.8,4.4
-"CYC",\N,"Belize","Caye Chapel","Caye Chapel Airport",17.683611,-88.045
-"BGK",\N,"Belize","Big Creek","Big Creek Airport",16.516667,-88.416667
-"DGA",\N,"Belize","Dangriga","Dangriga Airport",16.966667,-88.216667
-"PLJ",\N,"Belize","Placencia","Placencia Airport",16.536944,-88.361667
-"SJX",\N,"Belize","Sarteneja","Sartaneja Airport",18.355556,-88.130833
 "RNI","MNCI","Nicaragua","Corn Island","Corn Island",12.1628999710083,-83.06379699707031
 "BZA","MNBZ","Nicaragua","Bonanza","San Pedro Airport",13.949999809265137,-84.5999984741211
 "RFS","MNRT","Nicaragua","Rosita","Rosita Airport",13.889699935913086,-84.40889739990234
@@ -5007,26 +4761,13 @@
 "FUS","FUSS","Germany","Fussen","Fussen",47.585,10.6866
 "COZ","MDCZ","Dominican Republic","Constanza","Constanza - Expedición 14 de Junio National Airport",18.907499313354,-70.721900939941
 "NEG","MKNG","Jamaica","Negril","Negril Airport",18.34280014038086,-78.33209991455078
-"EBO",\N,"Germany","Bochum","Bochum Railway",51.478506,7.222781
-"KFB",\N,"Germany","Kaufbeuren","Fliegerhost ",47.874,10.6294
-"ZMU",\N,"Germany","Munich","Munich Railway",48.1408,11.555
-"ZAQ",\N,"Germany","Nuernberg","Nuernberg Railway",49.446389,11.081944
 "NRR","TJRV","Puerto Rico","Ceiba","José Aponte de la Torre Airport",18.245300293,-65.6434020996
-"RLO",\N,"Argentina","Merlo","Aeropuerto Internacional Valle del Conlara",-32.349803,-65.179932
-"SPB","VI22","Virgin Islands","Charlotte Amalie","Charlotte Amalie Harbor Seaplane Base",18.338600158691406,-64.9406967163086
-"SSB",\N,"Virgin Islands","Christiansted","Christiansted Harbor Seaplane Base",17.747222,-64.705
 "ARR","SAVR","Argentina","Alto Rio Senguer","D. Casimiro Szlapelis Airport",-45.013599,-70.812202
 "JSM","SAWS","Argentina","Jose de San Martin","Jose De San Martin Airport",-44.048599243199995,-70.4589004517
 "UYU","SLUY","Bolivia","Uyuni","Uyuni Airport",-20.446300506599997,-66.8483963013
-"ZAU",\N,"Germany","Augsburg","Augsburg Railway",48.3655,10.8863
-"ZMA",\N,"Germany","Mannheim","Mannheim Railway",49.479633,8.469858
-"ZES",\N,"Germany","Essen","Essen Railway",51.451389,7.013889
 "RBQ","SLRQ","Bolivia","Rerrenabaque","Rurenabaque Airport",-14.427900314299999,-67.4968032837
 "ABF","NGAB","Kiribati","Abaiang Atoll","Abaiang Airport",1.798609972000122,173.04100036621094
-"CPS",\N,"United States","East St. Louis","St. Louis Downtown Airport",38.5707244,-90.1562211
 "ABN","SMBN","Suriname","Albina","Albina Airport",5.512720108032227,-54.05009841918945
-"BTO",\N,"Suriname","Botopasi","Botopassi Airstrip",4.233333,-55.45
-"DOE",\N,"Suriname","Djoemoe","Djoemoe Airstrip",4.016667,-55.483333
 "DRJ","SMDA","Suriname","Drietabbetje","Drietabbetje Airport",4.111359,-54.672766
 "MOJ","SMMO","Suriname","Moengo","Moengo Airstrip",5.6076,-54.4003
 "ICK","SMNI","Suriname","Nieuw Nickerie","Nieuw Nickerie Airport",5.955560207366943,-57.039398193359375
@@ -5044,9 +4785,7 @@
 "PJC","SGPJ","Paraguay","Pedro Juan Caballero","Dr Augusto Roberto Fuster International Airport",-22.639999389648438,-55.83000183105469
 "ACD","SKAD","Colombia","Acandi","Alcides Fernández Airport",8.51667,-77.3
 "RVE","SKSA","Colombia","Saravena","Los Colonizadores Airport",6.951868,-71.857179
-"LCR",\N,"Colombia","La Chorrera","La Chorrera Airport",-0.733333,-73.016667
 "BQJ","UEBB","Russia","Batagay","Batagay Airport",67.648002624512,134.69500732422
-"LMC",\N,"Colombia","La Macarena","La Macarena",2.179167,-73.7875
 "VGZ","SKVG","Colombia","Villa Garzon","Villa Garzón Airport",0.978767,-76.6056
 "EBG","SKEB","Colombia","El Bagre","El Bagre Airport",7.59647,-74.8089
 "CAQ","SKCU","Colombia","Caucasia","Juan H White Airport",7.96847,-75.1985
@@ -5070,7 +4809,6 @@
 "ROO","SWRD","Brazil","Rondonopolis","Maestro Marinho Franco Airport",-16.586,-54.7248
 "GPB","SBGU","Brazil","Guarapuava","Tancredo Thomas de Faria Airport",-25.3875007629,-51.520198822
 "JCB","SSJA","Brazil","Joacaba","Santa Terezinha Airport",-27.1714000702,-51.5532989502
-"ZXE",\N,"United Kingdom","Edinburgh","Edinburgh Waverly Station",55.952,-3.189
 "RVD","SWLC","Brazil","Rio Verde","General Leite de Castro Airport",-17.8347225189209,-50.956111907958984
 "AAX","SBAX","Brazil","Araxa","Romeu Zema Airport",-19.563199996948,-46.960399627686
 "MBZ","SWMW","Brazil","Maues","Maués Airport",-3.37217,-57.7248
@@ -5098,12 +4836,7 @@
 "JJM","HKMK","Kenya","Meru National Park","Mulika Lodge Airport",0.165083006024,38.1951408386
 "RBX","HSMK","Sudan","Rumbek","Rumbek Airport",6.8249998092699995,29.6690006256
 "CPA","GLCP","Liberia","Greenville","Cape Palmas Airport",4.3790202140808105,-7.6969499588012695
-"AMY",\N,"Madagascar","Ambatomainty","Ambatomainty Airport",-17.1667,47.1833
-"UKY",\N,"Japan","Kyoto","Kyoto",35.016667,135.766667
-"BZB",\N,"Mozambique","Bazaruto Island","Bazaruto Island Airport",-21.542778,35.473056
-"BCW",\N,"Mozambique","Benguera Island","Benguera Island Airport",-21.849167,35.436944
 "IHC","FQIA","Mozambique","Inhaca","Inhaca Airport",-25.9971446991,32.929351806599996
-"IBL",\N,"Mozambique","Indigo Bay Lodge","Indigo Bay Lodge Airport",-21.707222,35.452222
 "MAX","GOSM","Senegal","Matam","Ouro Sogui Airport",15.593600273132324,-13.322799682617188
 "BDI","FSSB","Seychelles","Bird Island","Bird Island Airport",-3.72472,55.205299
 "WHF","HSSW","Sudan","Wadi Halfa","Wadi Halfa Airport",21.802698135375977,31.521577835083008
@@ -5113,27 +4846,20 @@
 "FUO","ZGFS","China","Foshan","Foshan Shadi Airport",23.083299636799996,113.069999695
 "HUZ","ZGHZ","China","Huizhou","Huizhou Airport",23.0499992371,114.599998474
 "ILD","LEDA","Spain","Lleida","Lleida-Alguaire Airport",41.728185,0.535023
-"YMY",\N,"Canada","Montreal","Central Railway Station",45.499722,-73.566111
-"YBZ",\N,"Canada","Toronto","Union Station",43.645278,-79.380556
 "BIU","BIBD","Iceland","Bildudalur","Bildudalur Airport",65.64129638671875,-23.546199798583984
 "GJR","BIGJ","Iceland","Gjogur","Gjögur Airport",65.99530029296875,-21.326900482177734
 "SAK","BIKR","Iceland","Saudarkrokur","Sauðárkrókur Airport",65.73169708249999,-19.572799682599996
 "IIA","EIMN","Ireland","Inishmaan","Inishmaan Aerodrome",53.09299850463867,-9.568059921264648
 "ULG","ZMUL","Mongolia","Olgii","Ulgii Mongolei Airport",48.9933013916,89.9225006104
-"XDB",\N,"France","Lille","Lille",50.563333,3.08805
 "KQT","UTDT","Tajikistan","Kurgan Tyube","Qurghonteppa International Airport",37.86640167236328,68.86470031738281
 "VGD","ULWW","Russia","Vologda","Vologda Airport",59.282501220703125,39.944400787353516
 "ONK","UERO","Russia","Olenyok","Olenyok Airport",68.514999,112.480003
 "SYS","UERS","Russia","Saskylakh","Saskylakh Airport",71.92790222168,114.08000183105
-"BVV",\N,"Russia","Iturup Island","Burevestnik Airport",44.92,147.621667
-"OHH",\N,"Russia","Okha","Okha Airport",53.583333,142.933333
 "LDG","ULAL","Russia","Arkhangelsk","Leshukonskoye Airport",64.8960037231,45.7229995728
 "HSK","LEHC","Spain","Huesca","Huesca/Pirineos Airport",42.0760993958,-0.316666990519
 "CQM","LERL","Spain","Ciudad Real","Ciudad Real Central Airport",38.8563888889,-3.97
 "NJF","ORNI","Iraq","Najaf","Al Najaf International Airport",31.989853,44.404317
-"QYI",\N,"Netherlands","Hilversum","Hilversum Railway Station",52.226389,5.181667
 "CSA","EGEY","United Kingdom","Colonsay","Colonsay Airstrip",56.0574989319,-6.243060112
-"COL",\N,"United Kingdom","Coll","Coll Airport",56.633333,-6.557222
 "RKH","KUZA","United States","Rock Hill","Rock Hill - York County Airport",34.9878006,-81.05719757
 "AGC","KAGC","United States","Pittsburgh","Allegheny County Airport",40.354400634765625,-79.9301986694336
 "VQQ","KVQQ","United States","Jacksonville","Cecil Airport",30.2187004089,-81.876701355
@@ -5145,13 +4871,10 @@
 "LCX","ZSLD","China","Longyan","Longyan Guanzhishan Airport",25.6746997833,116.747001648
 "BSD","ZPBS","China","Baoshan","Baoshan Yunduan Airport",25.053301,99.168297
 "ACX","ZUYI","China","Xingyi","Xingyi Airport",25.0863888889,104.959444444
-"XZM",\N,"Macau","Macau","Macau Ferry Pier",22.197075,113.558911
 "HZH","ZUNP","China","Liping","Liping Airport",26.32217,109.1499
-"60J",\N,"United States","Ocean Isle Beach","Odell Williamson Municipal",33.9085056,-78.4366722
 "OSU","KOSU","United States","Columbus","The Ohio State University Airport - Don Scott Field",40.0798,-83.072998
 "ADS","KADS","United States","Addison","Addison Airport",32.9686012268,-96.8364028931
 "DSI","KDTS","United States","Destin","Destin Executive Airport",30.40010071,-86.47149658
-"RBN",\N,"United States","Fort Jefferson - Dry Tortugas","Fort Jefferson",24.61667,-82.86667
 "KHE","UKOH","Ukraine","Kherson","Kherson International Airport",46.6758,32.506401
 "SZS","NZRC","New Zealand","Stewart Island","Ryan's Creek Aerodrome",-46.8997,168.100998
 "HJJ","ZGCJ","China","Zhijiang","Zhijiang Airport",27.4411111111,109.7
@@ -5159,14 +4882,8 @@
 "ISO","KISO","United States","Kinston","Kinston Regional Jetport At Stallings Field",35.331401825,-77.60880279540001
 "FFA","KFFA","United States","Kill Devil Hills","First Flight Airport",36.0181999207,-75.67130279540001
 "LNJ","ZPLC","China","Lincang","Lintsang Airfield",23.738100051900002,100.025001526
-"WNH",\N,"China","Wenshan","Wenshan Airport",23.375833,104.243056
 "CKS","SBCJ","Brazil","Parauapebas","Carajás Airport",-6.11527776718,-50.0013885498
-"LTU",\N,"India","Latur","Latur Airport",18.411944,76.465
 "MWK","WIOM","Indonesia","Anambas Islands","Tarempa Airport",3.3481199741363525,106.25800323486328
-"QFZ",\N,"Germany","Mainz","Mainz Finthen",0,0
-"QMZ",\N,"Germany","Mainz","Mainz",50.00829,8.27356
-"GWW",\N,"Germany","Berlin","Berlin Gatow",52.475,13.139
-"ZPQ",\N,"Germany","Rheine","Rheine Bentlage",52.27656,7.43843
 "PGU","OIBP","Iran","Khalije Fars","Persian Gulf International Airport",27.379601,52.737701
 "YES","OISY","Iran","Yasuj","Yasouj Airport",30.700500488281,51.545101165771
 "OSM","ORBM","Iraq","Mosul","Mosul International Airport",36.305801,43.1474
@@ -5174,20 +4891,14 @@
 "AXJ","RJDA","Japan","Amakusa","Amakusa Airport",32.482498,130.158997
 "KKX","RJKI","Japan","Kikai","Kikai Airport",28.321300506599997,129.927993774
 "AGJ","RORA","Japan","Aguni","Aguni Airport",26.5925006866,127.240997314
-"HAE",\N,"North Korea","Haeju","Haeju Airport",38.00543,125.77863
-"LAC",\N,"Malaysia","Layang Layang Atoll","Layang Layang Airport",7.372222,113.841667
 "ULZ","ZMDN","Mongolia","Uliastai","Donoi Airport",47.7093,96.5258
 "UGA","ZMBN","Mongolia","Bulgan","Bulgan Airport",48.85499954223633,103.47599792480469
 "ULO","ZMUG","Mongolia","Ulaangom","Ulaangom Airport",50.066588,91.938273
 "LBX","RPLU","Philippines","Lubang","Lubang Airport",13.855400085449219,120.1050033569336
-"BJT",\N,"Sri Lanka","Bentota","Bentota Airport",6.416667,79.983333
-"DIW",\N,"Sri Lanka","Dickwella","Dickwella Airport",5.966667,80.683333
 "TJU","UTDK","Tajikistan","Kulyab","Kulob Airport",37.98809814453125,69.80500030517578
 "CMJ","RCCM","Taiwan","Cimei","Chi Mei Airport",23.2131004333,119.417999268
 "TAZ","UTAT","Turkmenistan","Dasoguz","Daşoguz Airport",41.761101,59.826698
 "BWB","YBWX","Australia","Barrow Island","Barrow Island Airport",-20.86440086364746,115.40599822998047
-"MWB",\N,"Australia","Morawa","Morawa Airport",-29.211,116.009
-"EXM",\N,"Australia","Exmouth","Exmouth Airport",-21.933,114.128
 "DRB","YDBY","Australia","Derby","Derby Airport",-17.3700008392334,123.66100311279297
 "WGE","YWLG","Australia","Walgett","Walgett Airport",-30.032800674438477,148.12600708007812
 "BRT","YBTI","Australia","Bathurst Island","Bathurst Island Airport",-11.769200325012207,130.6199951171875
@@ -5219,17 +4930,8 @@
 "MNK","NGMA","Kiribati","Maiana","Maiana Airport",1.0036100149154663,173.031005859375
 "NON","NGTO","Kiribati","Nonouti","Nonouti Airport",-0.6397219896316528,174.42799377441406
 "TSU","NGTS","Kiribati","Tabiteuea","Tabiteuea South Airport",-1.4744399785995483,175.06399536132812
-"BOT",\N,"Papua New Guinea","Bosset","Bosset Airport",-7.240833,141.092333
-"IMI",\N,"Marshall Islands","Ine","Ine Airport",7.016667,171.483333
-"TIC",\N,"Marshall Islands","Tinak","Tinak Airport",7.133333,171.916667
-"EAL",\N,"Marshall Islands","Elenak","Elenak Airport",9.083333,167.333333
-"LML",\N,"Marshall Islands","Lae","Lae Airport",8.921667,166.265556
-"AIC",\N,"Marshall Islands","Airok","Airok Airport",7.1,171.233333
-"EJT",\N,"Marshall Islands","Enejit","Enejit Airport",6.040278,171.984444
 "WTZ","NZWT","New Zealand","Whitianga","Whitianga Airport",-36.83169937133789,175.6790008544922
 "KTF","NZTK","New Zealand","Takaka","Takaka Airport",-40.81330108642578,172.77499389648438
-"C23",\N,"Palau","Peleliu","Peleliu Airfield",6.998333,134.232778
-"AAU",\N,"Samoa","Savai\'i","Asau Airport",-13.505,-172.627778
 "AFT","AGAF","Solomon Islands","Afutara","Afutara Aerodrome",-9.19138888889,160.948611111
 "RNA","AGAR","Solomon Islands","Ulawa","Ulawa Airport",-9.86054358262,161.979546547
 "CHY","AGGC","Solomon Islands","Choiseul Bay","Choiseul Bay Airport",-6.711944,156.396111
@@ -5238,16 +4940,10 @@
 "BPF","AGBT","Solomon Islands","Batuna","Batuna Aerodrome",-8.56202777778,158.119305556
 "BOW","KBOW","United States","Bartow","Bartow Municipal Airport",27.943399429299998,-81.78340148930002
 "FTI","NSFQ","American Samoa","Fiti\'uta","Fitiuta Airport",-14.2172,-169.425003
-"OFU",\N,"American Samoa","Ofu","Ofu Airport",-14.184444,-169.67
 "LVK","KLVK","United States","Livermore","Livermore Municipal Airport",37.6934013367,-121.819999695
 "RMY","KMPI","United States","Mariposa","Mariposa Yosemite Airport",37.5108985901,-120.040000916
 "GFY","FYGF","Namibia","Grootfontein","Grootfontein Airport",-19.60219955444336,18.122699737548828
 "NDU","FYRU","Namibia","Rundu","Rundu Airport",-17.956499099731,19.719400405884
-"BPU",\N,"Japan","Beppu","Beppu Airport",33.3,131.5333
-"HRN",\N,"Australia","Heron Island","Heron Island",-23.441667,151.911389
-"LYT",\N,"Australia","Lady Elliot Island","Lady Elliot Island",-24.113333,152.715278
-"ORS",\N,"Australia","Orpheus Island","Orpheus Island",-18.634,146.5
-"QQP",\N,"United Kingdom","London","Paddington Station",51.515833,-0.176111
 "TRM","KTRM","United States","Palm Springs","Jacqueline Cochran Regional Airport",33.62670135498,-116.16000366211
 "SMO","KSMO","United States","Santa Monica","Santa Monica Municipal Airport",34.015800476100004,-118.450996399
 "UDD","KUDD","United States","Palm Springs","Bermuda Dunes Airport",33.748401641846,-116.27500152588
@@ -5263,37 +4959,25 @@
 "SDM","KSDM","United States","San Diego","Brown Field Municipal Airport",32.572299957275,-116.98000335693
 "VNC","KVNC","United States","Venice","Venice Municipal Airport",27.071599960327,-82.440299987793
 "PHK","KPHK","United States","Pahokee","Palm Beach County Glades Airport",26.78499985,-80.69339752
-"NEZ",\N,"Russia","Nezhitino","Nezhitino",57.479444454444,43.29750001
-"MFT",\N,"Peru","Machu Pichu","Machu Pichu Airport",-13.1167,-72.5667
 "ECP","KECP","United States","Panama City","Northwest Florida Beaches International Airport",30.357106,-85.795414
 "SBD","KSBD","United States","San Bernardino","San Bernardino International Airport",34.0954017639,-117.23500061
 "VAL","SNVB","Brazil","Valenca","Valença Airport",-13.2965,-38.992401
 "CAU","SNRU","Brazil","Caruaru","Caruaru Airport",-8.282389640808105,-36.01350021362305
 "AWK","PWAK","Wake Island","Wake island","Wake Island Airfield",19.282100677490234,166.63600158691406
 "QNV","SDNY","Brazil","Nova Iguacu","Aeroclube Airport",-22.74530029296875,-43.46030044555664
-"XPG",\N,"France","Paris","Gare du Nord",48.880931,2.355323
-"XGB",\N,"France","Paris","Gare Montparnasse",48.84,2.318611
-"XSH",\N,"France","Tours","Saint-Pierre-des-Corps",47.385626,0.723347
 "SQL","KSQL","United States","San Carlos","San Carlos Airport",37.511901855469,-122.25
 "RWI","KRWI","United States","Rocky Mount","Rocky Mount Wilson Regional Airport",35.856300354003906,-77.89189910888672
 "SXQ","PASX","United States","Soldotna","Soldotna Airport",60.47570037841797,-151.03399658203125
 "SEE","KSEE","United States","El Cajon","Gillespie Field",32.826198577881,-116.97200012207
-"ZYA",\N,"Netherlands","Amsterdam","Amsterdam Centraal",52.378333,4.9
-"JMY",\N,"Sierra Leone","Freetown","Mammy Yoko Heliport",8.490278,-13.289722
 "PHA","VVPR","Vietnam","Phan Rang","Phan Rang Airport",11.6335000992,108.952003479
 "SQH","VVNS","Vietnam","Son-La","Na-San Airport",21.216999053955078,104.03299713134766
 "TKF","KTRK","United States","Truckee","Truckee Tahoe Airport",39.319999694799996,-120.13999939
 "FRJ","LFTU","France","Frejus","Fréjus Airport",43.4175,6.7357
 "GEX","YGLG","Australia","Geelong","Geelong Airport",-38.224998474121094,144.33299255371094
-"QPP",\N,"Germany","Berlin","Berlin Hauptbahnhof",52.52493,13.36963
-"ONH",\N,"United States","Oneonta","Oneonta Municipal Airport",42.524722,-75.064444
 "LVM","KLVM","United States","Livingston-Montana","Mission Field",45.6994018555,-110.447998047
-"ZWR",\N,"Malaysia","Kota Kinabalu","Kota Kinabalu Airport",11.1111,11.1111
-"GMV","UT25","United States","Monument Valley","Monument Valley Airport",37.016700744599994,-110.200996399
 "JRA","KJRA","United States","New York","West 30th St. Heliport",40.754501,-74.007103
 "LAL","KLAL","United States","Lakeland","Lakeland Linder International Airport",27.988899,-82.018602
 "SYH","VNSB","Nepal","Syangboche","Syangboche Airport",27.8112,86.7124
-"RBK","KF70","United States","Murrieta-Temecula","French Valley Airport",33.5741996765,-117.127998352
 "FNU","LIER","Italy","Oristano","Oristano-Fenosu Airport",39.895308,8.642661
 "MYQ","VOMY","India","Mysore","Mysore Airport",12.23,76.655833
 "MGY","KMGY","United States","Dayton","Dayton-Wright Brothers Airport",39.5890007019,-84.224899292
@@ -5307,9 +4991,6 @@
 "BUH","BUCH","Germany","Buchloe","Buchloe BF",48.0411,10.715
 "FUX","FUSN","Germany","Fussen","Fussen BF",47.585,10.6866
 "EMP","KEMP","Germany","Kempten","Emporia Municipal Airport",38.3320999146,-96.19120025630001
-"AIE",\N,"Papua New Guinea","Aiome","Aiome",-5.8,144.44
-"SIM",\N,"Papua New Guinea","Simbai","Simbai",-4,144
-"AUJ",\N,"Papua New Guinea","Ambunti","Ambunti",-4.15,142.51
 "MOS","MARO","Germany","Marktoberdorf","Marktoberdorf Schule",47.777,10.623
 "HYC","EGTB","United Kingdom","Wycombe","Wycombe Air Park",51.6116981506,-0.8083329796790001
 "BBP","EGHJ","United Kingdom","Bembridge","Bembridge Airport",50.6781005859,-1.10943996906
@@ -5324,14 +5005,11 @@
 "UTM","KUTA","United States","Tunica","Tunica Municipal Airport",34.680999755859,-90.346702575684
 "ZKB","FLKY","Zambia","Kasaba Bay","Kasaba Bay Airport",-8.524999618530273,30.663000106811523
 "LND","KLND","Germany","Lindau","Hunt Field",42.8152008057,-108.730003357
-"UDE",\N,"Netherlands","Volkel","Volkel AB",51.656389,5.708611
 "MWC","KMWC","United States","Milwaukee","Lawrence J Timmerman Airport",43.110401,-88.034401
 "JVL","KJVL","United States","Janesville","Southern Wisconsin Regional Airport",42.620300293,-89.0416030884
-"HTF",\N,"United Kingdom","Hatfield","Hatfield",51.765,-0.24833
 "LZU","KLZU","United States","Lawrenceville","Gwinnett County Briscoe Field",33.97809982,-83.96240234
 "BWG","KBWG","United States","Bowling Green","Bowling Green Warren County Regional Airport",36.964500427199994,-86.41970062259999
 "RVS","KRVS","United States","Tulsa","Richard Lloyd Jones Jr Airport",36.039600372314,-95.984596252441
-"NOI",\N,"Russia","Novorossiysk","Krymsk",44.4016,37.7779
 "NHD","OMDM","United Arab Emirates","Minhad AB","Al Minhad Air Base",25.0268001556,55.3661994934
 "KGO","UKKG","Ukraine","Kirovograd","Kirovograd Airport",48.54280090332031,32.28499984741211
 "DBB","HEAL","Egypt","Dabaa City","El Alamein International Airport",30.92449951171875,28.46139907836914
@@ -5340,28 +5018,17 @@
 "CKL","UUMU","Russia","Shchyolkovo","Chkalovskiy Air Base",55.8783,38.061699
 "TCZ","ZUTC","China","Tengchong","Tengchong Tuofeng Airport",24.9380555556,98.48583333330001
 "UKS","UKFB","Ukraine","Sevastopol","Belbek Airport",44.688999176,33.570999145500004
-"WZY",\N,"Bahamas","Nassau","Paradise Island Seaplane Base",25.0872,-77.3239
 "OAZ","OAZI","Afghanistan","Camp Bastion","Camp Bastion Airport",31.863800048799998,64.2246017456
 "JCI","KIXD","United States","Olathe","New Century Aircenter Airport",38.8308982849,-94.890296936
 "ESN","KESN","United States","Easton","Easton Newnam Field",38.8041992188,-76.06900024410001
 "HMR","ENHA","Norway","Hamar","Stafsberg Airport",60.81809997558594,11.067999839782715
-"R49",\N,"United States","Republic","Ferry County Airport",48.7182058,-118.6564714
 "MYV","KMYV","United States","Yuba City","Yuba County Airport",39.09780121,-121.5699997
-"STO",\N,"Sweden","Stockholm","Stockholm Cruise Port",59.3233,18.081
-"JHE",\N,"Sweden","Helsingborg","Helsingborg Cruise Port",56.0419,12.6912
 "DUC","KDUC","United States","Duncan","Halliburton Field",34.47090149,-97.9598999
-"E91",\N,"United States","Chinle","Chinle Municipal Airport",36.1108806,-109.5754222
 "UVA","KUVA","United States","Uvalde","Garner Field",29.2112998962,-99.743598938
 "LOT","KLOT","United States","Lockport","Lewis University Airport",41.6072998,-88.09619904
-"C16",\N,"United States","Urbana","Frasca Field",40.144979,-88.200197
 "CCR","KCCR","United States","Concord","Buchanan Field",37.9897003174,-122.056999207
-"OCA","07FA","United States","Ocean Reef Club Airport","Ocean Reef Club Airport",25.325399398804,-80.274803161621
 "YUS","ZYLS","China","Yushu","Yushu Batang Airport",32.836388888900004,97.0363888889
-"PYC",\N,"Panama","Playon Chico","Playon Chico",9.303333,-78.236111
-"UTU",\N,"Panama","Ustupo","Ustupo",9.137778,-77.933611
-"MPU",\N,"Panama","Mamitupo","Mamitupo",9.186667,-77.984167
 "HIA","ZSSH","China","Huai An","Lianshui Airport",33.7908333333,119.125
-"PVE",\N,"Panama","El Porvenir","El Porvenir",9.559167,-78.971111
 "YOO","CYOO","Canada","Oshawa","Toronto/Oshawa Executive Airport",43.922798,-78.894997
 "LHA","EDTL","Germany","Lahr","Lahr Airport",48.3693008423,7.82772016525
 "NYW","VYMY","Burma","Monywa","Monywar Airport",22.221638,95.093479
@@ -5372,8 +5039,6 @@
 "JAB","YJAB","Australia","Jabiru","Jabiru Airport",-12.658300399780273,132.89300537109375
 "RGB","REGE","Germany","Regensburg","Regensburg HBF",49.022,12.1111
 "TLG","TREU","Germany","Treuchtlingen","Treuchtlingen BF",49.04,11.081944
-"RSI",\N,"Panama","Rio Sidra","Rio Sidra",8.966667,-80.333336
-"MPB",\N,"United States","Miami","Miami Seaplane Base",25.7783,-80.1703
 "HGS","GFHA","Sierra Leone","Freetown","Hastings Airport",8.397130012512207,-13.12909984588623
 "TOP","KTOP","United States","Topeka","Philip Billard Municipal Airport",39.068698883057,-95.622497558594
 "MQY","KMQY","United States","Smyrna","Smyrna Airport",36.0089988708,-86.5201034546
@@ -5383,20 +5048,9 @@
 "WZB","WURZ","Germany","Wurzburg","Wurzburg HBF",49.7999,9.95555
 "PWK","KPWK","United States","Chicago-Wheeling","Chicago Executive Airport",42.114222,-87.901494
 "KLS","KKLS","United States","Kelso","Southwest Washington Regional Airport",46.11800003049999,-122.898002625
-"3W2",\N,"United States","Put-in-Bay","Put-in-Bay Airport",41.3521,-82.497
 "ZTA","NTGY","French Polynesia","Tureia","Tureia Airport",-20.78969955444336,-138.57000732421875
-"TWD",\N,"United States","Port Townsend","Jefferson County Intl",48.0314,-122.4838
-"38W",\N,"United States","Lynden","Lynden Airport",48.9558961,-122.4581183
-"0S9",\N,"United States","Port Townsend","Jefferson County Intl",48.0538086,-122.8106436
 "PUE","MPOA","Panama","Puerto Obaldia","Puerto Obaldia Airport",8.667,-77.418
 "KHC","UKFK","Ukraine","Kerch","Kerch Airport",45.372501373291016,36.40140151977539
-"XDS",\N,"Canada","Ottawa","Train Station",45.4164,-75.6517
-"XVV",\N,"Canada","Belleville","Train Station",44.1793,-77.3747
-"XZL",\N,"Canada","Edmonton","Train Station",53.5789,-113.5307
-"ZRD",\N,"United States","Richmond","Train Station",37.5343,-77.42945
-"XKL",\N,"Malaysia","Kuala Lumpur","Sentral",3.134,101.686
-"XAD",\N,"Canada","Churchill","Train Station",58.76775,-94.17425
-"XEF",\N,"Canada","Winnipeg","Train Station",49.8889,-97.1342
 "UKA","HKUK","Kenya","Ukunda","Ukunda Airstrip",-4.29333,39.571098
 "ILN","KILN","United States","Wilmington","Wilmington Airpark",39.427898407,-83.792098999
 "AVW","KAVQ","United States","Tucson","Marana Regional Airport",32.4095993042,-111.218002319
@@ -5407,39 +5061,26 @@
 "RWL","KRWL","United States","Rawlins","Rawlins Municipal Airport/Harvey Field",41.80559921,-107.1999969
 "CDW","KCDW","United States","Caldwell","Essex County Airport",40.875198364300005,-74.2814025879
 "AIZ","KAIZ","United States","Kaiser Lake Ozark","Lee C Fine Memorial Airport",38.0960006714,-92.54949951170002
-"L35",\N,"United States","Big Bear","Big Bear City",34.2637778,-116.8560278
 "KIP","KIEV","Ukraine","KIEV","KIEV  INTERNATIONAL AIRPORT",50.1403,30.1808
 "BAM","BAMB","Germany","Bamberg","Bamberg BF",49.911,10.9
 "TVI","KTVI","United States","Thomasville","Thomasville Regional Airport",30.901599884033,-83.881301879883
 "HSH","KHND","United States","Henderson","Henderson Executive Airport",35.9728012085,-115.134002686
 "GML","UKKM","Ukraine","Kiev","Gostomel Airport",50.60350036621094,30.1919002532959
 "TMA","KTMA","United States","Tifton","Henry Tift Myers Airport",31.4290008545,-83.4885025024
-"ZRB",\N,"Germany","Frankfurt","Frankfurt-Main Hauptbahnhof",50.1070257990375,8.66276050515751
-"XYG",\N,"Czech Republic","Prague","Praha hlavni nadrazi",50.0826892098189,14.4350297593689
-"ZMS",\N,"Italy","Florence","Firenze Santa Maria Novella",43.7766651171349,11.2480175237426
-"QQS",\N,"United Kingdom","London","St Pancras Railway Station",51.532519492138,-0.12630037301642
-"ULX",\N,"Namibia","Ulusaba","Ulusaba Airstrip",-24.782766,31.353929
 "RDO","EPRA","Poland","RADOM","Radom Airport",51.3891983032,21.213300705
 "DVT","KDVT","United States","Phoenix ","Phoenix Deer Valley Airport",33.6883010864,-112.083000183
 "YRV","CYRV","Canada","Revelstoke","Revelstoke Airport",50.9667015076,-118.182998657
 "FRG","KFRG","United States","Farmingdale","Republic Airport",40.7288017273,-73.4133987427
-"TYA",\N,"Russia","Tula","Tula",54.142208,37.355619
 "ZHY","ZLZW","China","Zhongwei","Zhongwei Shapotou Airport",37.573125,105.154454
 "MCL","PAIN","United States","McKinley Park","McKinley National Park Airport",63.7326011658,-148.910995483
 "PPC","PAPR","United States","Prospect Creek","Prospect Creek Airport",66.814102172852,-150.64399719238
 "KHW","FBKR","Botswana","Khwai River","Khwai River Lodge Airport",-19.149999618530273,23.783000946044922
 "TXG","RCLG","Taiwan","Taichung","Taichung Airport",24.18630027770996,120.65399932861328
-"HCC",\N,"United States","Hudson NY","Columbia County",42.2913,-73.7103
 "HLG","KHLG","United States","Wheeling","Wheeling Ohio County Airport",40.1749992371,-80.6463012695
-"40J",\N,"United States","Perry","Perry-Foley Airport",30.0692778,-83.5805833
-"70J",\N,"United States","Cairo","Cairo-Grady County Airport",30.8879767,-84.1547353
-"SSX",\N,"Turkey","Samsun","Samsun ",41.1641,36.1814
 "XYE","VYYE","Burma","Ye","Ye Airport",15.300000190734863,97.86699676513672
 "XEG","KGST","Canada","Kingston","Kingston Train Station",44.256944,-76.536943
-"XAX",\N,"Canada","Dorval","Dorval Railway Station",45.448611,-73.74111
 "DWC","OMDW","United Arab Emirates","Dubai","Al Maktoum International Airport",24.896356,55.161389
 "RKP","KRKP","United States","Rockport","Aransas County Airport",28.0867996216,-97.0446014404
-"NDA",\N,"Indonesia","Bandanaira-Naira Island","Bandanaira Airport",-4.53333,129.9
 "MVV","LFHM","France","Verdun","Megève Airport",45.82080078125,6.652219772338867
 "MFX","LFKX","France","Ajaccio","Méribel Altiport",45.407003,6.577942
 "AEB","ZGBS","China","Baise","Baise Youjiang Airport",23.7206001282,106.959999084
@@ -5449,11 +5090,9 @@
 "PSH","EDXO","Germany","Sankt Peter-Ording","St. Peter-Ording Airport",54.30888748168945,8.686944007873535
 "TTD","KTTD","United States","Troutdale","Portland Troutdale Airport",45.54940032959,-122.40100097656
 "HIO","KHIO","United States","Hillsboro","Portland Hillsboro Airport",45.540401,-122.949997
-"24J",\N,"United States","Live Oak","Suwannee County Airport",30.300125,-83.0246944
 "KHT","OAKS","Afghanistan","Khost","Khost Airport",33.3334007263,69.952003479
 "NMT","VYNT","Burma","Naypyidaw","Namtu Airport",23.083,97.383003
 "BNO","KBNO","United States","Burns","Burns Municipal Airport",43.5918998718,-118.955001831
-"PRZ","KS39","United States","Prineville","Prineville Airport",44.286998748779,-120.90399932861
 "RBL","KRBL","United States","Red Bluff","Red Bluff Municipal Airport",40.1506996155,-122.251998901
 "NOT","KDVO","United States","Novato","Marin County Airport - Gnoss Field",38.143600463867,-122.55599975586
 "LKV","KLKV","United States","Lakeview","Lake County Airport",42.161098480199996,-120.399002075
@@ -5466,54 +5105,23 @@
 "TSB","FYTM","Namibia","Tsumeb","Tsumeb Airport",-19.26189994812,17.732500076294
 "YSD","CYSD","Canada","Suffield","Suffield Heliport",50.266700744628906,-111.18299865722656
 "BNU","SSBL","Brazil","BLUMENAU","Blumenau Airport",-26.83060073852539,-49.090301513671875
-"SIB",\N,"Romania","Sibiu","Aeroclub Sibiu",45.4649,24.053
-"2J9",\N,"United States","Quincy","Quincy Municipal Airport",30.5978708,-84.557425
-"MGR",\N,"United States","Moultrie","Moultrie Municipal Airport",31.0849167,-83.80325
-"RCE",\N,"United States","Roche Harbor","Roche Harbor Seaplane Base",48.608056,-123.159722
-"BYW",\N,"United States","Blakely Island","Blakely Island Airport",48.56025,-122.80243
-"RSJ",\N,"United States","Rosario","Rosario Seaplane Base",48.645556,-122.868056
-"WSX",\N,"United States","Westsound","Westsound Seaplane Base",48.617778,-122.952778
-"FBS",\N,"United States","Friday Harbor","Friday Harbor Seaplane Base",48.537222,-123.009722
-"YRR",\N,"Canada","Big Bay","Big Bay Water Aerodrome",50.4,-125.133333
-"L06",\N,"United States","Death Valley National Park","Furnace Creek",36.273,-116.515
 "YCC","CYCC","Canada","Cornwall","Cornwall Regional Airport",45.09280014038086,-74.56330108642578
 "IZA","SDZY","Brazil","Juiz de Fora","Zona da Mata Regional Airport",-21.5130558014,-43.1730575562
-"DVA",\N,"Romania","Deva","Aeroclub Deva",45.5153,22.5813
-"DZM",\N,"Romania","Dezmir","Aeroclub Cluj",46.4643,23.4258
 "MVL","KMVL","United States","Morrisville","Morrisville Stowe State Airport",44.53459930419999,-72.6139984131
 "RBD","KRBD","United States","Dallas","Dallas Executive Airport",32.6809005737,-96.8682022095
-"6Y8",\N,"United States","Beaver Island","Welke Airport",45.721111,-85.520278
 "BXY","UAOL","Kazakhstan","Baikonur","Krainiy Airport",45.621994,63.210773
-"MOW",\N,"Russia","Moscow","MOW",55.7557,37.6176
 "WST","KWST","United States","Washington County","Westerly State Airport",41.3496017456,-71.8033981323
 "BID","KBID","United States","Block Island","Block Island State Airport",41.1680984497,-71.577796936
-"369",\N,"United States","Atmautluak","Atmautluak Airport",60.866667,-162.273056
 "NME","PAGT","United States","Nightmute","Nightmute Airport",60.471000671387,-164.70100402832
 "OOK","PAOO","United States","Toksook Bay","Toksook Bay Airport",60.54140091,-165.0870056
-"TNK",\N,"United States","Tununak","Tununak Airport",60.575556,-165.271667
-"GNU",\N,"United States","Goodnews Bay","Goodnews Airport",59.1175,-161.5775
-"WWT",\N,"United States","Newtok","Newtok Airport",60.939167,-164.641111
-"ACU",\N,"Panama","Achutupo","Achutupo Airport",9.2,-77.98
-"TUW",\N,"Panama","Tubuala","Tubuala Airport",9.52,-79.03
-"GHE",\N,"Panama","Garachine","Garachine Airport",8.06,-78.36
-"MPP",\N,"Panama","Mulatupo","Mulatupo Airport",8.95,-77.75
 "OBY","BGSC","Greenland","Ittoqqortoormiit","Ittoqqortoormiit Heliport",70.4882288244,-21.971679925900002
 "VIN","UKWW","Ukraine","Vinnitsa","Vinnytsia/Gavyryshivka Airport",49.242531,28.613778
-"QXG",\N,"France","Angers","Angers St Laud",47.464714,-0.556405
 "BGE","KBGE","United States","Bainbridge","Decatur County Industrial Air Park",30.9715004,-84.63739777
-"ZGS","CTT5","Canada","La Romaine","La Romaine Airport",50.259701,-60.679401
-"ZKG","CTK6","Canada","Kegaska","Kegaska Airport",50.1958007812,-61.265800476100004
-"YBI","CCE4","Canada","Black Tickle","Black Tickle Airport",53.4693984985,-55.784999847399995
 "WHP","KWHP","United States","Los Angeles","Whiteman Airport",34.2593002319,-118.413002014
 "MAE","KMAE","United States","Madera","Madera Municipal Airport",36.9886016846,-120.111999512
-"U76",\N,"United States","Mountain Home","Mountain Home Municipal Airport",43.1316111,-115.7305671
-"YZZ","CAD4","Canada","Trail","Trail Airport",49.0555992126,-117.60900116
-"YAB","CJX7","Canada","Arctic Bay","Old Arctic Bay Airport",73.0058922479,-85.0325489044
 "GSI","SOGS","French Guiana","Grand-Santi","Grand-Santi Airport",4.285833,-54.373056
 "MPY","SOOA","French Guiana","Maripasoula","Maripasoula Airport",3.6575,-54.037201
 "LDX","SOOM","French Guiana","Saint-Laurent-du-Maroni","Saint-Laurent-du-Maroni Airport",5.48306,-54.034401
-"AAJ",\N,"Suriname","Cayana","Cayana Airstrip",3.898611,-55.577778
-"LDO",\N,"Suriname","Laduani","Laduani Airstrip",4.3754,-55.4075
 "KJI","ZWKN","China","Burqin","Kanas Airport",48.2223,86.9959
 "CPB","SKCA","Colombia","Capurgana","Capurganá Airport",8.63333,-77.35
 "HMB","HEMK","Egypt","Sohag","Sohag International Airport",26.342778,31.742778
@@ -5531,7 +5139,6 @@
 "CCI","SSCK","Brazil","Concordia","Concórdia Airport",-27.180599212646484,-52.05270004272461
 "FBE","SSFB","Brazil","Francisco Beltrao","Francisco Beltrão Airport",-26.059200286865234,-53.063499450683594
 "CFO","SJHG","Brazil","Confresa","Confresa Airport",-10.634400367736816,-51.5635986328125
-"19A",\N,"United States","Jefferson","Jackson County Airport",34.1758638,-83.5615972
 "AAF","KAAF","United States","Apalachicola","Apalachicola Regional Airport",29.72750092,-85.02749634
 "UMU","SSUM","Brazil","Umuarama","Umuarama Airport",-23.7987003326416,-53.31380081176758
 "DTI","SNDT","Brazil","Diamantina","Diamantina Airport",-18.232000351,-43.650398254399995
@@ -5544,13 +5151,9 @@
 "TEF","YTEF","Australia","Telfer","Telfer Airport",-21.71500015258789,122.22899627685547
 "GZP","LTGP","Turkey","Alanya","Gazipaşa Airport",36.299217,32.300598
 "OAA","OASH","Afghanistan","Shank","Shank Air Base",33.9225,69.07722222219999
-"SGJ",\N,"United States","St. Augustine","St. Augustine Airport",29.95925,-81.3397222
-"LDZ",\N,"South Africa","Londolozi","Londolozi",-24.8333,31.5
-"INY",\N,"South Africa","Sabi Sands","Singita Sabi Sands",-24.815,31.42
 "FPR","KFPR","United States","Fort Pierce","St Lucie County International Airport",27.49510002,-80.36830139
 "PYM","KPYM","United States","Plymouth","Plymouth Municipal Airport",41.909,-70.728798
 "NCO","KOQU","United States","North Kingstown","Quonset State Airport",41.597099304199,-71.412101745605
-"1B9",\N,"United States","Mansfield","Mansfield Municipal",42.0001331,-71.1967714
 "OWD","KOWD","United States","Norwood","Norwood Memorial Airport",42.1904983521,-71.1728973389
 "BAF","KBAF","United States","Westfield","Westfield-Barnes Regional Airport",42.157799,-72.715599
 "MGJ","KMGJ","United States","Montgomery","Orange County Airport",41.50999832,-74.26460266
@@ -5563,19 +5166,11 @@
 "GAD","KGAD","United States","Gadsden","Northeast Alabama Regional Airport",33.972599,-86.088996
 "WDR","KWDR","United States","Winder","Barrow County Airport",33.98289871,-83.66739655
 "DNN","KDNN","United States","Dalton","Dalton Municipal Airport",34.72290039,-84.87020111
-"4A9",\N,"United States","Fort Payne","Isbell Field Airport",34.4736944,-85.7213889
 "LGC","KLGC","United States","LaGrange","LaGrange Callaway Airport",33.0089,-85.072601
-"4A4",\N,"United States","Cedartown","Polk County Airport - Cornelius Moore Field",34.0186944,-85.1464722
 "PIM","KPIM","United States","Pine Mountain","Harris County Airport",32.8406982422,-84.8824005127
-"9A1",\N,"United States","Covington","Covington Municipal Airport",33.6323083,-83.8474472
 "GVL","KGVL","United States","Gainesville","Lee Gilmer Memorial Airport",34.27259827,-83.8302002
-"54J",\N,"United States","DeFuniak Springs","DeFuniak Springs Airport",30.7311111,-86.1537778
-"9A5",\N,"United States","LaFayette","Barwick Lafayette Airport",34.6884792,-85.2903319
 "PHD","KPHD","United States","New Philadelpha","Harry Clever Field",40.470901489258,-81.419700622559
 "HHH","KHXD","United States","Hilton Head Island","Hilton Head Airport",32.2243995667,-80.6975021362
-"49A",\N,"United States","Ellijay","Gilmer County Airport",34.6282222,-84.5265833
-"0A9",\N,"United States","Elizabethton","Elizabethton Municipal Airport",36.3712222,-82.1734167
-"06A",\N,"United States","Tuskegee","Moton Field Municipal Airport",32.4605722,-85.6800278
 "DNL","KDNL","United States","Augusta","Daniel Field",33.4664993286,-82.0393981934
 "MRN","KMRN","United States","Morganton","Foothills Regional Airport",35.820202,-81.611397
 "PVL","KPBX","United States","Pikeville","Pike County-Hatcher Field",37.5617981,-82.56639862
@@ -5587,17 +5182,14 @@
 "OZG","GMAZ","Morocco","Zagora","Zagora Airport",30.3202991486,-5.86667013168
 "WYE","GFYE","Sierra Leone","Yengema","Yengema Airport",8.610469818115234,-11.04539966583252
 "GBK","GFGK","Sierra Leone","Gbangbatok","Gbangbatok Airport",7.767000198364258,-12.383000373840332
-"VDF",\N,"United States","Tampa","Tampa Executive Airport",28.0139772,-82.3452778
 "THX","UOTT","Russia","Turukhansk","Turukhansk Airport",65.797203064,87.9353027344
 "TGP","UNIP","Russia","Bor","Podkamennaya Tunguska Airport",61.589699,89.994003
 "AFW","KAFW","United States","Fort Worth","Fort Worth Alliance Airport",32.9875984192,-97.31880187990001
 "MYF","NULL","United States","San Diego","Montgomery Field",32.4759,117.759
-"SEL",\N,"South Korea","Seoul","Gimpo International Airpot",37.558311,126.790586
 "RMK","YREN","Australia","Renmark","Renmark Airport",-34.1963996887207,140.6739959716797
 "LGH","YLEC","Australia","Leigh Creek","Leigh Creek Airport",-30.59830093383789,138.42599487304688
 "RTS","YRTI","Australia","Rottnest Island","Rottnest Island Airport",-32.006699,115.540001
 "FOS","YFRT","Australia","Forrest","Forrest Airport",-30.83810043334961,128.11500549316406
-"KEW","CPV8","Canada","Keewaywin","Keewaywin Airport",52.991100311299995,-92.8364028931
 "YSP","CYSP","Canada","Marathon","Marathon Airport",48.75529861450195,-86.34439849853516
 "YHF","CYHF","Canada","Hearst","Hearst René Fontaine Municipal Airport",49.71419906616211,-83.68609619140625
 "YHN","CYHN","Canada","Hornepayne","Hornepayne Municipal Airport",49.19309997558594,-84.75890350341797
@@ -5606,14 +5198,10 @@
 "YXZ","CYXZ","Canada","Wawa","Wawa Airport",47.96670150756836,-84.78669738769531
 "YEM","CYEM","Canada","Manitowaning","Manitoulin East Municipal Airport",45.84280014038086,-81.85810089111328
 "LWC","KLWC","United States","Lawrence","Lawrence Municipal Airport",39.01119995,-95.21659851
-"6A2",\N,"United States","Griffin","Griffin-Spalding County Airport",33.2269722,-84.2749444
-"NIC",\N,"Cyprus","Nicosia","Nicosia International Airport",35.15111,33.27222
 "PPM","KPMP","United States","Pompano Beach","Pompano Beach Airpark",26.247100830078,-80.111099243164
 "XMC","YMCO","Australia","Mallacoota","Mallacoota Airport",-37.59830093383789,149.72000122070312
 "ULH","OEAO","Saudi Arabia","Al-Ula","Majeed Bin Abdulaziz Airport",26.48,38.1288888889
 "YUE","YYND","Australia","Yuendumu ","Yuendumu Airport",-22.254199981689453,131.78199768066406
-"XWG",\N,"France","Strasbourg","Gare de Strasbourg",48.585068,7.734547
-"GZS",\N,"China","Guangzhou","Guangzhou South Railway Station",22.990081,113.270631
 "LOP","WADL","Indonesia","Praya","Lombok International Airport",-8.757322,116.276675
 "OMM","OONR","Oman","Marmul","Marmul",18.133333,55.266666
 "ZMH","CZML","Canada","108 Mile Ranch","South Cariboo Region / 108 Mile Airport",51.736099243199995,-121.333000183
@@ -5623,35 +5211,21 @@
 "WMI","EPMO","Poland","Warsaw","Modlin Airport",52.451099,20.6518
 "JXA","ZYJX","China","Jixi","Jixi Xingkaihu Airport",45.293,131.193
 "JDG","RKPD","South Korea","Seogwipo","Jeongseok Airport",33.3996009827,126.711997986
-"BER",\N,"Germany","Berlin","Berlin Brandenburg Willy Brandt",52.366667,13.503333
 "YGM","CYGM","Canada","Gimli","Gimli Industrial Park Airport",50.62810134887695,-97.04329681396484
 "EYK","USHY","Russia","Beloyarsky","Beloyarskiy Airport",63.686901,66.698601
 "RAC","KRAC","United States","Racine","John H Batten Airport",42.7606010437,-87.8152008057
 "RZP","RPSD","Philippines","Taytay","Cesar Lim Rodriguez Airport",10.81874,119.507697
-"QOT",\N,"Japan","Otaru","Otaru",43.1894444,141.0022222
 "RKZ","ZURK","China","Shigatse","Shigatse Air Base",29.3519,89.311401
-"49X",\N,"United States","Chemehuevi Valley","Chemehuevi Valley",34.528889,-114.431971
 "TIW","KTIW","United States","Tacoma","Tacoma Narrows Airport",47.26789856,-122.5780029
-"X39",\N,"United States","Tampa","Tampa North Aero Park",28.221278,-82.374555
 "GUF","KJKA","United States","Gulf Shores","Jack Edwards Airport",30.29050064,-87.67179871
 "IBB","SEII","Ecuador","Isabela","General Villamil Airport",-0.942628026009,-90.9530029297
-"VIF",\N,"Italy","Vieste","Vieste Heliport",41.866432,16.165161
 "HMJ","UKLH","Ukraine","Khmeinitskiy","Khmelnytskyi Airport",49.359699,26.933399
 "HIW","RJBH","Japan","Hiroshima","Hiroshimanishi Airport",34.36690139770508,132.41400146484375
 "KYI","YYTA","Australia","Yalata","Yalata Mission Airport",-31.470600128173828,131.8249969482422
 "HZL","KHZL","United States","Hazleton","Hazleton Municipal Airport",40.986801147499996,-75.9949035645
 "CBE","KCBE","United States","Cumberland","Greater Cumberland Regional Airport",39.615398407,-78.7609024048
 "WYN","YWYM","Australia","Wyndham","Wyndham Airport",-15.51140022277832,128.1529998779297
-"YBO","CBW4","Canada","Bob Quinn Lake","Bob Quinn Lake Airport",56.9667015076,-130.25
-"FGL",\N,"New Zealand","Fox Glacier","Fox Glacier Airstrip",-43.4,170.033
 "KLF","UUBC","Russia","Kaluga","Grabtsevo Airport",54.5499992371,36.3666687012
-"XEV",\N,"Sweden","Stockholm","Central Station",59.33,18.058056
-"QYX",\N,"Sweden","Uppsala","Central Station",59.858333,17.646111
-"QRH",\N,"Netherlands","Rotterdam","Centraal",51.924444,4.469444
-"XYJ",\N,"Czech Republic","Praha","Holesovice",50.11,14.439444
-"ZGH",\N,"Denmark","Copenhagen","Central",55.672778,12.564444
-"ZSB",\N,"Austria","Salzburg","Hauptbahnhof",47.813056,13.046667
-"ZWE",\N,"Belgium","Antwerp","Centraal",51.217222,4.421111
 "ELL","FAEA","South Africa","Lephalale","Ellisras",-23.666667,27.75
 "LNR","KLNR","United States","Lone Rock","Tri-County Regional Airport",43.2117004395,-90.181602478
 "JOT","KJOT","United States","Joliet","Joliet Regional Airport",41.51779938,-88.17549896
@@ -5667,65 +5241,17 @@
 "AIK","KAIK","United States","Aiken","Aiken Regional Airport",33.649399,-81.684998
 "CDN","KCDN","United States","Camden","Woodward Field",34.2835998535,-80.56490325930001
 "LBT","KLBT","United States","Lumberton","Lumberton Regional Airport",34.6099014282,-79.05940246579999
-"3J1",\N,"United States","Ridgeland","Ridgeland Airport",32.4934167,-80.99175
 "SOP","KSOP","United States","Pinehurst-Southern Pines","Moore County Airport",35.23740005,-79.3911972
-"99N",\N,"United States","Bamberg","Bamberg County Airport",33.3045278,-81.1084167
-"93C",\N,"United States","Richland Center","Richland Airport",43.2833575,-90.2982819
-"Y51",\N,"United States","Viroqua","Municipal Airport",43.5793603,-90.8964742
-"7A4",\N,"United States","Apple River","Foster Field",42.4664444,-90.1693889
 "SVH","KSVH","United States","Statesville","Statesville Regional Airport",35.765300750732,-80.953903198242
-"C89",\N,"United States","Sturtevant","Sylvania Airport",42.70325,-87.9589722
-"N53",\N,"United States","East Stroudsburg","Stroudsburg-Pocono Airport",41.0358717,-75.1606789
-"70N",\N,"United States","Sterling","Spring Hill Airport",41.3473569,-75.4158972
-"06N",\N,"United States","Middletown","Randall Airport",41.431912,-74.3915611
 "LHV","KLHV","United States","Lock Haven","William T. Piper Memorial Airport",41.13560104,-77.42230225
-"29D",\N,"United States","Grove City","Grove City Airport",41.1460278,-80.16775
-"04G",\N,"United States","Youngstown","Lansdowne Airport",41.1304722,-80.6195833
-"3G3",\N,"United States","Wadsworth","Wadsworth Municipal",41.0031572,-81.7564401
-"3G4",\N,"United States","Ashland","Ashland County Airport",40.9029722,-82.2556389
-"4G0",\N,"United States","Monroeville","Pittsburgh-Monroeville Airport",40.4526389,-79.7749167
-"2G9",\N,"United States","Somerset","Somerset County Airport",40.0388708,-79.0149951
-"4G4",\N,"United States","Youngstown","Youngstown Elser Metro Airport",40.9617953,-80.6773264
-"41N",\N,"United States","Braceville","Braceville Airport",41.2111675,-80.9692572
-"7D9",\N,"United States","Geneva","Germack Airport",41.7778322,-80.9039797
 "BKL","KBKL","United States","Cleveland","Burke Lakefront Airport",41.51750183105469,-81.68329620361328
 "DKK","KDKK","United States","Dunkirk","Chautauqua County-Dunkirk Airport",42.49330139,-79.27200317
-"4G2",\N,"United States","Hamburg","Hamburg Inc Airport",42.7008925,-78.9147569
-"N87",\N,"United States","Trenton","Trenton-Robbinsville Airport",40.2139444,-74.6017778
 "LLY","KVAY","United States","Mount Holly","South Jersey Regional Airport",39.942901611299995,-74.845703125
-"7N7",\N,"United States","Pedricktown","Spitfire Aerodrome",39.7355633,-75.3977211
 "LDJ","KLDJ","United States","Linden","Linden Airport",40.617401123,-74.2445983887
-"O03",\N,"United States","Morgantown","Morgantown Airport",40.1570414,-75.8704892
-"0W3",\N,"United States","Churchville","Harford County Airport",39.5668378,-76.2024028
 "ANQ","KANQ","United States","Angola","Tri State Steuben County Airport",41.639702,-85.083504
-"C65",\N,"United States","Plymouth","Plymouth Municipal Airport",41.3651307,-86.3002574
-"17G",\N,"United States","Bucyrus","Port Bucyrus-Crawford County Airport",40.7815556,-82.9748056
-"X07",\N,"United States","Lake Wales","Lake Wales Municipal Airport",27.8938056,-81.6203889
-"0G7",\N,"United States","Seneca Falls","Finger Lakes Regional Airport",42.8835647,-76.7812318
-"N69",\N,"United States","Stormville","Stormville Airport",41.5769708,-73.7323514
-"4B8",\N,"United States","Plainville","Robertson Field",41.6893333,-72.8646944
-"0G6",\N,"United States","Bryan","Williams County Airport",41.4673056,-84.5067778
 "CLW","KCLW","United States","Clearwater","Clearwater Air Park",27.9766998291,-82.7586975098
-"X49",\N,"United States","Lakeland","South Lakeland Airport",27.9333581,-82.0439739
-"QWC",\N,"Germany","Berlin","Zoo",52.507222,13.3325
-"ZFR",\N,"Germany","Frankfurt Oder","Frankfurt Oder Hbf",52.336944,14.547222
-"PLY",\N,"France","Paris","Gare de Lyon",48.844722,2.373611
-"XHP",\N,"France","Paris","Gare de LEst",48.876944,2.359167
-"PAR",\N,"France","Paris","All Airports",48.856389,2.352222
-"BHF",\N,"Germany","Berlin","Ostbahnhof",52.51,13.434722
-"LON",\N,"United Kingdom","London","All Airports",51.508056,-0.127778
-"NYC",\N,"United States","New York","All Airports",40.714167,-74.005833
-"CHI",\N,"United States","Chicago","All Airports",41.883611,-87.631667
 "CGX","KCGX","United States","Chicago","Chicago Meigs Airport",41.85879898071289,-87.60790252685547
-"TYO",\N,"Japan","Tokyo","All Airports",35.689444,139.691667
-"BJS",\N,"China","Beijing","All Airports",39.904167,116.407222
-"MIL",\N,"Italy","Milan","All Airports",45.463611,9.188056
-"WAS",\N,"United States","Washington","All Airports",38.889444,-77.035278
-"YMQ",\N,"Canada","Montreal","All Airports",45.508611,-73.553889
-"YTO",\N,"Canada","Toronto","All Airports",43.653056,-79.383056
-"BGS",\N,"Germany","Berlin","Gesundbrunnen",52.548611,13.389444
 "CRE","KCRE","United States","North Myrtle Beach","Grand Strand Airport",33.8116989136,-78.72389984130001
-"Y72",\N,"United States","Tomah","Bloyer Field",43.9762222,-90.4806111
 "BXO","LSZC","Switzerland","Buochs","Buochs Airport",46.974444,8.396944
 "WBW","KWBW","United States","Wilkes-Barre","Wilkes Barre Wyoming Valley Airport",41.2971992493,-75.8511962891
 "LNN","KLNN","United States","Willoughby","Willoughby Lost Nation Municipal Airport",41.683998107899995,-81.3897018433
@@ -5733,70 +5259,43 @@
 "RLK","ZBYZ","China","Bayannur","Bayannur Tianjitai Airport",40.926,107.7428
 "FFT","KFFT","United States","Frankfort","Capital City Airport",38.18249893,-84.90470123
 "LEW","KLEW","United States","Lewiston","Auburn Lewiston Municipal Airport",44.048500061,-70.2835006714
-"6S2",\N,"United States","Florence","Florence",43.9828168,-124.1113687
-"1A3",\N,"United States","Copperhead","Martin Campbell Field Airport",35.0158056,-84.3468333
 "NBU","KNBU","United States","Glenview","Naval Air Station",42.090556,-87.8225
 "MRK","KMKY","United States","Marco Island Airport","Marco Island Executive Airport",25.995001,-81.672501
 "DRE","KDRM","United States","Drummond Island","Drummond Island Airport",46.0093002319,-83.74389648440001
-"8M8",\N,"United States","Lewiston","Garland Airport",44.8065278,-84.2761944
 "GDW","KGDW","United States","Gladwin","Gladwin Zettel Memorial Airport",43.9706001282,-84.47499847410002
-"24C",\N,"United States","Lowell","Lowell City Airport",42.95392,-85.3439058
-"06C",\N,"United States","Schaumburg","Schaumburg Regional",41.9893408,-88.1012428
 "MFI","KMFI","United States","Marshfield","Marshfield Municipal Airport",44.6369018555,-90.18930053710001
 "ISW","KISW","United States","Wisconsin Rapids","Alexander Field South Wood County Airport",44.3602981567,-89.83899688720001
 "CWI","KCWI","United States","Clinton","Clinton Municipal Airport",41.8311004639,-90.3291015625
 "BVY","KBVY","United States","Beverly","Beverly Municipal Airport",42.584201812699995,-70.91649627689999
 "OSF","UUMO","Russia","Moscow","Ostafyevo International Airport",55.511667,37.507222
-"O27",\N,"United States","Oakdale","Oakdale Airport",37.7563333,-120.8001944
 "YRQ","CYRQ","Canada","Trois Rivieres","Trois-Rivières Airport",46.35279846191406,-72.67939758300781
 "POF","KPOF","United States","Poplar Bluff","Poplar Bluff Municipal Airport",36.773899078369,-90.324897766113
 "EOK","KEOK","United States","Keokuk","Keokuk Municipal Airport",40.459899902299995,-91.4284973145
-"ME5",\N,"United States","Swans Island","Banks Airport",44.1653889,-68.4281667
 "PSL","EGPT","United Kingdom","Perth","Perth/Scone Airport",56.43920135498047,-3.372220039367676
 "STP","KSTP","United States","St. Paul","St Paul Downtown Holman Field",44.93450164794922,-93.05999755859375
 "SOO","ESNY","Sweden","Soderhamn","Söderhamn Airport",61.26150131225586,17.09910011291504
 "VNA","VLSV","Laos","Saravane","Saravane Airport",15.709439207700001,106.410698891
-"E51",\N,"United States","Bagdad","Bagdad Airport",34.5958528,-113.170195
 "DKS","UODD","Russia","Dikson","Dikson Airport",73.51780700683594,80.37966918945312
-"XBG",\N,"Canada","Bogande","Bogande Airport",48.329498,-70.995697
 "BYT","EIBN","Ireland","Bantry","Bantry Aerodrome",51.66859817504883,-9.484169960021973
-"CHE",\N,"Ireland","Caherciveen","Reeroe Airport",51.933334,-10.233333
 "ADY","FAAL","South Africa","Alldays","Alldays Airport",-22.6790008545,29.0555000305
-"E55",\N,"United States","Gualala","Ocean Ridge Airport",38.8016111,-123.5306389
-"1G3",\N,"United States","Kent","Kent State Airport",41.1513889,-81.4151111
 "HAO","KHAO","United States","Hamilton","Butler Co Regional Airport - Hogan Field",39.363800048799995,-84.5220031738
 "GAS","HKGA","Kenya","Garissa","Garissa Airport",-0.4635080099105835,39.64830017089844
 "HOA","HKHO","Kenya","Hola","Hola Airport",-1.5219999551773071,40.00400161743164
 "KLK","HYFG","Kenya","Kalokol","Kalokol",3.49,35.84
 "KEY","HKKR","Kenya","Kericho","Kericho Airport",-0.3899,35.242093
 "ILU","HKKL","Kenya","Kilaguni","Kilaguni Airport",-2.9106099605560303,38.06520080566406
-"KRV",\N,"Kenya","Kimwarer","Kerio Valley",0.1912,35.3954
-"DVD",\N,"Madagascar","Andavadoaka","Andavadoaka",-22.111111,43.270556
 "ATJ","FMME","Madagascar","Antsirabe","Antsirabe Airport",-19.8392214824,47.063713073699994
 "OVA","FMSL","Madagascar","Bekily","Bekily Airport",-24.235694754699995,45.3045272827
 "UTS","UUYX","Russia","Ust-Tsylma","Ust-Tsylma Airport",65.43729400630001,52.20033645629999
-"ZRA",\N,"United States","Atlantic City NJ","Atlantic City Rail Terminal",39.3665,-74.442
-"ZSF",\N,"United States","Springfield MA","Springfield Amtrak Station",42.106,-72.593054
-"XZK",\N,"United States","Amherst MA","Amherst Amtrak Station AMM",42.375,-72.511389
-"QQK",\N,"United Kingdom","London","London - Kings Cross",51.5309,-0.1233
-"XVJ",\N,"United Kingdom","Stevenage","Stevenage Railway Station",51.902,-0.207
-"XVH",\N,"United Kingdom","Peterborough","Peterborough Railway Station",52.5748,-0.2502
-"PUM",\N,"Indonesia","Pomalaa","Pomalaa",-4.183333,121.61667
-"WLF",\N,"United Kingdom","Whittlesford","Whittlesford Parkway Rail Station",52.104,0.166
 "RGK","UNBG","Russia","Gorno-Altaysk","Gorno-Altaysk Airport",51.9667015076,85.8332977295
 "FLD","KFLD","United States","Fond du Lac","Fond du Lac County Airport",43.7711982727,-88.48840332030001
 "STE","KSTE","United States","Stevens Point","Stevens Point Municipal Airport",44.5452003479,-89.530296325684
 "MQJ","UEMA","Russia","Honuu","Moma Airport",66.450861,143.261551
-"25D",\N,"United States","Forest Lake","Forest Lake Airport",45.2477456,-92.9943853
-"ZVM",\N,"Germany","Hannover","Hannover Messe-Heliport",52.329035,9.822136
 "PEF","EDCP","Germany","Peenemunde","Peenemünde Airport",54.1577796936,13.774443626399998
-"CJN","WI1A","Indonesia","Nusawiru","Nusawiru Airport",-7.719895,108.488995
 "GQQ","KGQQ","United States","Galion","Galion Municipal Airport",40.7533988953,-82.7238006592
 "TPN","SETI","Ecuador","Tiputini","Tiputini Airport",-0.7761110067367554,-75.52639770507812
 "PTZ","SESM","Ecuador","Pastaza","Rio Amazonas Airport",-1.5052399635299998,-78.0626983643
 "CKV","KCKV","United States","Clarksville","Clarksville–Montgomery County Regional Airport",36.6218986511,-87.4150009155
-"XHN",\N,"Belgium","Liege","Liege-Guillemins Railway Station",50.6333,5.56667
-"OHR",\N,"Germany","Wyk","Wyk auf Foehr",54.411,8.3145
 "LPC","KLPC","United States","Lompoc","Lompoc Airport",34.665599823,-120.468002319
 "CTH","KMQS","United States","Coatesville","Chester County G O Carlson Airport",39.97900009,-75.8655014
 "BST","OABT","Afghanistan","Lashkar Gah","Bost Airport",31.55970001220703,64.36499786376953
@@ -5804,35 +5303,23 @@
 "GBB","UBBQ","Azerbaijan","Qabala","Gabala International Airport",40.826667,47.7125
 "ZTU","UBBY","Azerbaijan","Zaqatala","Zaqatala International Airport",41.562222,46.667221
 "LKP","KLKP","United States","Lake Placid","Lake Placid Airport",44.2644996643,-73.96189880370001
-"NY9",\N,"United States","Long Lake","Long Lake",43.9750617,-74.42044
 "KDY","UEMH","Russia","Khandyga","Typliy Klyuch Airport",62.7890014648,136.854995728
 "GYG","UEMM","Russia","Yakutsk","Magan Airport",62.103484,129.545288
 "JIQ","ZUQJ","China","Qianjiang","Qianjiang Wulingshan Airport",29.5133333333,108.831111111
-"WIH",\N,"United States","Wishram","Wishram Amtrak Station",45.6576,-120.9664
 "AOH","KAOH","United States","Lima","Lima Allen County Airport",40.706902,-84.026703
 "DSO","ZKSD","North Korea","Hamhung","Sondok Airport",39.745201,127.473999
-"YJS",\N,"North Korea","Samjiyon","Samjiyon Airport",41.907167,128.409889
 "SSI","KSSI","United States","Brunswick","Malcolm McKinnon Airport",31.15180016,-81.39129639
 "BFP","KBVI","United States","Beaver Falls","Beaver County Airport",40.7724990845,-80.39140319820001
-"F57",\N,"United States","Winterhaven","Seaplane Base",28.0575,-81.7628056
 "GGE","KGGE","United States","Georgetown","Georgetown County Airport",33.3116989136,-79.3196029663
 "HDI","KHDI","United States","Cleveland","Hardwick Field",35.22010040283203,-84.8323974609375
-"2A0",\N,"United States","Dayton","Mark Anton Airport",35.48625,-84.9310833
-"2G2",\N,"United States","Steubenville","Jefferson County Airpark",40.3602179,-80.7008742
 "RNT","KRNT","United States","Renton","Renton Municipal Airport",47.4930992126,-122.216003418
 "POC","KPOC","United States","La Verne","Brackett Field",34.091598510742,-117.78199768066
-"09J",\N,"United States","Jekyll Island","Jekyll Island Airport",31.0744722,-81.4277778
 "CDK","KCDK","United States","Cedar Key","CedarKey",29.1342222,-83.0504722
 "CTY","KCTY","United States","Cross City","Cross City Airport",29.6354999542,-83.10479736330001
 "CEU","KCEU","United States","Clemson","Oconee County Regional Airport",34.6719017,-82.8864975
-"36U",\N,"United States","Heber","Heber City Municipal Airport",40.4818056,-111.4288056
 "BEC","KBEC","United States","Wichita","Beech Factory Airport",37.694499969499994,-97.21499633790002
-"47A",\N,"United States","Canton","Cherokee County Airport",34.3122175,-84.4221556
-"55J",\N,"United States","Fernandina Beach","Fernandina Beach Municipal Airport",30.6118333,-81.4611944
-"ZMB",\N,"Germany","Hamburg","Hamburg Hbf",53.552776,10.006683
 "QFO","EGSU","United Kingdom","Duxford","Duxford Aerodrome",52.090801,0.131944
 "SNY","KSNY","United States","Sidney","Sidney Municipal-Lloyd W Carr Field",41.10129929,-102.9850006
-"W13",\N,"United States","Waynesboro","Eagle's Nest Airport",38.076944,-78.944167
 "GKL","YGKL","Australia","Great Keppel Island","Great Keppel Is Airport",-23.1833000183,150.942001343
 "RPB","YRRB","Australia","Roper Bar","Roper Bar Airport",-14.734814,134.525485
 "IFL","YIFL","Australia","Innisfail","Innisfail Airport",-17.55940055847168,146.01199340820312
@@ -5842,7 +5329,6 @@
 "RGO","ZKHM","North Korea","Chongjin","Orang Airport",41.428538,129.647555
 "MOO","YOOM","Australia","Moomba","Moomba Airport",-28.09939956665039,140.19700622558594
 "LUZ","EPLB","Poland","Lublin","Lublin Airport",51.240278,22.713611
-"ECA","K6D9","United States","East Tawas","Iosco County Airport",44.312801,-83.422302
 "VAM","VRMV","Maldives","Maamigili","Villa Airport",3.47055555556,72.8358333333
 "IRU","IRUF","Maldives","Maldives Hilton Iru fushi","Hilton Iru fushi",5.7435,73.3249
 "DHG","DHGU","Maldives","Dhigurah","Dhigurah Centara Grand Maldives",3.5939,72.8834
@@ -5851,7 +5337,6 @@
 "ONS","YOLW","Australia","Onslow","Onslow Airport",-21.668300628662,115.1129989624
 "TDR","YTDR","Australia","Theodore","Theodore Airport",-24.99329948425293,150.09300231933594
 "CZW","EPRU","Poland","RUDNIKI","RUDNIKI ",50.884722,19.202222
-"CLC",\N,"United States","Clear Lake City","Clear Lake Metroport",29.5569,-95.137497
 "CFX","SASC","Argentina","Cafayate","Gilberto Lavaque",-26.06245,-65.932095
 "WBU","KBDU","United States","Boulder","Boulder Municipal Airport",40.0393981934,-105.225997925
 "TVS","ZBSN","China","Tangshan","Sannvhe",39.717444,118.002389
@@ -5862,14 +5347,11 @@
 "YTY","ZSYA","China","Yangzhou","Yangzhou Taizhou Airport",32.5634,119.7198
 "PTK","KPTK","United States","Pontiac","Oakland County International Airport",42.665500640869,-83.420097351074
 "KSI","GUKU","Guinea","Kissidougou","Kissidougou Airport",9.1605596542358,-10.124400138855
-"QPJ",\N,"Hungary","Pecs","Pecs",46.070833,18.233056
 "EEN","KEEN","United States","Keene","Dillant Hopkins Airport",42.898399353027344,-72.27079772949219
 "THQ","ZLTS","China","Tianshui","Tianshui Maijishan Airport",34.5593986511,105.86000061
 "VRO","MUKW","Cuba","Kawama","Kawama Airport",23.1240005493,-81.3015975952
 "GKK","VRMO","Maldives","Kooddoo","Kooddoo Airport",0.7324,73.4336
 "RCS","EGTO","United Kingdom","Rochester","Rochester Airport",51.351898193359375,0.5033329725265503
-"JHL",\N,"Canada","Wood Buffalo","Albian Aerodrome",57.223889,-111.418889
-"EQY",\N,"United States","Charlotte","Monroe Reqional Airport",35.01833,-80.62001
 "KNN","GUXD","Guinea","Kankan","Kankan",10.448333,-9.227499
 "RHD","SANR","Argentina","Rio Hondo","Termas de Río Hondo international Airport",-27.4966,-64.93595
 "KMP","FYKT","Namibia","Keetmanshoop","Keetmanshoop Airport",-26.5398006439209,18.111400604248047
@@ -5890,16 +5372,13 @@
 "YKN","KYKN","United States","Yankton","Chan Gurney Municipal Airport",42.916698455811,-97.385902404785
 "SES","KSES","United States","Selma Alabama","Selfield Airport",32.4404,-86.9522
 "XSB","OMBY","United Arab Emirates","Sir Bani Yas Island","Sir Bani Yas Airport",24.283611,52.580278
-"ZDY",\N,"United Arab Emirates","Dalma Island","Dalma Airport",24.5033833,52.3360528
 "ZBM","CZBM","Canada","Bromont","Bromont (Roland Desourdy) Airport",45.2907981873,-72.74140167239999
-"PCM",\N,"Mexico","Playa del Carmen","Playa del Carmen Airport",20.6225,-87.082221
 "KTI","VDKT","Cambodia","Kratie","Kratie Airport",12.48799991607666,106.05500030517578
 "GYU","ZLGY","China","Guyuan","Guyuan Liupanshan Airport",36.0788888889,106.216944444
 "CNI","ZYCH","China","Changhai","Changhai Airport",39.2666666667,122.666944444
 "KRH","EGKR","United Kingdom","Redhill","Redhill Aerodrome",51.2136001587,-0.138611003757
 "JGD","ZYJD","China","Jiagedaqi District","Jiagedaqi Airport",50.371389,124.1175
 "CCL","YCCA","Australia","Chinchilla","Chinchilla Airport",-26.774999618530273,150.61700439453125
-"1C9",\N,"United States","Hollister","Frazier Lake Airpark",54.013333333333335,-124.76833333333333
 "HWD","KHWD","United States","Hayward","Hayward Executive Airport",37.659198761,-122.122001648
 "MZP","NZMK","New Zealand","Motueka","Motueka Airport",-41.12329864501953,172.98899841308594
 "JHQ","YSHR","Australia","Shute Harbour","Shute Harbour Airport",-20.277221,148.755556
@@ -5907,7 +5386,6 @@
 "SHT","YSHT","Australia","Shepparton","Shepparton Airport",-36.42890167236328,145.39300537109375
 "TEM","YTEM","Australia","Temora","Temora Airport",-34.4213981628418,147.51199340820312
 "GAH","YGAY","Australia","Gayndah","Gayndah Airport",-25.61440086364746,151.61900329589844
-"EIA",\N,"Papua New Guinea","Popondetta","Popondetta",-8.19999980927,147.850006104
 "WIO","YWCA","Australia","Wilcannia","Wilcannia Airport",-31.526399612426758,143.375
 "BFJ","ZUBJ","China","Bijie","Bijie Feixiong Airport",27.267066,105.472097
 "ULK","UERL","Russia","Lensk","Lensk Airport",60.7206001282,114.825996399
@@ -5916,45 +5394,29 @@
 "GNY","LTCS","Turkey","Sanliurfa","Şanlıurfa GAP Airport",37.445663,38.895592
 "KZR","LTBZ","Turkey","Kutahya","Zafer Airport",39.113079,30.128111
 "VLU","ULOL","Russia","Velikiye Luki","Velikiye Luki Airport",56.381099700927734,30.60810089111328
-"ZTY",\N,"United States","Boston","Boston Back Bay Station",42.3478,-71.075
-"ULI",\N,"Micronesia","Ulithi","Ulithi",10.016699791,139.800003052
-"BKN",\N,"Turkmenistan","Balkanabat","Balkanabat",39.481389,54.362778
 "BEO","YPEC","Australia","Lake Macquarie","Lake Macquarie Airport",-33.0667,151.647995
 "BMP","YBPI","Australia","Brampton Island","Brampton Island Airport",-20.803300857543945,149.27000427246094
 "NGZ","KNGZ","United States","Alameda","Alameda Naval Air Station",37.78889846801758,-122.31999969482422
-"ZWI",\N,"United States","Wilmington","Wilmington Amtrak Station",39.736667,-75.551667
-"NML",\N,"Canada","Fort McMurray","Fort McMurray - Mildred Lake Airport",57.055599,-111.573997
 "YCN","CYCN","Canada","Cochrane","Cochrane Airport",49.10559844970703,-81.01360321044922
 "BJP","SBBP","Brazil","Braganca Paulista","Estadual Arthur Siqueira Airport",-22.979162,-46.537508
 "BQB","YBLN","Australia","Brusselton","Busselton Regional Airport",-33.6884231567,115.401596069
 "SEK","UESK","Russia","Srednekolymsk","Srednekolymsk Airport",67.4805,153.7364
-"GGR",\N,"Somalia","Garowe","Garowe - International",8.24,48.29
 "IVR","YIVL","Australia","Inverell","Inverell Airport",-29.888299942,151.143997192
 "GLI","YGLI","Australia","Glen Innes","Glen Innes Airport",-29.674999237060547,151.68899536132812
 "IMM","KIMM","United States","Immokalee ","Immokalee Regional Airport",26.43320084,-81.40100098
-"TQQ","WA44","Indonesia","Sulawesi Tenggara","Maranggo Airport",-5.7645702362061,123.91699981689
 "YIC","ZSYC","China","Yichun","Yichun Mingyueshan Airport",27.8025,114.3062
-"ZRZ",\N,"United States","New Carrollton","New Carrollton Rail Station",38.948,-76.8719
 "PTB","KPTB","United States","Petersburg","Dinwiddie County Airport",37.183799743652,-77.507400512695
 "SBM","KSBM","United States","Sheboygan","Sheboygan County Memorial Airport",43.76959991,-87.85140228
 "KFE","YFDF","Australia","Cloudbreak","Fortescue - Dave Forrest Aerodrome",-22.290754,119.437143
-"3D2",\N,"United States","Ephraim","Ephraim-Gibraltar Airport",45.1354167,-87.1879444
 "BJU","VNBR","Nepal","Bajura","Bajura Airport",29.50200080871582,81.66899871826172
-"THD",\N,"Vietnam","Thanh Hoa","Tho Xuan Airport",19.90167,105.46778
 "MZJ","KMZJ","United States","Marana","Pinal Airpark",32.5106010437,-111.32800293
 "SAD","KSAD","United States","Safford","Safford Regional Airport",32.85480118,-109.6350021
 "SLJ","YSOL","Australia","Solomon","Solomon Airport",-22.2554,117.7627
 "KJP","ROKR","Japan","Kerama","Kerama Airport",26.168300628699996,127.292999268
-"JCO",\N,"Malta","Comino","Comino Airport",36.016,14.333
 "EKB","UASB","Kazakhstan","Ekibastuz","Ekibastuz Airport",51.590999603271484,75.21499633789062
 "SIK","KSIK","United States","Sikeston","Sikeston Memorial Municipal Airport",36.898899078369,-89.561798095703
-"QUA",\N,"Germany","Puttgarden","Puttgarden",54.5,11.2167
-"BE2",\N,"United Kingdom","Belfast","Port of Belfast",54.6178,-5.9017
-"SR2",\N,"United Kingdom","Stranraer","Stranraer Ferry Port",54.902,-5.027
-"L52","KL52","United States","Oceano","Oceano County Airport",35.10147222,-120.62236111
 "TTI","NTTE","French Polynesia","Tetiaroa","Tetiaroa Airport",-17.0132999420166,-149.58700561523438
 "GFL","KGFL","United States","Queensbury","Floyd Bennett Memorial Airport",43.3412017822,-73.6102981567
-"K27",\N,"United States","Mechanicville","Burrello-Mechanicville Airport",42.893133,-73.66845
 "MJU","WAWJ","Indonesia","Mamuju","Tampa Padang",-2.583333,119.033333
 "MTN","KMTN","United States","Baltimore","Martin State Airport",39.325699,-76.413803
 "FRY","KIZG","United States","Fryeburg","Eastern Slopes Regional Airport",43.991100311299995,-70.9478988647
@@ -5963,47 +5425,27 @@
 "BMT","KBMT","United States","Beaumont","Beaumont Municipal Airport",30.0706996918,-94.21579742430002
 "DNV","KDNV","United States","Danville","Vermilion Regional Airport",40.19919968,-87.59590149
 "COJ","YCBB","Australia","Coonabarabran","Coonabarabran Airport",-31.332500457763672,149.26699829101562
-"COI",\N,"United States","Cocoa","Merritt Island Airport",28.3416111,-80.6854722
-"X59",\N,"United States","Valkaria","Valkaria Municipal",27.9608611,-80.5583333
 "TIX","KTIX","United States","Titusville","Space Coast Regional Airport",28.514799118042,-80.799201965332
-"X26",\N,"United States","Sebastian","Sebastian Municipal",27.81325,-80.4955833
-"TCY",\N,"Namibia","Terrace Bay","Terrace Bay",-19.9705556,13.0244444
-"KEZ",\N,"Sri Lanka","Colombo","Kelani River-Peliyagoda Waterdrome",6.967463700288899,79.88197231301456
-"KDZ",\N,"Sri Lanka","Kandy","Polgolla Reservoir",7.325125009685146,80.64211571225314
 "BZH","FVBM","Zimbabwe","Bumi Hills","Bumi Airport",-16.8169994354,28.3500003815
 "UAR","GMFB","Morocco","Bouarfa","Bouarfa Airport",32.5143055556,-1.98305555556
 "NYE","HKNI","Kenya","NYERI","Nyeri Airport",-0.3644140064716339,36.978485107421875
-"1H2","KEFH","United States","Effingham","Effingham Memorial Airport",39.07,-88.534
 "AAP","KAAP","United States","Houston","Andrau Airpark",29.722499847399998,-95.58830261230001
 "FCM","KFCM","United States","Eden Prairie","Flying Cloud Airport",44.8272018433,-93.45709991460001
 "LIX","FWLK","Malawi","Likoma Island","Likoma Island Airport",-12.075833,34.737222
 "OJC","KOJC","United States","Olathe","Johnson County Executive Airport",38.84759903,-94.73760223
 "GIU","VCCS","Sri Lanka","Sigiriya","Sigiriya Air Force Base",7.956669807430001,80.7285003662
-"XWW",\N,"Austria","Vienna","Westbahnhoff",48.196667,16.337778
 "EUM","EDHN","Germany","Neumuenster","Neumünster Airport",54.079444885253906,9.941389083862305
 "TKT","VTPT","Thailand","Tak","Tak Airport",16.895999908447266,99.25330352783203
 "YLK","CYLS","Canada","Barrie-Orillia","Barrie-Orillia (Lake Simcoe Regional Airport)",44.4852981567,-79.55560302730001
 "YCM","CYSN","Canada","Saint Catherines","Niagara District Airport",43.19169998168945,-79.17169952392578
-"X04",\N,"United States","Orlando","Apopka",28.707222,-81.581667
-"XCM","CNZ3","Canada","Chatham","Kent",42.306111,-82.081667
-"YPD","CNK4","Canada","Parry Sound","Parry Sound Area Municipal Airport",45.2575,-79.829697
 "MNZ","KHEF","United States","Manassas","Manassas Regional Airport/Harry P. Davis Field",38.72140121,-77.51540375
 "LJN","KLBX","United States","Angleton","Texas Gulf Coast Regional Airport",29.1086006165,-95.462097168
 "BGG","LTCU","Turkey","Bingol","Bingöl Çeltiksuyu Airport",38.8592605591,40.5959625244
 "KFS","LTAL","Turkey","Kastamonu","Kastamonu Airport",41.31420135498047,33.795799255371094
-"UT3",\N,"United States","Hanksville","Hite Airport",37.8916547,-110.3840289
-"GLQ",\N,"United Kingdom","Glasgow","Queen Street Station",55.8622,-4.2512
 "LLV","ZBLL","China","Lvliang","Lüliang Airport",37.683333,111.142778
 "DCY","ZUDC","China","Daocheng","Daocheng Yading Airport",29.323056,100.053333
 "GXH","ZLXH","China","Xiahe city","Gannan Xiahe Airport",34.8105,102.6447
-"1G4",\N,"United States","Peach Springs","Grand Canyon West Airport",35.899904,-113.815674
 "CIY","LICB","Italy","Comiso","Comiso Airport",36.994601,14.607182
-"9G1",\N,"United States","Tarentum","Rock Airport",40.6035463,-79.8261189
-"2B2",\N,"United States","Newburyport","Plum Island Airport",42.7953611,-70.8394444
-"LKK",\N,"United States","Kulik Lake","Kulik Lake Airport",58.96591,-155.108089
-"ZGG",\N,"United Kingdom","Glasgow","Central Station",55.858,-4.258
-"QQU",\N,"United Kingdom","London","Euston Station",51.5284,-0.1331
-"QQW",\N,"United Kingdom","London","Waterloo International",51.5031,-0.1147
 "KVM","UHMO","Russia","Markovo","Markovo Airport",64.667,170.417007
 "ZKP","UESU","Russia","Zyryanka","Zyryanka Airport",65.7485,150.8889
 "UMS","UEMU","Russia","Ust-Maya","Ust-Maya Airport",60.356998443604,134.43499755859
@@ -6012,76 +5454,35 @@
 "NLT","ZWNL","China","Xinyuan","Xinyuan Nalati Airport",43.4318,83.3786
 "PTA","PALJ","United States","Port alsworth","Port Alsworth Airport",60.201681,-154.325863
 "BOR","LFSQ","France","Belfort","Fontaine Airport",47.655601501465,7.0108299255371
-"BHZ",\N,"Brazil","Belo Horizonte","Pampulha",-19.8517,-43.9508
 "OBC","HDOB","Djibouti","Obock","Obock Airport",11.967000007629395,43.266998291015625
 "TDJ","HDTJ","Djibouti","Tadjoura","Tadjoura Airport",11.782999992370605,42.91699981689453
 "AQB","MGQC","Guatemala","Santa Cruz des Quiche","Santa Cruz del Quiche Airport",15.012200355529785,-91.15059661865234
 "NOR","BINF","Iceland","Nordfjordur","Norðfjörður Airport",65.13189697265625,-13.746399879455566
 "BTZ","LTBE","Turkey","Bursa","Bursa Airport",40.233299255371094,29.009199142456055
 "WAR","WAJR","Indonesia","Waris-Papua Island","Waris Airport",-3.235,140.994
-"PRL",\N,"United States","Port Oceanic","Port Oceanic Airport",60.2083333,-147.8194444
 "EWK","KEWK","United States","Newton","Newton City-County Airport",38.058200836199994,-97.2744979858
 "BSJ","YBNS","Australia","Bairnsdale","Bairnsdale Airport",-37.88750076293945,147.5679931640625
 "TZR","LHTA","United States","Columbus","Taszár Air Base",46.39310073852539,17.917499542236328
-"W04","KW04","United States","Ocean Shores","Ocean Shores Municipal",46.5995,-124.0854
-"55S","K55S","United States","Packwood","Packwood",46.3625,-121.4067
 "FBR","KFBR","United States","Fort Bridger","Fort Bridger Airport",41.3918991089,-110.406997681
 "CLS","KCLS","United States","Chehalis","Chehalis Centralia Airport",46.676998138399995,-122.983001709
-"S30","KS30","United States","Lebanon","Lebanon State",44.3179,-122.5577
 "EVW","KEVW","United States","Evanston","Evanston-Uinta County Airport-Burns Field",41.27479935,-111.0350037
 "EUF","KEUF","United States","Eufala","Weedon Field",31.9512996674,-85.1288986206
 "MEO","KMQI","United States","Manteo","Dare County Regional Airport",35.91899872,-75.69550323
 "AUO","KAUO","United States","Auburn","Auburn University Regional Airport",32.615101,-85.433998
-"ИКУ","UCFL","Kyrgyzstan","Tamchy","Issyk-Kul International Airport",42.3527,76.4278
 "DBN","KDBN","United States","Dublin","W H 'Bud' Barron Airport",32.56439972,-82.98529816
-"UCA",\N,"United States","Utica","Union Station",43.104167,-75.223333
 "PUK","NTGQ","French Polynesia","Pukarua","Pukarua Airport",-18.29560089111328,-137.01699829101562
 "CVO","KCVO","United States","Corvallis","Corvallis Municipal Airport",44.49720001,-123.2900009
 "PXH","YPMH","Australia","Prominent Hill","Prominent Hill Airport",-29.716,135.5244
 "CWT","YCWR","Australia","Chatsworth","Cowra Airport",-33.84469985961914,148.6490020751953
-"YPT",\N,"Canada","Pender Harbour","Pender Harbour Water Aerodrome",49.616667,-124.016667
-"YMU",\N,"Canada","Mansons Landing","Mansons Landing Water Aerodrome",50.066667,-124.983333
-"YMP",\N,"Canada","Port McNeill","Port McNeill Airport",50.575556,-127.028611
-"YTG",\N,"Canada","Sullivan Bay","Sullivan Bay Water Aerodrome",50.883333,-126.833333
-"DHB",\N,"United States","Deer Harbor","Deer Harbor Seaplane",48.618397,-123.00596
-"OLT",\N,"United States","San Diego","San Diego Old Town Transit Center",32.7552,-117.1995
 "OGD","KOGD","United States","Ogden","Ogden Hinckley Airport",41.195899963379,-112.0120010376
 "AKO","KAKO","United States","Akron","Colorado Plains Regional Airport",40.1755981445,-103.222000122
 "SHN","KSHN","United States","Shelton","Sanderson Field",47.233600616455,-123.14800262451
-"ZFQ",\N,"France","Bordeaux","Bordeaux Saint Jean Station",44.8256,-0.5556
-"XZO",\N,"Norway","Oslo","Oslo Central Station",59.9111,10.7508
-"QFV",\N,"Norway","Bergen","Bergen Railway Station",60.3903,5.3331
-"ZYN",\N,"France","Nimes","Nimes Railway Station",43.8325,4.3664
-"XZN",\N,"France","Avignon","Avignon TGV Station",43.9217,4.7858
-"XHJ",\N,"Germany","Aachen","Aachen Hauptbahnhof",50.7676,6.0912
-"TPY",\N,"Italy","Turin","Torino Porta Nuova Railway Station",45.0625,7.6789
-"YJH",\N,"Spain","San Sebastian","San Sebastian Railway Station",43.317652,-1.976748
-"EEP",\N,"Spain","Pamplona","Pamplona Railway Station",42.824903,-1.661445
-"QQY",\N,"United Kingdom","York","York Railway Station",53.9583,-1.093
-"QQN",\N,"United Kingdom","Birmingham","Birmingham New Street Railway Station",52.4778,-1.8988
-"ZIV",\N,"United Kingdom","Inverness","Inverness Railway Station",57.48,-4.223
-"ZXA",\N,"United Kingdom","Aberdeen","Aberdeen Railway Station",57.1436,-2.0985
-"XFP",\N,"Sweden","Malmo","Malmo Central Station",55.609467,13.000904
-"XGC",\N,"Sweden","Lund","Lund Central Station",55.705543,13.186586
 "WNA","PANA","United States","Napakiak","Napakiak Airport",60.69029998779297,-161.97900390625
-"DJN",\N,"United States","Delta Junction","Delta Junction Airport",64.050556,-145.717222
-"SVS",\N,"United States","Stevens Village","Stevens Village Airport",66.016944,-149.054444
-"KKI",\N,"United States","Akiachak","Akiachak Airport",60.906111,-161.426944
-"4A2",\N,"United States","Atmautluak","Atmautluak Airport",60.866667,-162.273056
 "PKA","PAPK","United States","Napaskiak","Napaskiak Airport",60.70289993,-161.7779999
-"KCG",\N,"United States","Chignik","Chignik Fisheries Airport",56.317778,-158.590833
-"YKT",\N,"Canada","Klemtu","Klemtu Airport",52.583333,-128.533333
-"YBW","CAB3","Canada","Bedwell Harbour","Bedwell Harbour Seaplane Base",48.75,-123.233001709
-"CYD",\N,"Belize","San Ignacio","Maya Flats Airstrip",17.10448,-89.10354
 "WSO","SMWS","Suriname","Washabo","Washabo Airport",5.215277,-57.185302
-"SVK",\N,"Belize","Stann Creek","Silver Creek Airport",16.728417,-88.36925
-"INB",\N,"Belize","Independence","Independence Airport",16.521944,-88.410583
-"CZJ",\N,"Panama","Corazon de Jesus","Corazon de Jesus Airport",9.447222,-78.575
 "WKR","MYAW","Bahamas","Walker's Cay","Abaco I Walker C Airport",27.266700744628906,-78.39969635009766
 "GFO","SYBT","Guyana","Bartica","Bartica A Airport",6.358864,-58.655207
 "DYL","KDYL","United States","Doylestown","Doylestown Airport",40.3330001831,-75.1222991943
-"ESP",\N,"United States","East Stroudsburg","Stroudsburg Pocono",41.035983,-75.160236
-"N40",\N,"United States","Pittstown","Sky Manor",40.565328,-74.978872
 "TGI","SPGM","Peru","Tingo Maria","Tingo Maria Airport",-9.133000373840332,-75.94999694824219
 "TJL","SSTL","Brazil","Tres Lagoas","Plínio Alarcom Airport",-20.754199981689,-51.684200286865
 "YZY","ZLZY","China","Zhangye","Zhangye Ganzhou Airport",38.8018989563,100.675003052
@@ -6097,36 +5498,19 @@
 "DTN","KDTN","United States","Shreveport","Shreveport Downtown Airport",32.5401992798,-93.7450027466
 "SEP","KSEP","United States","Stephenville","Stephenville Clark Regional Airport",32.215301513672,-98.177696228027
 "ADT","KADH","United States","Ada","Ada Regional Airport",34.804298,-96.671303
-"IRB","K2F0","United States","Iraan","Iraan Municipal Airport",30.9057006836,-101.891998291
 "YEL","CYEL","Canada","ELLIOT LAKE","Elliot Lake Municipal Airport",46.351398468,-82.5614013672
 "IKB","KUKF","United States","North Wilkesboro","Wilkes County Airport",36.2228012085,-81.09829711910001
 "DAN","KDAN","United States","Danville","Danville Regional Airport",36.572898864746094,-79.33609771728516
-"XJN",\N,"Spain","Valladolid","Valladolid Bus Station",41.633333,-4.716667
-"XJO",\N,"Spain","Soria","Soria Bus Station",41.766667,-2.466667
 "ERG","UIKE","Russia","Yerbogachen","Yerbogachen Airport",61.2750015259,108.029998779
 "HCW","KCQW","United States","Cheraw","Cheraw Municipal Airport/Lynch Bellinger Field",34.71289825,-79.95700073
-"X06",\N,"United States","Arcadia","Arcadia Municipal Airport",27.1174,-81.5023
-"2RR",\N,"United States","River Ranch","River Ranch Resort Airport",27.4676,-81.1224
-"X10",\N,"United States","Belle Galdes","Belle Glade State Municipal Airport",26.419,-80.3965
-"X51",\N,"United States","Homestead","Homestead General Aviation Airport",25.2995,-80.3325
-"X50",\N,"United States","Edgewater","Massey Ranch Airpark Airport",28.5874,-80.5549
-"F45",\N,"United States","Palm Beach Gardens","North Palm Beach County General Aviation Airport",26.5076,-80.1334
-"2IS",\N,"United States","Clewiston","Airglades Airport",26.4411,-81.0306
-"XER",\N,"France","Strasbourg","Strasbourg Bus Station",48.585,7.734444
 "BEM","GMMD","Morocco","Beni Mellal","Beni Mellal Airport",32.401895,-6.315905
 "NKT","LTCV","Turkey","Cizre","Şırnak Şerafettin Elçi Airport",37.3647,42.0582
 "SUY","UENS","Russia","Suntar","Suntar Airport",62.185001373291,117.63500213623
-"GLN",\N,"Morocco","Goulimime","Goulimime Airport",29.0266991,-10.0502996
 "OUZ","GQPZ","Mauritania","Zouerat","Tazadit Airport",22.756399154663086,-12.483599662780762
 "ABB","DNAS","Nigeria","Asaba","Asaba International Airport",6.204167,6.665278
 "QUO","DNAI","Nigeria","Uyo","Akwa Ibom International Airport",4.8725,8.093
-"SZE",\N,"Ethiopia","Semera","Semera Airport",11.7875,40.991667
 "KAA","FLKS","Zambia","Kasama","Kasama Airport",-10.216699600219727,31.13330078125
 "SGX","HTSO","Tanzania","Songea","Songea Airport",-10.682999610900879,35.58300018310547
-"GTZ",\N,"Tanzania","Grumeti Game Reserve","Kirawira Aerodrome",-2.160833,34.225556
-"XNB",\N,"United Arab Emirates","Dubai","Etihad Travel Mall",25.154721,55.226424
-"SZI",\N,"Kazakhstan","Zaysan","Zaysan Airport",47.486944,84.887222
-"TCR",\N,"India","Thoothukudi","Tuticorin Airport",8.724167,78.025833
 "JUH","ZSJH","China","Chizhou","Jiuhuashan Airport",30.7403,117.6856
 "AOG","ZYAS","China","Anshan","Anshan Air Base",41.105301,122.853996
 "DQA","ZYDQ","China","Daqing","Saertu Airport",46.7463888889,125.140555556
@@ -6136,13 +5520,9 @@
 "KSS","GASK","Mali","Sikasso","Sikasso Airport",11.333000183105469,-5.699999809265137
 "WTB","YBWW","Australia","Toowoomba","Toowoomba Wellcamp Airport",-27.558332,151.793335
 "TNH","ZYTN","China","Tonghua","Tonghua Sanyuanpu Airport",42.2538888889,125.703333333
-"KVN",\N,"China","Kunshan","Kunshan South Railway Station",31.355,120.946389
 "SZV","ZSSZ","China","Suzhou","Suzhou Guangfu Airport",31.2631,120.401001
-"W24","KW24","United States","Lynchburg","Falwell",37.2268,-79.0733
 "ABU","WATA","Indonesia","Atambua","Haliwen Airport",-9.333333,124.9
-"KAS","WZ31","Indonesia","Kasonaweja","Kasonaweja Airstrip",-2.3007,138.0327
 "LII","WAJM","Indonesia","Mulia","Mulia Airport",-3.7018,137.957
-"LWE",\N,"Indonesia","Lewoleba","Wonopito Airport",-8.640556,122.236667
 "SAU","WATS","Indonesia","Savu Island","Tardamu Airport",-10.427778,121.897778
 "NTI","WASB","Indonesia","Bintuni","Stenkol Airport",-2.1033,133.5164
 "WSR","WASW","Indonesia","Wasior","Wasior Airport",-2.721,134.5061
@@ -6153,55 +5533,37 @@
 "MNA","WAMN","Indonesia","Melonguane","Melangguane Airport",4.00694,126.672997
 "SGQ","WRLA","Indonesia","Sanggata","Sanggata/Sangkimah Airport",0.3847,117.543
 "BUU","WIPI","Indonesia","Muara Bungo","Muara Bungo Airport",-1.1278,102.135
-"PCU",\N,"Indonesia","Puruk Cahu","Puruk Cahu Airport",-0.6875722,114.4437632
 "MLK","WRLE","Indonesia","Melak","Melalan Airport",-0.203767,115.759892
-"DEK","WX67","Indonesia","Dekai","Dekai Airport",-4.85611,139.481111
 "ILA","WABL","Indonesia","Illaga","Illaga Airport",-3.97648,137.6225
 "OKL","WAJO","Indonesia","Oksibil","Oksibil Airport",-4.9071,140.6277
 "KOX","WABN","Indonesia","Kokonau","Kokonau Airport",-4.71075,136.43515
-"KNY","WZ41","Indonesia","Keneyan","Kenyam Airport",-4.599362,138.384296
 "CMQ","YCMT","Australia","Clermont","Clermont Airport",-22.773099899291992,147.62100219726562
 "WMB","YWBL","Australia","Warrnambool","Warrnambool Airport",-38.2952995300293,142.44700622558594
-"BFC",\N,"Australia","Bloomfield","Bloomfield Airport",-15.8736,145.3300018
 "RCM","YRMD","Australia","Richmond","Richmond Airport",-20.701900482177734,143.11500549316406
 "DCN","YCIN","Australia","Derby","RAAF Base Curtin",-17.5813999176,123.82800293
 "KNO","WIMM","Indonesia","Medan","Kualanamu International Airport",3.642222,98.885278
-"XDH",\N,"Canada","Jasper","Jasper Railway Station",52.876111,-118.079722
 "AMN","KAMN","Canada","Kamloops","Gratiot Community Airport",43.322101593,-84.68800354
 "HMY","RKTP","South Korea","Seosan","Seosan Air Base",36.703999,126.486
-"ALV",\N,"Spain","Andorra La Vella","Andorra La Vella",42.51,1.52
-"NGL",\N,"South Africa","Ngala","Ngala Airport",-24.3878,31.3258
-"58J",\N,"United States","Timmonsville","Huggins Memorial",34.14,-79.92
 "EMT","KEMT","United States","El Monte","San Gabriel Valley Airport",34.086102,-118.035004
 "FAH","OAFR","Afghanistan","Farah","Farah Airport",32.367000579833984,62.18299865722656
 "IXT","VEPG","India","Pasighat","Pasighat Airport",28.066099166870117,95.33560180664062
-"ZLY",\N,"United States","Rennselaer","Albany-Rennselaer Amtrak Station",42.6408,-73.7419
 "KRQ","UKCK","Ukraine","Kramatorsk","Kramatorsk Airport",48.70560073852539,37.62889862060547
 "QKX","ENKA","Norway","Kautokeino","Kautokeino Air Base",69.04029846191406,23.034000396728516
-"HAL",\N,"Maldives","Halaveli","Constance Halaveli",4.03852,72.919441
-"F70",\N,"United States","Murrieta","French Valley Airport",33.5741791,-117.1284732
 "SSF","KSSF","United States","Stinson","Stinson Municipal Airport",29.336999893188,-98.471099853516
 "JAS","KJAS","United States","Jasper","Jasper County Airport-Bell Field",30.88570023,-94.03489685
 "MRF","KMRF","United States","Marfa","Marfa Municipal Airport",30.371099,-104.017997
-"ALE","KE38","United States","Alpine","Alpine Casparis Municipal Airport",30.384199142499998,-103.683998108
 "BQE","GGBU","Guinea-Bissau","Bubaque","Bubaque Airport",11.297355651855469,-15.838079452514648
 "CZA","MMCT","Mexico","Chichen Itza","Chichen Itza International Airport",20.6413002014,-88.4461975098
 "BUY","YBUN","Australia","Bunbury","Bunbury Airport",-33.378299713134766,115.677001953125
 "CCB","KCCB","United States","Upland","Cable Airport",34.1115989685,-117.68800354
-"FVM",\N,"Maldives","Fuvahmulah","Fuvahmulah Airport",0.3100238,73.4336631
-"DWO",\N,"Sri Lanka","Colombo","Sri Jayawardenepura Kotte",6.905,79.91
 "EKI","KEKM","United States","Elkhart","Elkhart Municipal Airport",41.7193984985,-86.00319671630001
-"QQM",\N,"United Kingdom","Manchester","Manchester Picadilly Station",53.4769,-2.2291
-"AUE",\N,"Egypt","Abu Rudeis","Abu Rudeis Airport ",28.54,33.12
 "CUB","KCUB","United States","Columbia","Jim Hamilton L.B. Owens Airport",33.970500946,-80.9952011108
 "GDC","KGYH","United States","Greenville","Donaldson Field Airport",34.758301,-82.376404
 "HVS","KHVS","United States","Hartsville","Hartsville Regional Airport",34.4030990601,-80.11920166019999
 "SZT","MMSC","Mexico","San Cristobal de las Casas","San Cristobal de las Casas Airport",16.690299987793,-92.530097961426
-"DU9","CDU9","Canada","Dunnville","Dunnville Airport",42.872200012200004,-79.5958023071
 "RIH","MPRH","Panama","Rio Hato","Scarlett Martinez International Airport",8.375880241394,-80.127899169922
 "LEE","KLEE","United States","Leesburg","Leesburg International Airport",28.82309914,-81.80870056
 "XIK","XNIK","Juan de Nova Island","NIK","NIK",40.382,-149.397
-"YGC",\N,"Canada","Grand Cache","Grand Cache",53.916944,-118.874167
 "PPY","SNZA","Brazil","Pouso Alegre","Pouso Alegre Airport",-22.289199829101562,-45.91910171508789
 "DIQ","SNDV","Brazil","Divinopolis","Brigadeiro Cabral Airport",-20.180700302124,-44.870899200439
 "EIK","URKE","Russia","Eysk","Yeysk Airport",46.68,38.21
@@ -6211,32 +5573,12 @@
 "CNO","KCNO","United States","Chino","Chino Airport",33.97470093,-117.637001
 "HTR","RORH","Japan","Taketomi","Hateruma Airport",24.0589008331,123.805999756
 "BWW","MUBR","Cuba","Cayo Santa Maria","Las Brujas Airport",22.621299743699996,-79.1472015381
-"6Y1",\N,"United States","Bois Blanc Island","Bois Blanc Island Airport",45.7662977,-84.5038139
 "PRB","KPRB","United States","Paso Robles","Paso Robles Municipal Airport",35.67290115,-120.6269989
-"GUD",\N,"Norway","Gudvangen","Gudvangen",60.884002,6.819719
-"TNP",\N,"Iceland","Selfoss","Thingvellir National Park",64.258908,-21.147781
 "PKX","ZBAD","China","Beijing","Beijing Daxing International Airport",39.509945,116.41092
-"XFF",\N,"France","Calais","Gare de Calais-Frethun",50.901944,1.811944
-"HEC",\N,"Finland","Helsinki","Helsinki Central Railway Station",60.171944,24.941389
-"NKJ",\N,"China","Nanjing","Nanjing South Railway Station",31.970556,118.7925
-"QDH",\N,"United Kingdom","Ashford","Ashford International Railway Station",51.1436,0.87448
-"QLJ",\N,"Switzerland","Lucerne","Lucerne Railway Station",47.048889,8.310556
-"XIT",\N,"Germany","Leipzig","Leipzig Hauptbahnhof",51.345278,12.382222
-"XLV",\N,"Canada","Niagara Falls","Niagara Falls Station",43.1088,-79.0634
-"XQE",\N,"United Kingdom","Ebbsfleet Valley","Ebbsfleet International Railway Station",51.443039,0.320883
 "YON","VQTY","Bhutan","Yongphulla","Yongphulla Airport",27.2563889,91.5144444
-"FID",\N,"United States","Southold","Elizabeth Field",41.1505,-72.0154
-"ZRV",\N,"United States","Providence","Providence Station",41.829087,-71.41325
-"ZTD",\N,"United States","Schenectady","Schenectady Amtrak Station",42.8146,-73.9428
-"DYN",\N,"China","Danyang","Danyang Railway Station",32.003333,119.5875
-"HVT",\N,"Finland","Helsinki","Tikkurila Railway Station",60.293889,25.045
-"XIZ",\N,"France","Reims","Gare de Champagne-Ardenne TGV",49.215,3.993889
-"XXZ",\N,"Sweden","Sundsvall","Sundsvall Railway Station",62.3867,17.316
 "HAF","KHAF","United States","Half Moon Bay","Half Moon Bay Airport",37.513401031499995,-122.500999451
 "HCJ","ZGHC","China","Hechi","Hechi Jinchengjiang Airport",24.805,107.6997
 "WJF","KWJF","United States","Lancaster","General WM J Fox Airfield",34.74110031,-118.2190018
-"L05",\N,"United States","Kernville","Kern Valley Airport",35.7282222,-118.4197222
-"D95",\N,"United States","Lapeer  MI ","Dupont-Lapeer",43.0664722,-83.2715556
 "CJF","YCWA","Australia","Coondewanna","Coondewanna Airport",-22.96669960022,118.81300354004
 "GUZ","SNGA","Brazil","Guarapari","Guarapari Airport",-20.646499633800005,-40.491901397700005
 "UBT","SDUB","Brazil","Ubatuba","Ubatuba Airport",-23.441099166870117,-45.075599670410156
@@ -6244,9 +5586,7 @@
 "QUG","EGHR","United Kingdom","Goodwood","Chichester/Goodwood Airport",50.85940170288086,-0.7591670155525208
 "FEC","SBFE","Brazil","Feira de Santana","Gov Joao Durval Carneiro Airport",-12.203056,-38.906667
 "TNW","SEJD","Ecuador","Tena","Jumandy Airport",-1.059722,-77.583333
-"CXC",\N,"United States","Chitina","Chitina Airport",61.515833,-144.436667
 "FYJ","ZYFY","China","Fuyuan","Dongji Aiport",48.199494,134.366447
-"W79",\N,"United States","Tappahannock","Tappahannock Municipal",37.925136,-76.871631
 "YWO","CYWO","Canada","Lupin Mine","Lupin Mine Airport",65.759167,-111.25
 "PZL","FADQ","South Africa","Phinda","Zulu Inyala Airport",-27.84939956665039,32.30970001220703
 "LPF","ZUPS","China","Liupanshui","Liupanshui Yuezhao Airport",26.609417,104.979
@@ -6258,17 +5598,11 @@
 "AHJ","ZUHY","China","Ngawa","Hongyuan Airport",32.53154,102.35224
 "WOS","ZKWS","North Korea","Wonsan","Wonsan Kalma International Airport",39.166801,127.486
 "IGT","URMS","Russia","Magas","Magas Airport",43.322299957300004,45.0125999451
-"26A",\N,"United States","Lineville","Ashland-Lineville Airport",33.2841972,-85.8089653
 "ASN","KASN","United States","Talladega","Talladega Municipal Airport",33.569900512699995,-86.05090332030001
 "GMU","KGMU","United States","Greenville","Greenville Downtown Airport",34.847900390599996,-82.34999847410002
-"8A1",\N,"United States","Guntersville","Guntersville Municipal Airport - Joe Starnes Field",34.4017219,-86.2657787
 "NGD","TUPA","British Virgin Islands","Anegada","Captain Auguste George Airport",18.72719955444336,-64.32969665527344
 "TOI","KTOI","United States","Troy","Troy Municipal Airport at N Kenneth Campbell Field",31.860399,-86.012101
 "ETS","KEDN","United States","Enterprise","Enterprise Municipal Airport",31.29969978,-85.89990234
-"14J",\N,"United States","Elba","Carl Folsom Airport",31.41,-86.090278
-"71J",\N,"United States","Ozark","Blackwell Field",31.431944,-85.620556
-"41A",\N,"United States","Tallassee","Reeves Airport",32.515,-85.876111
-"79J",\N,"United States","Andalusia","South Alabama Regional Airport",31.308333,-86.392222
 "EFG","AYEF","Papua New Guinea","Efogi","Efogi Airport",-9.15380555556,147.659805556
 "KGW","AYKQ","Papua New Guinea","Kagi","Kagi Airport",-9.135916666670001,147.669444444
 "NDN","AYNC","Papua New Guinea","Nadunumu","Nadunumu Airport",-9.14355555556,147.68425
@@ -6284,7 +5618,6 @@
 "CBF","KCBF","United States","Council Bluffs","Council Bluffs Municipal Airport",41.2592010498,-95.760597229
 "OKK","KOKK","United States","Kokomo","Kokomo Municipal Airport",40.528198242188,-86.05899810791
 "GBG","KGBG","United States","Galesburg","Galesburg Municipal Airport",40.937999725299996,-90.431098938
-"5K2","K5K2","United States","Tribune","Tribune",38.4514722,-101.7500833
 "GUY","KGUY","United States","Guymon","Guymon Municipal Airport",36.6851005554,-101.508003235
 "OZS","KOZS","United States","Camdenton","Camdenton",37.9739722,-92.6911944
 "IDP","KIDP","United States","Independence","Independence Municipal Airport",37.1584014893,-95.77839660640001
@@ -6298,15 +5631,11 @@
 "SZY","EPSY","Poland","Szczytno-Szymany","Olsztyn-Mazury Airport",53.481899,20.9377
 "MPO","KMPO","United States","Mount Pocono","Pocono Mountains Municipal Airport",41.137503,-75.378897
 "UKT","KUKT","United States","Quakertown","Quakertown Airport",40.435199737549,-75.381896972656
-"PCT",\N,"United States","Princeton","Princeton",40.399167,-74.658889
 "NRW","KNRW","United States","Bentonville","Northwest Arkansas Samuel Walton International Airport",36.386516959,-94.153441209
 "YBA","CYBA","Canada","Banff","Banff Airport",51.207340469900004,-115.541861057
-"NGM",\N,"United States","Agana","NAS Agana Airport",13.483056,144.7933673
 "BNG","KBNG","United States","Banning","Banning Municipal Airport",33.9230995178,-116.850997925
 "OFK","KOFK","United States","Norfolk  Nebraska","Karl Stefan Memorial Airport",41.985500335693,-97.435096740723
 "TFL","SNTO","Brazil","Teofilo Otoni","Juscelino Kubitscheck Airport",-17.89229965209961,-41.51359939575195
-"XDV",\N,"Canada","Prince George","Prince George Railway Station",53.919167,-122.744166
-"XDW",\N,"Canada","Prince Rupert","Prince Rupert Railway Station and Ferry Terminal",54.295833,-130.351944
 "TPF","KTPF","United States","Tampa","Peter O Knight Airport",27.915599822998,-82.44930267334
 "BZC","SBBZ","Brazil","Buzios","Umberto Modiano Airport",-22.770999908447266,-41.96289825439453
 "ITP","SDUN","Brazil","Itaperuna","Itaperuna Airport",-21.219299316399997,-41.8759002686
@@ -6328,11 +5657,7 @@
 "PCS","SNPC","Brazil","Picos","Picos Airport",-7.0620598793029785,-41.52370071411133
 "BNC","FZNP","Congo (Kinshasa)","Beni","Beni Airport",0.575,29.4739
 "BNB","FZGN","Congo (Kinshasa)","Boende","Boende Airport",-0.21699999272823334,20.850000381469727
-"JBB",\N,"Indonesia","Jember","Notohadinegoro",-8.241111,113.693889
-"N10",\N,"United States","Collegeville","Perkiomen Valley Airport",40.2040483,-75.4302631
-"W29",\N,"United States","Stevensville","Bay Bridge",38.9764554,-76.3299691
 "MTP","KMTP","United States","Montauk","Montauk Airport",41.0765,-71.920797
-"OLW",\N,"United States","Olympia","Centennial Station-Amtrak",46.99145,-122.79403
 "VPZ","KVPZ","United States","Valparaiso IN","Porter County Municipal Airport",41.45399857,-87.00710297
 "DRV","VRMD","Maldives","DHARAVANDHOO","Dharavandhoo Airport",5.1561,73.1302
 "SXK","WAPI","Indonesia","Saumlaki","Saumlaki/Olilit Airport",-7.9886097908,131.305999756
@@ -6349,69 +5674,26 @@
 "LDM","KLDM","United States","Ludington","Mason County Airport",43.96250153,-86.40789795
 "RHV","KRHV","United States","San Jose","Reid-Hillview Airport of Santa Clara County",37.332901001,-121.819000244
 "OHS","OOSH","Oman","Sohar","Sohar Airport",24.38604,56.62541
-"ZXS",\N,"United States","Buffalo","Buffalo-Exchange Street Station",42.8783,-78.8738
 "KCF","OPKW","Pakistan","Kadanwari","Kadanwari Airport",27.1667003632,69.31670379639999
 "RZS","OPSW","Pakistan","Sindh","Sawan Airport",26.9662,68.878098
-"QFB",\N,"Germany","Freiburg","Freiburg Hauptbahnhof",47.997778,7.841944
-"RSE",\N,"Australia","Sydney","Rose Bay Airport",-33.8666667,151.2666667
 "TMF","VRNT","Maldives","Thimarafushi","Thimarafushi Airport",2.211,73.1533
 "IFU","VREI","Maldives","Ifuru","Ifuru Airport",5.7083,73.025
 "KZF","AYKT","Papua New Guinea","Kieta","Kaintiba Airport",-7.50025,146.033833333
 "OGU","LTCB","Turkey","Ordu-Giresun","Ordu Giresun Airport",40.966047,38.080994
 "YKO","LTCW","Turkey","Hakkari","Hakkari Yüksekova Airport",37.5497,44.2381
-"ZBA",\N,"Switzerland","Basel","Basel Badischer Bahnhof",47.568056,7.606389
-"ZEU",\N,"Germany","Gottingen","Gottingen Railway Station",51.536667,9.926944
-"5Z9",\N,"United States","Katmai National Park ","Lake Brooks AK",58.554722,-155.777217
 "BUT","VQBT","Bhutan","Jakar","Bathpalathang Airport",27.5622,90.7471
-"ZRL",\N,"United States","Lancaster","Lancaster Station",40.054364,-76.307722
-"ZUG",\N,"United States","Harrisburg","Harrisburg Transportation Center",40.261944,-76.877778
-"QJZ",\N,"France","Nantes","Gare de Nantes",47.216667,-1.541667
-"XPJ",\N,"France","Montpellier","Gare de Montpellier-Saint-Roch",43.604636,3.881039
-"XYH",\N,"Sweden","Helsingborg","Helsingborg Central Station",56.0451061,12.6963066
-"ZLS",\N,"United Kingdom","London","Liverpool Street Station",51.5201006,-0.0800884
-"ZTJ",\N,"United States","Princeton","Princeton Junction",40.3171699,-74.6227145
 "TLI","WAMI","Indonesia","Toli-Toli","Sultan Bantilan Airport",1.123428,120.793658
-"S52",\N,"United States","Winthrop","Methow Valley State Airport",48.4249483,-120.1458856
-"S10",\N,"United States","Chelan","Lake Chelan Airport",47.8660103,-119.9427017
-"W12",\N,"United States","Mazma","Lost River Resort Airport",48.6495842,-120.5020444
-"6S9",\N,"United States","Stehekin","Stehekin State Airport",48.3457778,-120.7208056
-"ZPY",\N,"Germany","Siegburg","Siegburg Bonn Bahnhof",50.7937,7.2028
 "TQL","USDS","Russia","Tarko-Sale","Tarko-Sale Airport",64.9308013916,77.81809997559999
 "JIC","ZLJC","China","Jinchuan","Jinchuan Airport",38.542222222199996,102.348333333
-"YJD",\N,"Spain","Barcelona","Estacio de Franca",41.384,2.186
-"QKU",\N,"Germany","Cologne","Cologne Deutz Railway",50.94039,6.97436
-"FVS",\N,"Russia","St. Petersburg","Finlyandsky",59.955556,30.356667
 "BPL","ZWAX","China","Bole","Alashankou Bole (Bortala) airport",44.895,82.3
 "FYN","ZWFY","China","Fuyun","Fuyun Koktokay Airport",46.804169,89.512006
 "ACS","UNKS","Russia","Achinsk","Achinsk Airport",56.2682991027832,90.57080078125
 "LFQ","ZBLF","China","LINFEN","Linfen Qiaoli Airport",36.132629,111.641236
-"SDI",\N,"Papua New Guinea","Saidor","Saidor",-5.628589,146.465081
-"BCP",\N,"Papua New Guinea","Bambu","Bambu",-5.8636111,146.4925
-"S27",\N,"United States","Kalispell","Kalispell City Airport",48.1785694,-114.3037408
-"YJP","CEC4","Canada","Hinton","Hinton/Jasper-Hinton Airport",53.3191986084,-117.752998352
 "WVI","KWVI","United States","Watsonville","Watsonville Municipal Airport",36.9356994629,-121.790000916
-"YAQ",\N,"Canada","Maple Bay","Maple Bay Marina",48.8166667,-123.600161
 "GLU","VQGP","Bhutan","Gelephu","Gelephu Airport",26.88456,90.46412
 "HLI","KCVH","United States","Hollister","Hollister Municipal Airport",36.8932991028,-121.410003662
-"AMG",\N,"Papua New Guinea","Amboin","Amboin",-9.441944,147.218889
-"KRM",\N,"Guyana","Karanambo","Karanambo",3.75,-59.3097
-"WIT",\N,"Australia","Wittenom","Wittenom",-22.218,118.348
 "DLK","YDLK","Australia","Dulkaninna","Dulkaninna Airport",-29.0132999420166,138.4810028076172
-"ETD",\N,"Australia","Etadunna","Etadunna",-28.74,138.589
-"MNE",\N,"Australia","Mungeranie","Mungeranie",-28.009,138.656
-"CWR",\N,"Australia","Cowarie","Cowarie",-27.711,138.328
-"CFH",\N,"Australia","Clifton Hills","Clifton Hills",-27.018,138.891
-"DRR",\N,"Australia","Durrie","Durrie",-25.684,140.227
-"ODL",\N,"Australia","Cordillo Downs","Cordillo Downs",-26.745,140.638
-"DHD",\N,"Australia","Durham Downs","Durham Downs",-27.075,141.899
-"INM",\N,"Australia","Innamincka","Innamincka",-27.7,140.733
-"GLG",\N,"Australia","Glengyle","Glengyle",-24.803,139.6
-"HWK",\N,"Australia","Wilpena Pound","Wilpena Pound",-31.855,138.468
-"MIH",\N,"Australia","Mitchell Plateau","Mitchell Plateau ",-14.791,125.823
-"WHO",\N,"New Zealand","Franz Josef Aerodrome","Franz Josef Aerodrome",-43.363,170.134
 "SNG","SHNG","South Korea","Siheung","Siheung airport",37.410825,126.79603
-"YBS","CKM8","Canada","Musselwhite Mine","Opapimiskan Lake Airport",52.6067008972,-90.3768997192
-"ZDJ",\N,"Switzerland","Bern","Bern Railway Station",46.949722,7.439444
 "RIZ","ZSRZ","China","Rizhao","Rizhao Shanzihe Airport",35.405033,119.324403
 "SQJ","ZSSM","China","Sanming","Shaxian Airport",26.4263,117.8336
 "XTO","YTAM","Australia","Taroom","Taroom Airport",-25.801700592041016,149.89999389648438
@@ -6607,122 +5889,64 @@
 "BQG","UHNB","Russia","Bogorodskoe","Bogorodskoye Airport",52.38,140.448
 "JKT","WIID","Indonesia","Jakarta","Kemayoran Airport",-6.147222,106.85
 "HYD","VOHS","India","Hyderabad","Rajiv Gandhi International Airport",17.2313175201,78.4298553467
-"ZYH",\N,"Netherlands","Den Haag","Den Haag Centraal",52.0810867,4.3220375
 "DIC","DICK","United States","DICKA","Dicka",37.789,-122.43
 "PKO","DBBP","Benin","Parakou","Parakou Airport",9.35768985748291,2.609679937362671
 "XBA","BXBA","Russia","Arseniev","Aerodrom Arseniev",44.1427,133.26861
 "KDC","DBBK","Benin","Kandi","Kandi Airport",11.14479,2.940381
-"QII",\N,"Germany","Lindau","Lindau Hbf",47.5455478,9.6826459
-"XGZ",\N,"Austria","Bregenz","Bregenz",47.503499,9.741156
 "HMG","YHMB","Australia","Hermannsburg","Hermannsburg Airport",-23.93000030517578,132.80499267578125
-"ZYZ",\N,"Belgium","Antwerpen","Antwerpen-Berchem Railway Station",51.199167,4.433056
 "BIB","HCMB","Somalia","Baidoa","Baidoa Airport",3.102220058441162,43.62860107421875
 "KCS","YKCS","Australia","Petermann","Kings Creek Airport",-24.42329978942871,131.8350067138672
 "BMR","EDWZ","Germany","Baltrum","Baltrum Airport",53.72472381591797,7.373332977294922
-"XEW",\N,"Sweden","Flemingsberg","Flemingsberg Railway Station",59.218085,17.945634
 "MVW","KBVS","United States","Skagit","Skagit Regional Airport",48.4709014893,-122.42099762
 "GOO","YGDI","Australia","Goondiwindi","Goondiwindi Airport",-28.521400451660156,150.32000732421875
-"PHG",\N,"Nigeria","Port harcourt","Port harcourt",4.8,7
 "APT","KAPT","United States","Jasper","Marion County Brown Field",35.060699,-85.585297
 "DCU","KDCU","United States","Decatur","Pryor Field Regional Airport",34.652698516799994,-86.94539642330001
 "GLW","KGLW","United States","Glasgow","Glasgow Municipal Airport",37.03179932,-85.9536972
-"XJY",\N,"France","Massy","Gare de Massy TGV",48.726111,2.261667
-"ZLN",\N,"France","Le Mans","Gare du Mans",47.995556,0.1925
 "FIN","KFIN","United States","Flagler County","Flagler County Airport",29.4645926,-81.2091644
 "DKV","YDVR","Australia","Docker River","Docker River Airport",-24.860000610351562,129.07000732421875
-"N96",\N,"United States","Bellefonte","Bellefonte Airport",40.8855,-77.8162222
 "RNZ","KRZL","United States","Rensselaer","Jasper County Airport",40.9478988647,-87.1826019287
-"3N6",\N,"United States","Englishtown","Old Bridge Airport",40.3298867,-74.3467869
 "SBT","USDA","Russia","Sabetta","Sabetta International Airport",71.219167,72.052222
 "AXF","ZBAL","China","Alxa Left Banner","Alxa Left Banner Bayanhot Airport",38.74831,105.58858
-"PRK",\N,"United States","Port Kent","Port Kent",44.5253502,-73.4021074
-"BNF",\N,"Norway","Bergen","Bergen Norled Ferry",60.395178,5.321868
 "NIS","AYSE","Papua New Guinea","Simberi Island","Simberi Airport",-2.66222222222,151.997777778
 "BUL","AYBU","Papua New Guinea","Bulolo","Bulolo Airport",-7.216286671410001,146.649541855
 "TBR","KTBR","United States","Statesboro","Statesboro Bulloch County Airport",32.4827003479,-81.73690032959999
 "AMT","YAMT","Australia","Amata","Amata Airport",-26.108299255371094,131.20700073242188
-"COP",\N,"United States","Cooperstown","Cooperstown",42.6291667,-74.8911111
-"OCO",\N,"United States","Oconomowoc","OSRUI",43.109374,-88.485677
 "EDD","YERL","Australia","Erldunda","Erldunda Airport",-25.205799102800004,133.253997803
-"BXW",\N,"Indonesia","Bawean","Harun Thohir Airport",-5.723611,112.679167
 "FIK","YFNE","Australia","Finke","Finke Airport",-25.5946998596,134.582992554
-"CMC",\N,"Brazil","Camocim","Camocim",-2.916667,-40.833332
 "JJG","SBJA","Brazil","Jaguaruna","Humberto Ghizzo Bortoluzzi Regional Airport",-28.6753,-49.0596
-"LZS",\N,"Austria","Linz","Linz Hauptbahnhof",48.2905,14.2911
-"BNL",\N,"United States","Normal","Uptown Station",40.508611,-88.984167
-"NZM",\N,"India","Delhi","Hazrat Nizamuddin Station",28.589167,77.254167
-"1S5",\N,"United States","Sunnyside","Sunnyside Municipal Airport",46.3270833,-119.9703611
 "EMB","KEMB","United States","San Francisco","Embarcadero",37.795278,-122.39361
 "WKI","FVWT","Zimbabwe","Hwange","Hwange (Town) Airport",-18.362967,26.519791
 "KLJ","EYKL","Lithuania","Klaipeda","Klaipėda Airport",55.7118988037,21.242799758900002
-"ДЖБ","UCFJ","Kyrgyzstan","Jalal-Abad","Jalal-Abad Airport",40.5639,72.584
-"C29",\N,"United States","Middleton","Middleton Municipal Airport - Morey Field",43.1142699,-89.5315336
+"JBD","UCFJ","Kyrgyzstan","Jalal-Abad","Jalal-Abad Airport",40.5639,72.584
 "ETB","KETB","United States","WEST BEND","West Bend Municipal Airport",43.4221992493,-88.1278991699
 "GLR","KGLR","United States","GAYLORD","Gaylord Regional Airport",45.013500213600004,-84.7035980225
-"TWM",\N,"United States","Two Harbors","Richard B Helgeson Airport",47.0519,-91.7423
 "AID","KAID","United States","ANDERSON","Anderson Municipal Darlington Field",40.10860061649999,-85.6129989624
 "QND","LYNS","Serbia","Novi Sad","Cenej Airport",45.385799,19.839199
 "GUU","BIGF","Iceland","Grundarfjordur","Grundarfjörður Airport",64.99140167236328,-23.224700927734375
 "PCD","KPDC","United States","Prairie du Chien","Prairie Du Chien Municipal Airport",43.019298553467,-91.12370300293
 "OTJ","FYOW","Namibia","Otjiwarongo","Otjiwarongo Airport",-20.434700012207,16.660800933838
-"T74",\N,"United States","Taylor","Taylor Municipal Airport",30.5726,-97.4432
-"0E0",\N,"United States","Moriarty","Moriarty Airport",34.9781667,-106.0000278
-"W99",\N,"United States","Petersburg","Grant County Airport",38.9949444,-79.1458611
-"8A7",\N,"United States","Mocksville","Twin Lakes Airport",35.914915,-80.4568064
-"1N1",\N,"United States","Edgewood","Sandia Airpark Estates East Airport",35.0946111,-106.1645556
-"E98",\N,"United States","Los Lunas","Mid valley Airpark",34.7610083,-106.7449444
-"E80",\N,"United States","Belen","Alexander Municipal Airport",34.6458616,-106.8363401
-"3M0",\N,"United States","Lakeview","Gastons Airport",36.3490556,-92.5558056
-"P14",\N,"United States","Holbrook","Holbrook Municipal Airport",34.9407222,-110.1385
 "TSM","KSKX","United States","Taos","Taos Regional Airport",36.45819855,-105.6719971
-"A20",\N,"United States","Bullhead City","Sun Valley Airport",35.0056389,-114.5650278
-"P20",\N,"United States","Parker","Avi Suquilla Airport",34.1498333,-114.2678333
 "RTN","KRTN","United States","Raton","Raton Municipal-Crews Field",36.74150085,-104.5019989
-"3V5",\N,"United States","Fort Collins","Fort Collins Downtown Airport",40.588336,-105.041674
-"6Y9",\N,"United States","Sidnaw","Prickett-Grooms Field Airport",46.5086528,-88.7058472
-"3K3",\N,"United States","Syracuse","Syracuse-Hamilton County Municipal Airport",37.9985831,-101.7476078
-"E05",\N,"United States","Hatch","Hatch Municipal Airport",32.660292,-107.1954089
-"5V5",\N,"United States","Shiprock","Shiprock Airstrip",36.6976908,-108.7009692
-"N19",\N,"United States","Aztec","Aztec Municipal Airport",36.8369486,-108.0286556
-"1V0",\N,"United States","Navajo Dam","Navajo Lake Airport",36.8082903,-107.6526139
-"24N",\N,"United States","Dulce","Jicarilla Apache Nation Airport",36.828535,-106.8841914
-"E32",\N,"United States","Lindrith","Lindrith Airpark",36.2914064,-107.0561544
 "SXU","KSXU","United States","Santa Rosa","KSXU",34.9356721,-104.6425638
 "PPA","KPPA","United States","Pampa","Perry Lefors Field",35.612998962402,-100.99600219727
 "FLP","KFLP","United States","Flippin","Marion County Regional Airport",36.29090118,-92.59030151
-"K88",\N,"United States","Iola","Allen County Airport",37.868222,-95.386944
 "BGD","KBGD","United States","Borger","Hutchinson County Airport",35.700901031499995,-101.393997192
-"N29",\N,"United States","Magdalena","Magdalena Airport",34.0941514,-107.2971694
-"F37",\N,"United States","Carrizozo","Carrizozo Municipal Airport",33.6489028,-105.8962192
-"E14",\N,"United States","Espanola","Ohkay Owingeh Airport",36.026119,-106.0454146
-"N24",\N,"United States","Questa","Questa Municipal Airport Nr 2",36.8003056,-105.5975
-"S42",\N,"United States","Springer","Springer Municipal Airport",36.3315222,-104.6178514
-"M10",\N,"United States","Mountainair","Mountainair Municipal Airport",34.5333333,-106.2238889
-"E92",\N,"United States","Estancia","Estancia Municipal Airport",34.7633933,-106.0414056
-"E89",\N,"United States","Conchas Dam","Conchas Lake Airport",35.3678389,-104.1805083
-"A09",\N,"United States","Bullhead City","Eagle Airpark",34.8881667,-114.6166389
 "IKW","KIKW","United States","Midland","Jack Barstow Municipal Airport",43.662778,-84.261389
 "HLE","FHSH","United Kingdom","Longwood","St. Helena Airport",-15.957725,-5.645943
-"5BL",\N,"United States","Homer","Homer-Beluga Lake Seaplane Base",59.6415556,-151.5211278
 "BNJ","EDKB","Germany","Sankt-Augustin","Bonn-Hangelar Airport",50.7688903809,7.16333293915
 "NGK","UHSN","Russia","Nogliki","Nogliki Airport",51.780102,143.139008
 "SQA","KIZA","United States","Santa Ynez","Santa Ynez Airport",34.60680008,-120.0759964
-"IBO",\N,"Mozambique","Ibo Island","Ibo Island",-12.350277,40.602222
 "HXD","ZLDL","China","Haixi","Delingha Airport",37.125286,97.268658
 "BAR","ZJQH","China","Qionghai","Qionghai Bo'ao Airport",19.13824,110.454775
-"NWK",\N,"United States","Newark","Newark Station - Delaware",39.670278,-75.75305
 "ZBO","YBWN","Australia","Bowen","Bowen Airport",-20.018299102783203,148.21499633789062
 "UCB","ZBUC","China","Wulanchabu","Ulanqab Jining Airport",41.129722,113.108056
 "KEO","DIOD","Cote d'Ivoire","Odienne","Odienne Airport",9.5,-7.566999912261963
 "GII","GUSI","Guinea","Siguiri","Siguiri Airport",11.432999610901,-9.1669998168945
 "NZE","GUNZ","Guinea","Nzerekore","Nzérékoré Airport",7.8060193061829,-8.7017974853516
-"DIO",\N,"United States","Diomede","Diomede Heliport",65.7583,-168.9537111
-"RJM",\N,"Indonesia","Waisai","Marinda Raja Ampat Airport",-0.430246,130.77477
 "OCM","YBGD","Australia","Brockman","Boolgeeda",-22.54,117.275
 "WGN","ZGSY","China","Shaoyang","Shaoyang Wugang Airport",26.802,110.642
 "TXF","SNTF","Brazil","Teixeira de Freitas","9 de Maio - Teixeira de Freitas Airport",-17.524499893188,-39.66849899292
 "SPA","KSPA","United States","Spartangurg","Spartanburg Downtown Memorial Airport",34.915699005127,-81.956497192383
-"TAV",\N,"American Samoa","Ta'u","Ta'u Airport",-14.229167,-169.511111
 "BJW","WATB","Indonesia","Bajawa","Bajawa Soa Airport",-8.70743498008,121.057426929
 "NBN","FGAB","Equatorial Guinea","San Antonio de Pale","Annobón Airport",-1.410277,5.621944
 "OLL","FCOD","Congo (Brazzaville)","Oyo","Oyo Ollombo Airport",-1.226666,15.91
@@ -6732,21 +5956,12 @@
 "DSS","GOBD","Senegal","Diass","Blaise Diagne International Airport",14.67,-17.073333
 "AIY","KAIY","United States","Atlantic City","Bader Field",39.36,-74.456111
 "PMH","KPMH","United States","Portsmouth","Greater Portsmouth Regional Airport",38.8404998779,-82.84729766850002
-"RWA",\N,"Poland","Warszawa","Warszawa Centralna Railway Station",52.228611,21.003056
-"SRB",\N,"United States","Sparta","Upper cumberland ",36.0567386,-85.5301081
 "NAC","YNRC","Australia","Naracoorte","Naracoorte Airport",-36.98529815673828,140.72500610351562
 "PGZ","SSZW","Brazil","Ponta Grossa","Ponta Grossa Airport - Comandante Antonio Amilton Beraldo",-25.1847,-50.1441
-"QIE",\N,"France","Istres","Istres Le Tube",43.3128,4.563
 "PQM","MMPQ","Mexico","Palenque","Palenque International Airport",17.533153,-92.015484
 "CUD","YCDR","Australia","Caloundra","Caloundra Airport",-26.799999237060547,153.10000610351562
 "CLP","PFCL","United States","Clarks Point","Clarks Point Airport",58.83369827,-158.529007
-"KWF",\N,"United States","Waterfall","Waterfall Seaplane Base",55.296389,-133.243333
-"ORZ",\N,"Belize","Orange Walk Town","Orange Walk Airport",18.046111,-88.583611
-"JOJ","CDL7","Canada","Doris Lake","Doris Lake",68.1252746582,-106.585281372
 "ECI","MNCE","Nicaragua","Tola","Costa Esmeralda Airport",11.427542,-86.033361
-"CTE",\N,"Panama","Carti Islands","Carti Airport",9.452778,-78.979167
-"PDM",\N,"Panama","Pedasi","Pedasi Airport",7.556944,-80.023611
-"NMG",\N,"Panama","San Miguel","San Miguel Airport",8.456944,-78.933333
 "QGQ","BGAT","Greenland","Attu","Attu Heliport",67.9406628551,-53.6218696833
 "QPW","BGKA","Greenland","Kangaatsiaq","Kangaatsiaq Heliport",68.3126574861,-53.4602075815
 "QJE","BGKT","Greenland","Kitsissuarsuit","Kitsissuarsuit Heliport",68.85792599759999,-53.123295307199996
@@ -6758,9 +5973,7 @@
 "NPR","SJNP","Brazil","Novo Progresso","Novo Progresso Airport",-7.125833,-55.400833
 "SMT","SBSO","Brazil","Sorriso","Adolino Bedin Regional Airport",-12.479177,-55.672341
 "ENO","SGEN","Paraguay","Encarnacion","Encarnación Airport",-27.227366,-55.837495
-"T67",\N,"United States","Fort Worth","Hicks Airfield",32.5444,-97.2404
 "UZR","UASU","Kazakhstan","Urzhar","Urzhar Airport",47.09115,81.66521
-"ZDH",\N,"Switzerland","Basel","Basel SBB Bahnhof",47.547473,7.589578
 "NYR","UENN","Russia","Nyurba","Nyurba Airport",63.294998,118.336998
 "SUK","UEBS","Russia","Batagay-Alyta","Sakkyryr Airport",67.792,130.394
 "UKG","UEBT","Russia","Ust-Kuyga","Ust-Kuyga Airport",70.011001586914,135.64500427246
@@ -6771,15 +5984,11 @@
 "RDB","PADG","United States","Red Dog","Red Dog Airport",68.03209686279999,-162.899002075
 "ION","FCOI","Congo (Brazzaville)","Impfondo","Impfondo Airport",1.6169999837875366,18.066999435424805
 "EBH","DAOY","Algeria","El Bayadh","El Bayadh Airport",33.721666666699996,1.0925
-"LBN",\N,"Kenya","Lake Baringo","Lake Baringo Airport",0.669444,36.103333
 "ZIS","HLZN","Libya","Zintan","Alzintan Airport",31.774878,12.25006
 "MYZ","FWMY","Malawi","Monkey Bay","Monkey Bay Airport",-14.083600044299999,34.9197006226
 "BCU","DNBC","Nigeria","Bauchi","Sir Abubakar Tafawa Balewa International Airport",10.482833,9.744
 "GMO","DNGO","Nigeria","Gombe","Gombe Lawanti International Airport",10.298333333299999,10.896388888899999
-"AAD",\N,"Somalia","Adado","Adado Airport",6.095833,46.6375
 "KDA","GODK","Senegal","Kolda","Kolda North Airport",12.898500442504883,-14.968099594116211
-"GUO",\N,"Somalia","Guriel","Guriel Airport",5.3176,45.9856
-"ADV",\N,"Sudan","Ed Daein","Ed Daein Airport",11.403611,26.119167
 "SHO","FDSK","Swaziland","Manzini","King Mswati III International Airport",-26.358611,31.716944
 "KIY","HTKI","Tanzania","Kilwa Masoko","Kilwa Masoko Airport",-8.91123,39.508619
 "QSI","HTMS","Tanzania","Moshi","Moshi Airport",-3.3633298873901367,37.326900482177734
@@ -6800,7 +6009,6 @@
 "HUO","ZBHZ","China","Holingol","Holingol Huolinhe Airport",45.487222,119.407222
 "GMQ","ZLGL","China","Golog","Golog Maqin Airport",34.418066,100.301144
 "QSZ","ZWSC","China","Yarkant","Yeerqiang Airport",38.281055,77.075192
-"JGB",\N,"India","Jagdalpur","Jagdalpur Airport",19.074444,82.036944
 "TEI","VETJ","India","Tezu","Tezu Airport",27.9412002563,96.1343994141
 "CWJ","ZPCW","China","Cangyuan","Cangyuan Washan Airport",23.273889,99.373611
 "JMJ","ZPJM","China","Lancang Lahu","Lancang Jingmai Airport",22.415833,99.786389
@@ -6814,7 +6022,6 @@
 "SAG","VASD","India","Shirdi","Shirdi Airport",19.688611,74.378889
 "PYB","VEJP","India","Jeypore","Jeypore Airport",18.8799991607666,82.552001953125
 "NVY","VONY","India","Neyveli","Neyveli Airport",11.613611,79.526389
-"PXA",\N,"Indonesia","Pagar Alam","Atung Bungsu Airport",-4.0225,103.379167
 "KJT","WICA","Indonesia","Majalengka","Kertajati International Airport",-6.669167,108.191111
 "SUP","WART","Indonesia","Sumenep","Trunojoyo Airport",-7.0242,113.89023
 "LMU","WIDL","Indonesia","Jamaja Island","Letung Airport",2.964167,105.754444
@@ -6823,13 +6030,11 @@
 "PPR","WIDE","Indonesia","Pasir Pangaraian","Pasir Pangaraan Airport",0.8454310297966003,100.37000274658203
 "TJB","WIBT","Indonesia","Tanjung Balai Karimun","Sei Bati Airport",1.0527,103.3931
 "KRC","WIPH","Indonesia","Kerinci Regency","Departi Parbo Airport",-2.093,101.4683
-"MKF",\N,"Indonesia","Miangas","Miangas Airport",5.562222,126.581389
 "WUB","WAME","Indonesia","Buli","Buli Airport",0.88104,128.29403
 "NRE","WAPG","Indonesia","Buru Island","Namrole Airport",-3.8548,126.7012
 "LKA","WATL","Indonesia","Larantuka","Gewayantana Airport",-8.274544,123.002328
 "RTI","WATR","Indonesia","Rote Ndao Regency","David Constantijn Saudale Airport",-10.766964,123.074957
 "NAM","WAPR","Indonesia","Namlea","Namlea Airport",-3.235569953918457,127.0999984741211
-"JIO",\N,"Indonesia","Tiakur","Jos Orno Imsula Airport",-8.140556,127.907222
 "DOB","WAPD","Indonesia","Dobo","Rar Gwamar Airport",-5.7722201347399995,134.212005615
 "GLX","WAEG","Indonesia","Galela","Gamar Malamo Airport",1.837222,127.785556
 "LAH","WAEL","Indonesia","Labuha","Oesman Sadik Airport",-0.637344,127.50075
@@ -6841,26 +6046,18 @@
 "RAQ","WAWR","Indonesia","Raha","Sugimanuru Airport",-4.760557,122.569371
 "WNI","WAWD","Indonesia","Wangi-wangi","Matahora Airport",-5.316667,123.583333
 "JSK","OIZJ","Iran","Jask","Jask Airport",25.653601,57.799301
-"1H0",\N,"United States","Creve Coeur","Creve Coeur Airport",38.726667,-90.508333
-"ZDU",\N,"United Kingdom","Dundee","Dundee Railway Station",56.4566,-2.971
-"КПЖ","UCFP","Kyrgyzstan","Karakol","Karakol International Airport",42.508056,78.407778
+"IKG","UCFP","Kyrgyzstan","Karakol","Karakol International Airport",42.508056,78.407778
 "ZBY","VLSB","Laos","Sainyabuli","Sayaboury Airport",19.2436,101.7093
-"GHK",\N,"Canada","Gahcho Kue","Gahcho Kue Mine",63.4353,-109.1447
-"CMV",\N,"Canada","Victor Mine","Victor Mine",52.832,-83.924
 "BGL","VNBL","Nepal","Baglung","Baglung Airport",28.212799072265625,83.66629791259766
 "RJB","VNRB","Nepal","Rajbiraj","Rajbiraj Airport",26.510066,86.733902
 "DQM","OODQ","Oman","Duqm","Duqm International Airport",19.501944,57.634167
 "UKH","OOMK","Oman","Mukhaizna","Mukhaizna Airport",19.39,56.397778
 "SWL","RPSV","Philippines","San Vicente","San Vicente Airport",10.525,119.273889
-"SIL",\N,"Philippines","Sipalay","Sipalay Airport",9.7925,122.451667
 "CKI","YCKI","Australia","Croker Island","Croker Island Airport",-11.164999961853027,132.48300170898438
 "BYP","YBRY","Australia","Barimunya","Barimunya Airport",-22.673900604248,119.16600036621
 "LUC","NFNH","Fiji","Laucala","Laucala Island Airport",-16.74810028076172,-179.66700744628906
 "YAS","NFSW","Fiji","Yasawa Island","Yasawa Island Airport",-16.758899688720703,177.5449981689453
 "WIK","NZKE","New Zealand","Waiheke Island","Waiheke Reeve Airport",-36.80889892578125,175.08599853515625
-"RIM",\N,"French Polynesia","Rimatara","Rimatara roadstead",-22.634,-152.809
-"RRT",\N,"French Polynesia","Rurutu","Rurutu port",-22.449522,-151.341522
-"RPA",\N,"French Polynesia","Rapa Iti","Rapa Iti port",-27.613575,-144.321034
 "DEX","WAVD","Indonesia","Dekai","Nop Goliat Airport",-4.8557,139.482006
 "NAU","NTGN","French Polynesia","Napuka","Napuka Island Airport",-14.176799774169922,-141.26699829101562
 "FAC","NTKF","French Polynesia","Faaite","Faaite Airport",-16.68670082092285,-145.32899475097656
@@ -6872,40 +6069,27 @@
 "TKV","NTGO","French Polynesia","Tatakoto","Tatakoto Airport",-17.355300903320312,-138.44500732421875
 "TDS","AYSS","Papua New Guinea","Sasereme","Sasereme Airport",-7.6217,142.868
 "TMH","WAKT","Indonesia","Boven Digoel","Tanah Merah Airport",-6.099219799041748,140.29800415039062
-"5Z5",\N,"United States","Kantishna","Kantishna Airport",63.541667,-150.993889
-"L20",\N,"United States","Coal Creek","Coal Creek",65.311336,-143.135452
 "GEM","TRGE","Turkey","Gemlik ","Gemlik Seaport",40.431667,29.156111
-"MLH",\N,"France","Bale-Mulhouse-Freiburg","Basel-Mulhouse",47.59001,7.5291667
-"CBC",\N,"Australia","Djugerari","Djugerari",-18.986944,125.510556
 "NKB","YNKA","Australia","Noonkanbah","Noonkanbah Airport",-18.4946994781,124.851997375
-"4R5",\N,"United States","La Pointe","Major Gilbert Field Airport",46.7886667,-90.7587222
-"22I",\N,"United States","Hocking Hills","Hocking Hills",39.328125,-82.4418217
 "AEI","LEAG","Spain","Algeciras","Algeciras Heliport",36.12888,-5.441118
 "CDF","LIDI","Italy","Cortina d'Ampezzo","Cortina Airport",46.57611,12.11667
 "RVH","ULSS","Russia","St-Peterburg","Rzhevka",59.98,30.5856
-"KHX",\N,"Uganda","Kihihi","Savannah Airstrip",-0.7195,29.7
 "KSE","HUKS","Uganda","Kasese","Kasese Airport",0.18299999833106995,30.100000381469727
 "NCJ","SAFS","Argentina","Sunchales","Sunchales Aeroclub Airport",-30.9575,-61.5283
 "IST","LTFM","Turkey","Istanbul","Istanbul Airport",41.275278,28.751944
-"БОВ","USDB","Russia","Bovanenkovo","Bovanenkovo",70.314133,68.336452
-"XRJ",\N,"Italy","Rome","Termini",41.900648,12.501755
+"BVJ","USDB","Russia","Bovanenkovo","Bovanenkovo",70.314133,68.336452
 "SOV","PASO","United States","Seldovia","Seldovia Airport",59.442401885986,-151.70399475098
 "YSG","CYLK","Canada","Lutselk'e","Lutselk'e Airport",62.418303,-110.681998
 "DWA","FWDW","Malawi","Dwangwa","Dwangwa Airport",-12.5183,34.131901
 "HGI","HSFA","South Sudan","Higleig","Paloich Airport",10.529167,32.4993374
 "KQH","VIKG","India","Ajmer","Kishangarh Airport",26.601473,74.814147
 "CNN","VOKN","India","Kannur","Kannur International Airport",11.918614,75.547211
-"3O8",\N,"United States","Coalinga","Harris Ranch",36.2481111,-120.2384722
 "RVI","URRR","Russia","Rostov-on-Don","Rostov-on-Don Airport",47.2583,39.8183
 "ZCO","SCQP","Chile","Temuco","La Araucanía Airport",-38.9259,-72.6515
 "ASS","FACC","South Africa","Arathusa","Arathusa Safari Lodge Airport",-24.744165,31.522499
 "VDI","KVDI","United States","Vidalia","Vidalia Regional Airport",32.192699432373,-82.371200561523
 "ISB","OPIS","Pakistan","Islamabad","New Islamabad International Airport",33.560713,72.851613
-"MHB",\N,"New Zealand","Auckland","Mechanics Bay",-36.846,174.788
 "MHE","KMHE","United States","Mitchell","Mitchell Municipal Airport",43.774799346900004,-98.03859710690001
-"SLI",\N,"Zambia","Solwezi","Solwezi",-12.16667,26.36667
-"5Z1",\N,"United States","Juneau","Juneau Harbor Seaplane Base",58.2988889,-134.4077778
-"TKL",\N,"United States","Taku Lodge","Taku Lodge Seaplane Base",58.4896831,-133.9434211
 "GIT","HTRU","Tanzania","Geita","Mchauru Airport",-2.813667,32.172472
 "GID","HBBE","Burundi","Gitega","Gitega Airport",-3.417209,29.911308
 "RMU","LEMI","Spain","Murcia","Región de Murcia International Airport",37.803,-1.125
