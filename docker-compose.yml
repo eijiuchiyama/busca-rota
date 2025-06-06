@@ -42,15 +42,15 @@ services:
       - "7687:7687"   # Bolt protocol
     volumes:
       - neo4jdata:/data
+      - ./busca_rota_django:/var/lib/neo4j/import:ro
       
   neo4j-init:
     image: neo4j:5
     depends_on:
       - neo4j
-    entrypoint: ["/bin/bash", "/data/neo4j-init.sh"]
+    entrypoint: ["/bin/bash", "/var/lib/neo4j/import/neo4j-init.sh"]
     volumes:
-      - ./busca_rota_django/init.cypher:/data/init.cypher:ro
-      - ./busca_rota_django/neo4j-init.sh:/data/neo4j-init.sh:ro
+      - ./busca_rota_django:/var/lib/neo4j/import:ro
       
   mongo:
     image: mongo:6

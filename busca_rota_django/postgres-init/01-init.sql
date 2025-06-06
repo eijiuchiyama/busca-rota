@@ -12,7 +12,7 @@ CREATE TABLE Usuario(
 );
 
 CREATE TABLE CompanhiaAerea(
-	sigla VARCHAR(63) PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	nome VARCHAR(255)
 );
 
@@ -36,7 +36,7 @@ CREATE TABLE Comentario(
 	horario_postagem TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	usuario_username VARCHAR(63),
 	aeroporto_iata VARCHAR(3),
-	companhia_sigla VARCHAR(63),
+	companhia_id INT,
 	comentario_pai_id INT,
 
 	-- Foreign key constraints with CASCADE rules
@@ -47,7 +47,7 @@ CREATE TABLE Comentario(
 		FOREIGN KEY (aeroporto_iata) REFERENCES Aeroporto(iata)
 		ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT fk_companhia
-		FOREIGN KEY (companhia_sigla) REFERENCES CompanhiaAerea(sigla)
+		FOREIGN KEY (companhia_id) REFERENCES CompanhiaAerea(id)
 		ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT fk_comentario_pai
 		FOREIGN KEY (comentario_pai_id) REFERENCES Comentario(id)
@@ -55,7 +55,7 @@ CREATE TABLE Comentario(
 	
 	CHECK (
 		(aeroporto_iata IS NOT NULL)::INTEGER +
-		(companhia_sigla IS NOT NULL)::INTEGER +
+		(companhia_id IS NOT NULL)::INTEGER +
 		(comentario_pai_id IS NOT NULL)::INTEGER = 1
 	)
 );
