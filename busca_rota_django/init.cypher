@@ -10,6 +10,7 @@ LOAD CSV WITH HEADERS FROM 'file:///airports_filtered.dat' AS row
 WITH row 
 WHERE row.iata IS NOT NULL AND trim(row.iata) <> ''
 MERGE (a:Aeroporto {iata: trim(row.iata)});
+RETURN count(*) AS aeroportos_importados;
 
 // Inserir Trajetos com validações
 LOAD CSV WITH HEADERS FROM 'file:///paths.dat' AS row
@@ -24,6 +25,7 @@ MERGE (origem)-[:ORIGEM]->(t:Trajeto {
     chave: origem_clean + '->' + destino_clean,
     distancia: toFloat(row.distancia)
 })-[:DESTINO]->(destino);
+RETURN count(*) AS trajetos_importados;
 
 // Inserir Voos com validações
 LOAD CSV WITH HEADERS FROM 'file:///flights.dat' AS row
@@ -47,3 +49,4 @@ CREATE (v:Voo {
     preco_executiva: toFloat(row.preco_executiva),
     preco_primeira: toFloat(row.preco_primeira)
 })-[:PERTENCE_A]->(t);
+RETURN count(*) AS voos_importados;

@@ -1,3 +1,4 @@
+iata,icao,pais,cidade,nome,latitude,longitude
 "GKA","AYGA","Papua New Guinea","Goroka","Goroka Airport",-6.081689834590001,145.391998291
 "MAG","AYMD","Papua New Guinea","Madang","Madang Airport",-5.20707988739,145.789001465
 "HGU","AYMH","Papua New Guinea","Mount Hagen","Mount Hagen Kagamuga Airport",-5.826789855957031,144.29600524902344
@@ -525,7 +526,7 @@
 "NTB","ENNO","Norway","Notodden","Notodden Airport",59.565701,9.21222
 "OLA","ENOL","Norway","Orland","Ørland Airport",63.69889831542969,9.604000091552734
 "RRS","ENRO","Norway","Roros","Røros Airport",62.578399658203,11.342300415039
-"RYG","ENRY","Norway","Rygge", Rygge","Moss Airport,59.378817,10.7820308
+"RYG","ENRY","Norway","Rygge","Moss Airport",59.378817,10.7820308
 "LYR","ENSB","Norway","Longyear","Svalbard Airport",78.246101379395,15.4907193
 "SKE","ENSN","Norway","Skien","Skien Airport",59.185001373291016,9.566940307617188
 "SRP","ENSO","Norway","Stord","Stord Airport",59.791900634765625,5.340849876403809
