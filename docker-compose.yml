@@ -3,7 +3,7 @@ services:
     build:
       context: ./busca_rota_django
     volumes:
-      - ./busca_rota_django:/code
+      - ./busca_rota_django:/app
     ports:
       - "8000:8000"
     depends_on:

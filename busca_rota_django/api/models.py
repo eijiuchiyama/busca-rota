@@ -5,7 +5,7 @@ class Aeroporto(models.Model):
     icao = models.CharField(max_length=7)
     pais = models.CharField(max_length=63)
     cidade = models.CharField(max_length=63)
-    nome = = models.CharField(max_length=255)
+    nome = models.CharField(max_length=255)
     latitude = models.FloatField()
     longitude = models.FloatField()
     
@@ -24,8 +24,4 @@ class Comentario(models.Model):
 class CompanhiaAerea(models.Model):
 	sigla = models.CharField(max_length=63)
 	nome = models.CharField(max_length=255)
-	
-class Aviao(models.Model):
-	marca = models.CharField(max_length=255)
-	modelo = models.CharField(max_length=255)
 
