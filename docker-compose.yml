@@ -31,7 +31,7 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./busca_rota_django/postgres-init:/docker-entrypoint-initdb.d
+      - ./postgres-data/postgres-init:/docker-entrypoint-initdb.d  # pasta separada para init scripts
       
   neo4j:
     image: neo4j:5
@@ -42,7 +42,7 @@ services:
       - "7687:7687"   # Bolt protocol
     volumes:
       - neo4jdata:/data
-      - ./busca_rota_django:/var/lib/neo4j/import
+      - ./neo4j-data/import:/var/lib/neo4j/import   # pasta separada para imports
       
   neo4j-init:
     image: neo4j:5
@@ -50,7 +50,7 @@ services:
       - neo4j
     entrypoint: ["/bin/bash", "/var/lib/neo4j/import/neo4j-init.sh"]
     volumes:
-      - ./busca_rota_django:/var/lib/neo4j/import
+      - ./neo4j-data/import:/var/lib/neo4j/import   # mesma pasta que acima
       
   mongo:
     image: mongo:6

@@ -12,10 +12,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN chmod -R 755 .
-RUN chmod -R 755 ./*
-RUN chmod -R 755 ./postgres-init
-RUN chmod -R 755 ./postgres-init/*
 
 EXPOSE 8000
 
