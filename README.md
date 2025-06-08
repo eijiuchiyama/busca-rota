@@ -100,11 +100,18 @@ Para acessar os dados do MongoDB de forma visual é preciso instalar o MongoDB C
 - Usuário: neo4j
 - Senha: neo4jneo4j
 
-## Teste do Postgres
+## Testes
 
-Pode ser executado com o seguinte comando:
+Podem ser executados com os seguintes comandos:
+
+### Postgres
 
 ```
 sudo docker-compose exec -T postgres psql -U postgres -d busca-rota-postgres < testes_postgres.sql
 ```
 
+### Neo4J
+
+```
+sudo docker exec -i busca-rota-neo4j-1 cypher-shell -u neo4j -p neo4jneo4j < testes_neo4j.cypher
+```
