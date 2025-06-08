@@ -20,6 +20,8 @@ O Busca-Rota é um site web que permite a seus usuários pesquisar rotas aéreas
 
 - pgAdmin (cliente de banco de dados PostgreSQL)
 
+- Swagger (para exibir as URLs da API)
+
 ## Linguagens utilizadas
 
 - JavaScript (para React)
@@ -67,6 +69,8 @@ São utilizadas as seguintes portas:
 - Neo4J: 7474
 
 - pgAdmin: 8080
+
+- Swagger: 8000/swagger
 
 Ao acessar localhost:\<porta do serviço\>, podemos utilizar o serviço ou ver os bancos de dados. No caso do PostgreSQL, usamos o pgAdmin para ver as tabelas e dados.
 Para usar o pgAdmin, deve-se criar um novo server e preencher com os dados do banco de dados PostgreSQL:
