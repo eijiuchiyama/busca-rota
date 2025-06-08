@@ -44,7 +44,6 @@ CREATE (v:Voo {
     horario_partida: datetime(row.horario_partida),
     horario_chegada: datetime(row.horario_chegada),
     companhia: row.companhia,
-    aviao: row.aviao,
     preco_economica: toFloat(row.preco_economica),
     preco_executiva: toFloat(row.preco_executiva),
     preco_primeira: toFloat(row.preco_primeira)
