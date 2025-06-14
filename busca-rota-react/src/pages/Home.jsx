@@ -9,13 +9,14 @@ function Home() {
   const [destination, setDestination] = useState('');
   const [airportList, setAirportList] = useState([]);
   const [routeAirports, setRouteAirports] = useState(null);
+  const [flights, setFlights] = useState([]);
 
   const options = ['Menor distância', 'Menor custo', 'Menor Tempo'];
   const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [searchOption, setSearchOption] = useState(options[0]); // NOVO
 
   useEffect(() => {
     async function fetchAirports() {
-      // Simulação de resposta do API
       const fakeApiResponse = [
         { nome: 'Aeroporto Internacional de Guarulhos', iata: 'GRU', icao: 'SBGR', latitude: -23.4356, longitude: -46.4731 },
         { nome: 'Aeroporto Santos Dumont', iata: 'SDU', icao: 'SBRJ', latitude: -22.9105, longitude: -43.1631 },
@@ -32,12 +33,29 @@ function Home() {
       alert('Preencha os campos de partida e destino!');
       return;
     }
-    // Simula chamada à API para buscar rota
-    // Exemplo: retorna uma rota entre os aeroportos selecionados (pode ser mais de dois)
+    setSearchOption(selectedOption);
+    // Simula chamada à API para buscar rota e voos
     const fakeRoute = airportList.filter(a =>
       [departure, destination].includes(a.iata)
     );
-    setTimeout(() => setRouteAirports(fakeRoute), 500);
+    // Simula info dos voos entre aeroportos
+    const fakeFlights = [
+      {
+        horarioPartida: '08:00',
+        horarioChegada: '10:00',
+        companhiaAerea: 'LATAM',
+        modeloAviao: 'Airbus A320',
+        distancia: 400,
+        tempoVoo: '2h',
+        precoEconomico: 350,
+        precoExecutivo: 900,
+        precoPrimeiraClasse: 2000
+      }
+    ];
+    setTimeout(() => {
+      setRouteAirports(fakeRoute);
+      setFlights(fakeFlights);
+    }, 500);
   }
 
   return (
@@ -78,8 +96,13 @@ function Home() {
             appearance: 'none',
           }}> Pesquisar </button>
       </div>
-      <div style={{ maxWidth: 1000, margin: '0 auto' }}>
-        <MapWithAirports airports={routeAirports && routeAirports.length > 0 ? routeAirports : null} />
+      <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+        <MapWithAirports
+          airports={routeAirports && routeAirports.length > 0 ? routeAirports : null}
+          flights={flights}
+          selectedOption={searchOption}
+          style={{ height: 800, width: '100%', marginTop: 32, borderRadius: 16 }}
+        />
       </div>
     </div>
   );

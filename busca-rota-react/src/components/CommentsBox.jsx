@@ -26,12 +26,16 @@ function CommentsBox({ iata, airlineId }) {
         c => c.Companhia_id === airlineId && !c.comentario_pai_id
       );
     }
-    // Inclui todas as respostas para renderização recursiva
-    const allRelated = [
-      ...filtered,
-      ...fakeComments.filter(c => c.comentario_pai_id)
-    ];
-    setComments(allRelated);
+    if (filtered.length === 0) {
+      setComments([]); // Não há comentários principais
+    } else {
+      // Inclui todas as respostas para renderização recursiva
+      const allRelated = [
+        ...filtered,
+        ...fakeComments.filter(c => c.comentario_pai_id)
+      ];
+      setComments(allRelated);
+    }
   }, [iata, airlineId]);
 
   if (comments.length === 0) {
