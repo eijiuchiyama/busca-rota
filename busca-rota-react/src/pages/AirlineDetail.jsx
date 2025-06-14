@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import GoBackButton from '../components/GoBackButton';
+import CommentsBox from '../components/CommentsBox';
 
 function AirlineDetail() {
   const { id } = useParams();
@@ -28,6 +29,7 @@ function AirlineDetail() {
       <div style={{ maxWidth: 600, margin: '100px auto 0 auto', padding: 32, border: '1px solid #ccc', borderRadius: 16, background: '#f9f9f9' }}>
         <h1 style={{ fontSize: 48, marginBottom: 24 }}>{airline.nome}</h1>
       </div>
+      <CommentsBox airlineId={airline.id} />
     </div>
   );
 }

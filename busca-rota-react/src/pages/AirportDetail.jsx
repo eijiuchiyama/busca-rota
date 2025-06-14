@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import GoBackButton from '../components/GoBackButton';
+import CommentsBox from '../components/CommentsBox';
 
 function AirportDetail() {
   const { iata } = useParams();
@@ -53,7 +54,7 @@ function AirportDetail() {
   if (!airport) {
     return <div>Carregando...</div>;
   }
-  
+
   const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${airport.longitude-0.05}%2C${airport.latitude-0.05}%2C${airport.longitude+0.05}%2C${airport.latitude+0.05}&layer=mapnik&marker=${airport.latitude}%2C${airport.longitude}`;
 
   return (
@@ -94,6 +95,7 @@ function AirportDetail() {
           </div>
         </div>
       </div>
+      <CommentsBox iata={airport.iata} />
     </div>
   );
 }
