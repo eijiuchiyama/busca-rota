@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const BackToMenuButton = () => {
+const GoBackButton = () => {
   const navigate = useNavigate();
 
   return (
     <button
-      onClick={() => navigate('/')}
+      onClick={() => navigate(-1)}
       style={{
         position: 'absolute',
         top: 24,
@@ -24,8 +24,8 @@ const BackToMenuButton = () => {
         cursor: 'pointer',
         zIndex: 1100,
       }}
-      aria-label="Voltar para o menu"
-      title="Voltar para o menu"
+      aria-label="Voltar para a página anterior"
+      title="Voltar para a página anterior"
     >
       {/* Ícone de seta para a esquerda */}
       <span style={{ display: 'inline-block', transform: 'translateX(-2px)' }}>←</span>
@@ -33,4 +33,4 @@ const BackToMenuButton = () => {
   );
 };
 
-export default BackToMenuButton;
+export default GoBackButton;

@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import AllAirports from "./pages/AllAirports";
 import AllAirlines from "./pages/AllAirlines";
+import AirportDetail from './pages/AirportDetail';
+import AirlineDetail from './pages/AirlineDetail';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/all-airports" element={<AllAirports />} />
         <Route path="/all-airlines" element={<AllAirlines />} />
+        <Route path="/airport/:iata" element={<AirportDetail />} />
+        <Route path="/airline/:id" element={<AirlineDetail />} />
       </Routes>
     </BrowserRouter>
   )

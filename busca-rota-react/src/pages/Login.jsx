@@ -1,10 +1,10 @@
 import React from 'react';
-import BackToMenuButton from '../components/BackToMenuButton';
+import GoBackButton from '../components/GoBackButton';
 
 function Login() {
   return (
     <div className="login-container">
-      <BackToMenuButton />
+      <GoBackButton />
       <h2>Login / Sign In</h2>
       <form>
         <div>
