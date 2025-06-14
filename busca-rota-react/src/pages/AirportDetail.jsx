@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import GoBackButton from '../components/GoBackButton';
 import CommentsBox from '../components/CommentsBox';
+import MapWithAirports from '../components/MapWithAirports';
 
 function AirportDetail() {
   const { iata } = useParams();
@@ -55,8 +56,6 @@ function AirportDetail() {
     return <div>Carregando...</div>;
   }
 
-  const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${airport.longitude-0.05}%2C${airport.latitude-0.05}%2C${airport.longitude+0.05}%2C${airport.latitude+0.05}&layer=mapnik&marker=${airport.latitude}%2C${airport.longitude}`;
-
   return (
     <div>
       <GoBackButton />
@@ -65,24 +64,7 @@ function AirportDetail() {
         <div style={{ display: 'flex', gap: 32 }}>
           {/* Mapa à esquerda */}
           <div style={{ flex: 1, minWidth: 300 }}>
-            <iframe
-              title="Mapa do aeroporto"
-              width="100%"
-              height="300"
-              frameBorder="0"
-              src={mapUrl}
-              style={{ borderRadius: 12, border: '1px solid #ccc' }}
-              allowFullScreen
-            ></iframe>
-            <div style={{ fontSize: 12, textAlign: 'center', marginTop: 8 }}>
-              <a
-                href={`https://www.openstreetmap.org/?mlat=${airport.latitude}&mlon=${airport.longitude}#map=14/${airport.latitude}/${airport.longitude}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ver no OpenStreetMap
-              </a>
-            </div>
+            <MapWithAirports airports={[airport]} />
           </div>
           {/* Informações à direita */}
           <div style={{ flex: 1, minWidth: 300 }}>
