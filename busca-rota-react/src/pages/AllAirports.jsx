@@ -8,33 +8,26 @@ function AllAirports() {
   const [airports, setAirports] = useState([]);
   const navigate = useNavigate();
 
-  // Simula o retorno da API
+  // Busca real da API de aeroportos
   useEffect(() => {
-    const fakeData = [
-      { nome: 'Aeroporto Internacional de Guarulhos', iata: 'GRU', icao: 'SBGR' },
-      { nome: 'Aeroporto Santos Dumont', iata: 'SDU', icao: 'SBRJ' },
-      { nome: 'Aeroporto de Confins', iata: 'CNF', icao: 'SBCF' },
-      { nome: 'Aeroporto de Congonhas', iata: 'CGH', icao: 'SBSP' },
-    ];
-    setTimeout(() => setAirports(fakeData), 10);
-  }, []);
-
-  /*
-  useEffect(() => {
-    fetch('/api/airports')
+    fetch('http://localhost:8000/api/todos_aeroportos/')
       .then(res => res.json())
       .then(data => setAirports(data))
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        setAirports([]);
+      });
   }, []);
-  */
 
   // Filtro opcional pelo nome digitado
   const filteredAirports = airports.filter(a => {
     const search = airport.toLowerCase();
     return (
-      a.nome.toLowerCase().includes(search) ||
+      (a.nome && a.nome.toLowerCase().includes(search)) ||
       (a.iata && a.iata.toLowerCase().includes(search)) ||
-      (a.icao && a.icao.toLowerCase().includes(search))
+      (a.icao && a.icao.toLowerCase().includes(search)) ||
+      (a.cidade && a.cidade.toLowerCase().includes(search)) ||
+      (a.pais && a.pais.toLowerCase().includes(search))
     );
   });
 
@@ -43,10 +36,10 @@ function AllAirports() {
       <GoBackButton />
       <h1 style={{ textAlign: 'center', marginTop: '50px', fontSize: '96px', fontFamily: "Turret Road"}}>Aeroportos</h1>
       <StringInput
-          placeholder={"Filtro de nome dos Aeroportos"}
-          parameter={airport}
-          onOptionChange={(e) => setAirport(e.target.value)}
-          style={{ margin: '20px auto', display: 'block', width: '600px' }}
+        placeholder={"Filtro de nome dos Aeroportos"}
+        parameter={airport}
+        onOptionChange={(e) => setAirport(e.target.value)}
+        style={{ margin: '20px auto', display: 'block', width: '600px' }}
       />
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', justifyContent: 'center' }}>
         {filteredAirports.map(a => (
@@ -66,7 +59,9 @@ function AllAirports() {
             <h2 style={{ margin: 0 }}>{a.nome}</h2>
             <p style={{ margin: '8px 0 0 0' }}>
               <strong>IATA:</strong> {a.iata} <br />
-              <strong>ICAO:</strong> {a.icao}
+              <strong>ICAO:</strong> {a.icao} <br />
+              <strong>Cidade:</strong> {a.cidade} <br />
+              <strong>País:</strong> {a.pais}
             </p>
           </div>
         ))}
