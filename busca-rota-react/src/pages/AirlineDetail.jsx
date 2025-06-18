@@ -7,7 +7,7 @@ function AirlineDetail() {
   const { id } = useParams();
   const [airline, setAirline] = useState(null);
 
-  // Busca dos dados detalhados do aeroporto
+  // Busca dos dados detalhados da companhia aérea
     useEffect(() => {
       fetch(`http://localhost:8000/api/companhia/?id=${id}`)
         .then(res => res.json())

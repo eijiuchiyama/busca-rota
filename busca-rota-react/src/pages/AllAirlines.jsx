@@ -8,16 +8,16 @@ function AllAirlines() {
   const [airlines, setAirlines] = useState([]);
   const navigate = useNavigate();
 
-  // Simula retorno da API
-  useEffect(() => {
-    const fakeData = [
-      { id: '1', nome: 'LATAM Airlines' },
-      { id: '2', nome: 'Gol Linhas Aéreas' },
-      { id: '3', nome: 'Azul Linhas Aéreas' },
-      { id: '4', nome: 'Avianca Brasil' },
-    ];
-    setTimeout(() => setAirlines(fakeData), 10);
-  }, []);
+  // Busca da API da companhia aérea
+    useEffect(() => {
+      fetch('http://localhost:8000/api/todas_companhias/')
+        .then(res => res.json())
+        .then(data => setAirlines(data))
+        .catch(err => {
+          console.error(err);
+          setAirlines([]);
+        });
+    }, []);
 
   const filteredAirlines = airlines.filter(a =>
     a.nome.toLowerCase().includes(airline.toLowerCase())
