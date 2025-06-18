@@ -8,7 +8,7 @@ function AirportDetail() {
   const { iata } = useParams();
   const [airport, setAirport] = useState(null);
 
-  // Busca real dos dados detalhados do aeroporto
+  // Busca dos dados detalhados do aeroporto
   useEffect(() => {
     fetch(`http://localhost:8000/api/aeroporto/?iata=${iata}`)
       .then(res => res.json())

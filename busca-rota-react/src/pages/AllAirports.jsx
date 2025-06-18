@@ -8,7 +8,7 @@ function AllAirports() {
   const [airports, setAirports] = useState([]);
   const navigate = useNavigate();
 
-  // Busca real da API de aeroportos
+  // Busca da API de aeroportos
   useEffect(() => {
     fetch('http://localhost:8000/api/todos_aeroportos/')
       .then(res => res.json())

@@ -7,17 +7,19 @@ function AirlineDetail() {
   const { id } = useParams();
   const [airline, setAirline] = useState(null);
 
-  // Simula busca dos dados detalhados
-  useEffect(() => {
-    const fakeData = [
-      { id: '1', nome: 'LATAM Airlines' },
-      { id: '2', nome: 'Gol Linhas Aéreas' },
-      { id: '3', nome: 'Azul Linhas Aéreas' },
-      { id: '4', nome: 'Avianca Brasil' },
-    ];
-    const found = fakeData.find(a => a.id === id);
-    setAirline(found);
-  }, [id]);
+  // Busca dos dados detalhados do aeroporto
+    useEffect(() => {
+      fetch(`http://localhost:8000/api/companhia/?id=${id}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.companhia && data.companhia.length > 0) {
+            setAirline(data.companhia[0]);
+          } else {
+            setAirline(null);
+          }
+        })
+        .catch(() => setAirline(null));
+    }, [id]);
 
   if (!airline) {
     return <div>Carregando...</div>;
