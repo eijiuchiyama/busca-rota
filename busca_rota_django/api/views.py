@@ -46,7 +46,7 @@ def pega_aeroporto(request):
 @api_view(['GET'])
 def listar_todas_companhias(request):
 	companhias = CompanhiaAerea.objects.raw('SELECT * FROM companhiaaerea')
-	serializer = AeroportoSerializer(aeros, many=True)
+	serializer = CompanhiaAereaSerializer(companhias, many=True)
 	return Response(serializer.data)
 
 @swagger_auto_schema(
