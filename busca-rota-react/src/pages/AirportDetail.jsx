@@ -8,48 +8,18 @@ function AirportDetail() {
   const { iata } = useParams();
   const [airport, setAirport] = useState(null);
 
-  // Simula busca dos dados detalhados
+  // Busca real dos dados detalhados do aeroporto
   useEffect(() => {
-    const fakeData = [
-      {
-        nome: 'Aeroporto Internacional de Guarulhos',
-        iata: 'GRU',
-        icao: 'SBGR',
-        cidade: 'Guarulhos',
-        pais: 'Brasil',
-        latitude: -23.4356,
-        longitude: -46.4731
-      },
-      {
-        nome: 'Aeroporto Santos Dumont',
-        iata: 'SDU',
-        icao: 'SBRJ',
-        cidade: 'Rio de Janeiro',
-        pais: 'Brasil',
-        latitude: -22.9105,
-        longitude: -43.1631
-      },
-      {
-        nome: 'Aeroporto de Confins',
-        iata: 'CNF',
-        icao: 'SBCF',
-        cidade: 'Confins',
-        pais: 'Brasil',
-        latitude: -19.6244,
-        longitude: -43.9711
-      },
-      {
-        nome: 'Aeroporto de Congonhas',
-        iata: 'CGH',
-        icao: 'SBSP',
-        cidade: 'São Paulo',
-        pais: 'Brasil',
-        latitude: -23.6261,
-        longitude: -46.6566
-      },
-    ];
-    const found = fakeData.find(a => a.iata === iata);
-    setAirport(found);
+    fetch(`http://localhost:8000/api/aeroporto/?iata=${iata}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.aeroportos && data.aeroportos.length > 0) {
+          setAirport(data.aeroportos[0]);
+        } else {
+          setAirport(null);
+        }
+      })
+      .catch(() => setAirport(null));
   }, [iata]);
 
   if (!airport) {
@@ -67,7 +37,7 @@ function AirportDetail() {
             <MapWithAirports airports={[airport]} />
           </div>
           {/* Informações à direita */}
-          <div style={{ flex: 1, minWidth: 300 }}>
+          <div style={{ flex: 1, minWidth: 300, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <p><strong>Código IATA:</strong> {airport.iata}</p>
             <p><strong>Código ICAO:</strong> {airport.icao}</p>
             <p><strong>Cidade:</strong> {airport.cidade}</p>
