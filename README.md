@@ -38,19 +38,19 @@ O projeto foi containerizado com o uso do Docker. Para executar o projeto, é pr
 Docker Compose e após isso, no diretório raiz do projeto, executar:
 
 ```
-sudo docker-compose up --build
+sudo docker compose up --build
 ```
 
 Para parar o container, use:
 
 ```
-sudo docker-compose down
+sudo docker compose down
 ```
 
 E para remover os dados dos bancos de dados, use:
 
 ```
-sudo docker-compose down -v
+sudo docker compose down -v
 ```
 
 Os dados do banco de dados relacional são adicionados apenas na primeira primeira vez que o volume é criado. Para testar novamente, é 
@@ -107,7 +107,7 @@ Podem ser executados com os seguintes comandos:
 ### Postgres
 
 ```
-sudo docker-compose exec -T postgres psql -U postgres -d busca-rota-postgres < testes_postgres.sql
+sudo docker compose exec -T postgres psql -U postgres -d busca-rota-postgres < testes_postgres.sql
 ```
 
 ### Neo4J
