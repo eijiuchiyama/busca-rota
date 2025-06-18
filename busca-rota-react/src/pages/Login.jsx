@@ -8,7 +8,7 @@ function Login() {
     username: '',
     password: '',
     confirmPassword: '',
-    name: ''
+    nickname: ''
   });
 
   function handleLoginChange(e) {
@@ -21,18 +21,58 @@ function Login() {
 
   function handleLoginSubmit(e) {
     e.preventDefault();
-    // Adicione aqui a lógica de login
-    alert('Login realizado!');
+    // Chamada para o endpoint de autenticação
+    fetch(
+      `http://localhost:8000/api/verifica_usuario/?username=${loginData.username}&senha=${loginData.password}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.autenticado) {
+          alert('Login realizado com sucesso!');
+          // Aqui você pode redirecionar ou salvar o usuário logado
+        } else {
+          alert(data.erro || 'Usuário ou senha inválidos!');
+        }
+      })
+      .catch(() => {
+        alert('Erro de conexão com o servidor');
+      });
   }
 
-  function handleSignInSubmit(e) {
+  async function handleSignInSubmit(e) {
     e.preventDefault();
     if (signInData.password !== signInData.confirmPassword) {
       alert('As senhas não coincidem!');
       return;
     }
-    // Adicione aqui a lógica de cadastro
-    alert('Cadastro realizado!');
+    try {
+      const response = await fetch('http://localhost:8000/api/insere_usuario/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: signInData.username,
+          senha: signInData.password,
+          nickname: signInData.nickname
+        })
+      });
+      const data = await response.json();
+      if (response.ok) {
+        alert('Cadastro realizado com sucesso!');
+        setActiveTab('login');
+        setSignInData({
+          username: '',
+          password: '',
+          confirmPassword: '',
+          nickname: ''
+        });
+      } else {
+        alert(data.erro || data.Erro || 'Erro ao cadastrar usuário');
+      }
+    } catch (err) {
+      alert('Erro de conexão com o servidor');
+    }
   }
 
   return (
@@ -138,12 +178,12 @@ function Login() {
               />
             </div>
             <div style={{ marginBottom: 16 }}>
-              <label htmlFor="signin-name">Nickname:</label>
+              <label htmlFor="signin-nickname">Nickname:</label>
               <input
                 type="text"
-                id="signin-name"
-                name="name"
-                value={signInData.name}
+                id="signin-nickname"
+                name="nickname"
+                value={signInData.nickname}
                 onChange={handleSignInChange}
                 required
                 style={{ width: '100%', padding: 8, marginTop: 4 }}
