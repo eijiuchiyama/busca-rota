@@ -15,9 +15,7 @@ driver = GraphDatabase.driver("bolt://neo4j:7687", auth=("neo4j", "neo4jneo4j"))
 
 client = MongoClient("mongodb://mongo:27017/")
 db = client["mongo"]
-usuarios_mongo = db["usuario"]
-rotas_mongo = db["rota"]
-trajetos_mongo = db["trajeto"]
+rotas_mongo = db["rotas"]
 
 
 @api_view(['GET'])
@@ -192,7 +190,7 @@ def insere_usuario(request):
 				INSERT INTO usuario (username, senha, nickname, data_cadastro, is_role_admin)
 				VALUES (%s, %s, %s, %s, %s)
 				""", [usuario, senha, nickname, data, is_admin])
-			usuarios_mongo.insert_one({"username": usuario}) #Adiciona no mongo
+			rotas_mongo.insert_one({"username": usuario, "rotas": []}) #Adiciona no mongo
 			return Response({"mensagem": "Usuário adicionado", "username": usuario})
 		except IntegrityError:
 			return Response({"erro": "Dados inválidos ou conflito no banco"}, status=status.HTTP_400_BAD_REQUEST)
@@ -218,7 +216,7 @@ def historico_usuario(request):
 		except Exception as e:
 			return Response({"erro": str(e)}, status=500)
 	return Response({"Erro": "Informe 'username'"}, status=400)
-
+	
 @swagger_auto_schema(
 	methods=['post'],
 	request_body=openapi.Schema(
@@ -229,28 +227,82 @@ def historico_usuario(request):
 			'chegada': openapi.Schema(type=openapi.TYPE_STRING),
 			'busca': openapi.Schema(type=openapi.TYPE_STRING),
 			'total': openapi.Schema(type=openapi.TYPE_INTEGER),
+			'trajetos': openapi.Schema(type=openapi.TYPE_ARRAY,
+				items=openapi.Items(
+					type=openapi.TYPE_OBJECT,
+					properties={
+						'partida': openapi.Schema(type=openapi.TYPE_STRING),
+						'chegada': openapi.Schema(type=openapi.TYPE_STRING),
+						"horario_partida": openapi.Schema(type=openapi.FORMAT_DATETIME),
+						"horario_chegada": openapi.Schema(type=openapi.FORMAT_DATETIME),
+						"companhia": openapi.Schema(type=openapi.TYPE_INTEGER),
+						"tipo_classe": openapi.Schema(type=openapi.TYPE_STRING),
+						"total": openapi.Schema(type=openapi.TYPE_INTEGER),
+					}
+            	)
+            ),
 		},
 		required=['username', 'partida', 'chegada', 'busca', 'total']
 	)
 )
 @api_view(['POST'])
-def insere_trajeto(request):
+def insere_rota(request):
 	usuario = request.data.get("username")
 	aero_partida = request.data.get("partida")
 	aero_chegada = request.data.get("chegada")
 	tipo_busca = request.data.get("busca")
 	total = request.data.get("total")
-	if usuario and aero_partida and aero_chegada and tipo_busca and total:
-		try:
-			resultado = rotas_mongo.insert_one({"username": usuario, "aeroporto_partida": aero_partida, "aeroporto_chegada": aero_chegada, 
-			"tipo_busca": tipo_busca, "total": total})
-			return Response({"mensagem": "Caminho adicionado", "id_trajeto": str(resultado.inserted_id)})
-		except IntegrityError:
-			return Response({"erro": "Dados inválidos ou conflito no banco"}, status=status.HTTP_400_BAD_REQUEST)
-		except Exception as e:
-			return Response({"erro": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-	return Response({"Erro": "Informe 'username', 'partida', 'chegada', 'tipo_busca', 'total'"}, status=400)
+	trajetos = request.data.get("trajetos")
+	if usuario and aero_partida and aero_chegada and tipo_busca and total and trajetos:
+		existe_usuario = rotas_mongo.find_one({ "_id": usuario});
+		if existe_usuario:
+			try:
+				nova_rota = {
+					"aeroporto_partida": aero_partida,
+					"aeroporto_chegada": aero_chegada,
+					"tipo_busca": tipo_busca,
+					"total": total,
+					"trajetos": trajetos
+				}
+				rotas_mongo.update_one(
+					{"_id": usuario},
+					{"$push": {"rotas": nova_rota}}
+				)
+				return Response({"mensagem": "Caminho adicionado"})
+			except Exception as e:
+				return Response({"erro": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+		else:
+			return ({"Erro": "Usuário não foi criado ainda"}, status=400)
+	return Response({"Erro": "Informe 'username', 'partida', 'chegada', 'tipo_busca', 'total' e o vetor 'trajetos'"}, status=400)
 
+@swagger_auto_schema(
+	methods=['get'],
+	manual_parameters = [
+		openapi.Parameter('username', openapi.IN_QUERY, description="Nome de usuário", type=openapi.TYPE_STRING, required=True),
+		openapi.Parameter('quantidade', openapi.IN_QUERY, description="Quantas rotas retornadas (últimas)", type=openapi.TYPE_INTEGER, required=True),
+	],
+)	
+@api_view(['GET'])
+def retorna_rotas(request):
+	usuario = request.GET.get("username")
+	quantidade = request.GET.get("quantidade")
+	if usuario and quantidade:
+		try:
+			quantidade = int(quantidade)
+			result = colecao.aggregate([
+				{ "$match": { "usuario_id": usuario } },
+				{ "$project": {
+					"rotas": { "$slice": ["$rotas", -quantidade] }
+				}}
+			])
+			result_list = list(result)
+			rotas = result_list[0].get("rotas", [])
+			return Response({"rotas": rotas})
+		except Exception as e:
+			return Response({"erro": str(e)}, status=500)
+	return Response({"Erro": "Informe 'username' e 'quantidade'"}, status=400)
+		
+	
 @api_view(['GET'])
 def listar_usuarios_postgres(request):
 	usuarios = Usuario.objects.raw('SELECT * FROM usuario')
@@ -330,4 +382,100 @@ def insere_comentario(request):
 	if not conteudo or not usuario:
 		return Response({"Erro": "Informe 'conteudo', 'username' e 'iata' ou 'id'"}, status=400)
 	return Response({"Erro": "Informe apenas um: 'username' ou 'iata' ou 'id'"}, status=400)
+
+@api_view(['GET'])
+def pesquisa():
+	aero_partida = request.GET.get("partida")
+	aero_chegada = request.GET.get("chegada")
+	tipo_busca = request.GET.get("tipo_busca")
+	if aero_partida and aero_chegada and tipo_busca:
+		if tipo_busca == 'distancia':
+			query = '''
+			MATCH path = (a1:Aeroporto {iata: $partida})-[:ORIGEM|DESTINO*1..5]->(a2:Aeroporto {iata: $chegada})
+			WHERE ALL(n IN nodes(path) WHERE single(m IN nodes(path) WHERE m = n))
+			WITH path,
+				reduce(dist = 0, r IN relationships(path) | dist + r.distancia) AS totalDist
+			RETURN 
+				[n IN nodes(path) WHERE n.iata IS NOT NULL | n.iata] AS rota,
+				totalDist
+			ORDER BY totalDist ASC
+			LIMIT 1
+			'''
+			try:
+				with driver.session() as session:
+					result = session.run(query, partida=aero_partida, chegada=aero_chegada)
+					rotas = [{"rota": record["rota"], "distancia": record["totalDist"]} for record in result]
+					return Response({"rotas": rotas})
+			except Exception as e:
+				return Response({"erro": str(e)}, status=500)
+		elif tipo_busca == 'tempo':
+			query = '''
+			MATCH path = (a1:Aeroporto {iata: $partida})-[:ORIGEM|DESTINO*1..5]->(a2:Aeroporto {iata: $chegada})
+			WHERE ALL(n IN nodes(path) WHERE single(m IN nodes(path) WHERE m = n))
+
+			WITH path, nodes(path) AS stops
+			CALL {
+				WITH stops
+				WITH stops, range(0, size(stops)-2) AS indices
+				UNWIND indices AS i
+				MATCH (stops[i])<-[:ORIGEM]-(t:Trajeto)-[:DESTINO]->(stops[i+1])
+				MATCH (v:Voo)-[:PERTENCE_A]->(t)
+				RETURN collect(v) AS voosPossiveis
+			}
+			WITH path, voosPossiveis
+			WHERE size(voosPossiveis) = length(relationships(path))
+
+			UNWIND voosPossiveis AS voos
+			WITH path, voos
+			ORDER BY voos.horario_partida ASC
+
+			WITH path,
+				voos,
+				head(voos).horario_partida AS inicio,
+				last(voos).horario_chegada AS fim,
+				duration.inSeconds(head(voos).horario_partida, last(voos).horario_chegada).seconds AS tempo_total
+			ORDER BY tempo_total ASC
+			LIMIT 1
+
+			RETURN [n IN nodes(path) WHERE n.iata IS NOT NULL | n.iata] AS rota,
+				[v IN voos | {
+				partida: v.horario_partida,
+				chegada: v.horario_chegada,
+				companhia: v.companhia
+				}] AS voos,
+			tempo_total
+			'''
+			try:
+				with driver.session() as session:
+					result = session.run(query, partida=aero_partida, chegada=aero_chegada)
+					rotas = [{"rota": record["rota"], "tempoTotal": record["tempoTotal"]} for record in result]
+					return Response({"rotas": rotas})
+			except Exception as e:
+				return Response({"erro": str(e)}, status=500)
+		elif tipo_busca == 'preco':
+			query = '''
+			MATCH path = (a1:Aeroporto {iata: $partida})-[:ORIGEM|DESTINO*1..5]->(a2:Aeroporto {iata: $chegada})
+			WHERE ALL(n IN nodes(path) WHERE single(m IN nodes(path) WHERE m = n))
+				AND ALL(n IN nodes(path) WHERE n:Aeroporto OR n:Trajeto)
+			WITH path,
+				[n IN nodes(path) WHERE n:Trajeto] AS trechos
+			UNWIND trechos AS trajeto
+			MATCH (v:Voo)-[:PERTENCE_A]->(trajeto)
+			WITH path, trajeto, min(v.preco_economica) AS precoMinimo
+			WITH path, sum(precoMinimo) AS precoTotal
+			RETURN 
+				[n IN nodes(path) WHERE n:Aeroporto | n.iata] AS rota,
+				precoTotal
+			ORDER BY precoTotal ASC
+			LIMIT 1
+			'''
+			try:
+				with driver.session() as session:
+					result = session.run(query, partida=aero_partida, chegada=aero_chegada)
+					rotas = [{"rota": record["rota"], "precoTotal": record["precoTotal"]} for record in result]
+					return Response({"rotas": rotas})
+			except Exception as e:
+				return Response({"erro": str(e)}, status=500)
+	return Response({"Erro": "Informe 'partida', 'chegada' e 'tipo_busca'"}, status=400)
+	
 
