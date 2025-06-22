@@ -8,13 +8,18 @@ http://localhost:8000/api/todas_companhias/
 
 http://localhost:8000/api/companhia/?id=40
 
-http://localhost:8000/api/
-
 http://localhost:8000/api/insere_usuario/
 {
   "username": "eiji",
   "senha": "123",
   "nickname": "eiji"
+}
+
+http://localhost:8000/api/insere_usuario/
+{
+  "username": "lucas",
+  "senha": "321",
+  "nickname": "lucas"
 }
 
 http://localhost:8000/api/todos_usuarios_postgres/
@@ -27,40 +32,53 @@ http://localhost:8000/api/insere_comentario/
 {
 "conteudo": "Bom aeroporto",
 "username": "eiji",
-"iata": "GRU",
+"iata": "GRU"
 }
 
-http://localhost:8000/api/comentarios_rel/?iata=GRU
+http://localhost:8000/api/insere_comentario/
+{
+"conteudo": "Também gostei",
+"username": "eiji",
+"iata": "SDU"
+}
+
+http://localhost:8000/api/comentarios_relacionados/?iata=GRU
 
 http://localhost:8000/api/todos_comentarios/
 
 http://localhost:8000/api/insere_rota/
 {
 "username": "eiji",
-"partida": "GRU",
-"chegada": "JFK",
-"tipo_busca": "preco",
-"total": 4000,
+"partida": "SDU",
+"chegada": "BEL",
+"busca": "preco",
+"total": 1550.00,
 "trajetos": [
 	{
-	"partida":"GRU",
-	"chegada":"SDU",
+	"partida":"SDU",
+	"chegada":"GRU",
 	"horario_partida":"2025-06-21T15:30:00Z",
 	"horario_chegada":"2025-06-21T16:30:00Z",
 	"companhia": 5,
 	"tipo_classe":"economica",
-	"total": 300
+	"total": 300.00
 	},
 	{
-	"partida":"SDU",
-	"chegada":"JFK",
+	"partida":"GRU",
+	"chegada":"BEL",
 	"horario_partida":"2025-06-21T18:30:00Z",
 	"horario_chegada":"2025-06-22T04:30:00Z",
 	"companhia": 2,
 	"tipo_classe":"economica",
-	"total": 3700
+	"total": 1250.00
 	}
 ]
 }
 
 http://localhost:8000/api/retorna_rotas/?username=eiji&quantidade=5
+
+http://localhost:8000/api/pesquisa/?partida=GRU&chegada=SDU&tipo_busca=distancia
+
+http://localhost:8000/api/pesquisa/?partida=GRU&chegada=SDU&tipo_busca=tempo
+
+http://localhost:8000/api/pesquisa/?partida=GRU&chegada=SDU&tipo_busca=preco

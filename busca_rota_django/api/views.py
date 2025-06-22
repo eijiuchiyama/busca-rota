@@ -159,7 +159,7 @@ def verifica_usuario(request):
 			if(len(usuario_dict) == 1):
 				return Response({"usuario": usuario_dict})
 			else:
-				return Response({"Usuário não cadastrado"}, status=204)
+				return Response({"Usuário não cadastrado ou senha incorreta"}, status=204)
 		except Exception as e:
 			return Response({"erro": str(e)}, status=500)
 	return Response({"Erro": "Informe 'username' e 'senha'"}, status=400)
@@ -190,7 +190,7 @@ def insere_usuario(request):
 				INSERT INTO usuario (username, senha, nickname, data_cadastro, is_role_admin)
 				VALUES (%s, %s, %s, %s, %s)
 				""", [usuario, senha, nickname, data, is_admin])
-			rotas_mongo.insert_one({"username": usuario, "rotas": []}) #Adiciona no mongo
+			rotas_mongo.insert_one({"_id": usuario, "rotas": []}) #Adiciona no mongo
 			return Response({"mensagem": "Usuário adicionado", "username": usuario})
 		except IntegrityError:
 			return Response({"erro": "Dados inválidos ou conflito no banco"}, status=status.HTTP_400_BAD_REQUEST)
@@ -270,8 +270,8 @@ def retorna_rotas(request):
 	if usuario and quantidade:
 		try:
 			quantidade = int(quantidade)
-			result = colecao.aggregate([
-				{ "$match": { "usuario_id": usuario } },
+			result = rotas_mongo.aggregate([
+				{ "$match": { "_id": usuario } },
 				{ "$project": {
 					"rotas": { "$slice": ["$rotas", -quantidade] }
 				}}
@@ -366,20 +366,19 @@ def insere_comentario(request):
 	return Response({"Erro": "Informe apenas um: 'username' ou 'iata' ou 'id'"}, status=400)
 
 @api_view(['GET'])
-def pesquisa():
+def pesquisa(request):
 	aero_partida = request.GET.get("partida")
 	aero_chegada = request.GET.get("chegada")
 	tipo_busca = request.GET.get("tipo_busca")
 	if aero_partida and aero_chegada and tipo_busca:
 		if tipo_busca == 'distancia':
 			query = '''
-			MATCH path = (a1:Aeroporto {iata: $partida})-[:ORIGEM|DESTINO*1..5]->(a2:Aeroporto {iata: $chegada})
+			MATCH path = (a1:Aeroporto {iata: $partida})-[:ORIGEM|DESTINO*1..9]-(a2:Aeroporto {iata: $chegada})
 			WHERE ALL(n IN nodes(path) WHERE single(m IN nodes(path) WHERE m = n))
-			WITH path,
-				reduce(dist = 0, r IN relationships(path) | dist + r.distancia) AS totalDist
-			RETURN 
-				[n IN nodes(path) WHERE n.iata IS NOT NULL | n.iata] AS rota,
-				totalDist
+			WITH [n IN nodes(path) WHERE n:Trajeto] AS trechos,
+				[n IN nodes(path) WHERE n:Aeroporto AND exists(n.iata) | n.iata] AS rota
+			WITH rota, reduce(soma = 0, trecho IN trechos | soma + trecho.distancia) AS totalDist
+			RETURN rota, totalDist
 			ORDER BY totalDist ASC
 			LIMIT 1
 			'''

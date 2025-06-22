@@ -15,22 +15,21 @@ RETURN count(*) AS aeroportos_importados;
 // Inserir Trajetos com validações
 LOAD CSV WITH HEADERS FROM 'file:///paths.dat' AS row
 WITH row 
-WHERE row.origem IS NOT NULL AND row.destino IS NOT NULL AND row.distancia IS NOT NULL
-  AND trim(row.origem) <> trim(row.destino)  // Aeroportos distintos
+WHERE row.aeroporto1 IS NOT NULL AND row.aeroporto2 IS NOT NULL AND row.distancia IS NOT NULL
+  AND trim(row.aeroporto1) <> trim(row.aeroporto2)  // Aeroportos distintos
   AND toFloat(row.distancia) > 0             // Distância positiva
-WITH row, trim(row.origem) AS origem_clean, trim(row.destino) AS destino_clean
+WITH row, trim(row.aeroporto1) AS aero1, trim(row.aeroporto2) AS aero2, toFloat(row.distancia) AS distancia
 
-MERGE (origem1:Aeroporto {iata: origem_clean})
-MERGE (destino1:Aeroporto {iata: destino_clean})
+MERGE (origem1:Aeroporto {iata: aero1})
+MERGE (destino1:Aeroporto {iata: aero2})
 MERGE (origem1)-[:ORIGEM]->(t1:Trajeto {
-    chave: origem_clean + '->' + destino_clean,
-    distancia: toFloat(row.distancia)
-})-[:DESTINO]->(destino1);
-
-MERGE (origem2:Aeroporto {iata: destino_clean})
-MERGE (destino2:Aeroporto {iata: origem_clean})
+    chave: aero1 + '->' + aero2,
+    distancia: distancia
+})-[:DESTINO]->(destino1)
+MERGE (origem2:Aeroporto {iata: aero2})
+MERGE (destino2:Aeroporto {iata: aero1})
 MERGE (origem2)-[:ORIGEM]->(t2:Trajeto {
-    chave: destino_clean + '->' + origem_clean,
+    chave: aero2 + '->' + aero1,
     distancia: distancia
 })-[:DESTINO]->(destino2);
 
@@ -41,8 +40,8 @@ LOAD CSV WITH HEADERS FROM 'file:///flights.dat' AS row
 WITH row 
 WHERE 
   row.origem IS NOT NULL AND row.destino IS NOT NULL AND
-  row.horario_partida IS NOT NULL AND row.horario_chegada IS NOT NULL AND
-  datetime(row.horario_chegada) > datetime(row.horario_partida) AND  // Chegada > Partida
+  row.partida IS NOT NULL AND row.chegada IS NOT NULL AND
+  datetime(row.chegada) > datetime(row.partida) AND  // Chegada > Partida
   toFloat(row.preco_economica) >= 0 AND  // Preços não-negativos
   toFloat(row.preco_executiva) >= 0 AND
   toFloat(row.preco_primeira) >= 0
@@ -50,8 +49,8 @@ WHERE
 WITH row, trim(row.origem) AS origem_clean, trim(row.destino) AS destino_clean
 MATCH (t:Trajeto {chave: origem_clean + '->' + destino_clean})
 CREATE (v:Voo {
-    horario_partida: datetime(row.horario_partida),
-    horario_chegada: datetime(row.horario_chegada),
+    horario_partida: datetime(row.partida),
+    horario_chegada: datetime(row.chegada),
     companhia: row.companhia,
     preco_economica: toFloat(row.preco_economica),
     preco_executiva: toFloat(row.preco_executiva),

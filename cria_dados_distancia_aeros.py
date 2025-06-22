@@ -26,7 +26,7 @@ with open('airports_filtered.dat', newline='') as csvfile:
 # Salva o resultado em CSV
 with open('paths.dat', mode='w', newline='') as outfile:
     writer = csv.writer(outfile)
-    writer.writerow(['origem', 'destino', 'distancia'])
+    writer.writerow(['aeroporto1', 'aeroporto2', 'distancia'])
 
     for (iata1, _, lat1, lon1), (iata2, _, lat2, lon2) in combinations(brasil, 2):
         dist = haversine(lat1, lon1, lat2, lon2)
