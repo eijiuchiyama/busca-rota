@@ -22,6 +22,8 @@ O Busca-Rota é um site web que permite a seus usuários pesquisar rotas aéreas
 
 - Swagger (para exibir as URLs da API)
 
+- Figma (para desenhar a interface do site). Pode ser acessada em https://www.figma.com/design/5V03kHDpmly6HUDlb7EesI/MAC0439?node-id=0-1&t=RQk9BKGAHISiwMu8-1
+
 ## Linguagens utilizadas
 
 - JavaScript (para React)
@@ -35,7 +37,7 @@ O Busca-Rota é um site web que permite a seus usuários pesquisar rotas aéreas
 ## Como executar
 
 O projeto foi containerizado com o uso do Docker. Para executar o projeto, é preciso instalar o Docker juntamente com o 
-Docker Compose e após isso, no diretório raiz do projeto, executar:
+Docker Compose (v2) e após isso, no diretório raiz do projeto, executar:
 
 ```
 sudo docker compose up --build
