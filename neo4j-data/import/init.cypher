@@ -19,12 +19,21 @@ WHERE row.origem IS NOT NULL AND row.destino IS NOT NULL AND row.distancia IS NO
   AND trim(row.origem) <> trim(row.destino)  // Aeroportos distintos
   AND toFloat(row.distancia) > 0             // Distância positiva
 WITH row, trim(row.origem) AS origem_clean, trim(row.destino) AS destino_clean
-MERGE (origem:Aeroporto {iata: origem_clean})
-MERGE (destino:Aeroporto {iata: destino_clean})
-MERGE (origem)-[:ORIGEM]->(t:Trajeto {
+
+MERGE (origem1:Aeroporto {iata: origem_clean})
+MERGE (destino1:Aeroporto {iata: destino_clean})
+MERGE (origem1)-[:ORIGEM]->(t1:Trajeto {
     chave: origem_clean + '->' + destino_clean,
     distancia: toFloat(row.distancia)
-})-[:DESTINO]->(destino);
+})-[:DESTINO]->(destino1);
+
+MERGE (origem2:Aeroporto {iata: destino_clean})
+MERGE (destino2:Aeroporto {iata: origem_clean})
+MERGE (origem2)-[:ORIGEM]->(t2:Trajeto {
+    chave: destino_clean + '->' + origem_clean,
+    distancia: distancia
+})-[:DESTINO]->(destino2);
+
 RETURN count(*) AS trajetos_importados;
 
 // Inserir Voos com validações

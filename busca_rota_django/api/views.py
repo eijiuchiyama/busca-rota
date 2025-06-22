@@ -197,25 +197,6 @@ def insere_usuario(request):
 		except Exception as e:
 			return Response({"erro": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 	return Response({"Erro": "Informe 'username', 'senha' e 'nickname'"}, status=400)
-
-@swagger_auto_schema(
-	methods=['get'],
-	manual_parameters = [
-		openapi.Parameter('username', openapi.IN_QUERY, description="Nome de usuário", type=openapi.TYPE_STRING, required=True),
-	],
-)
-@api_view(['GET'])
-def historico_usuario(request):
-	usuario = request.GET.get("username")
-	if usuario:
-		try:
-			filtro = {}
-			filtro["username"] = usuario
-			dados = list(rotas_mongo.find(filtro, {"_id": 0}))
-			return Response(dados)
-		except Exception as e:
-			return Response({"erro": str(e)}, status=500)
-	return Response({"Erro": "Informe 'username'"}, status=400)
 	
 @swagger_auto_schema(
 	methods=['post'],
@@ -272,7 +253,7 @@ def insere_rota(request):
 			except Exception as e:
 				return Response({"erro": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 		else:
-			return ({"Erro": "Usuário não foi criado ainda"}, status=400)
+			return Response({"Erro": "Usuário não foi criado ainda"}, status=400)
 	return Response({"Erro": "Informe 'username', 'partida', 'chegada', 'tipo_busca', 'total' e o vetor 'trajetos'"}, status=400)
 
 @swagger_auto_schema(
@@ -315,8 +296,9 @@ def listar_usuarios_postgres(request):
 @api_view(['GET'])
 def listar_usuarios_mongo(request):
 	try:
-		usuarios = list(usuarios_mongo.find({}, {"_id": 0}))
-		return Response({"usuarios": usuarios})
+		usuarios = list(rotas_mongo.find({}, {"_id": 1}))
+		nomes = [u["_id"] for u in usuarios]
+		return Response({"usuarios": nomes})
 	except Exception as e:
 			return Response({"erro": str(e)}, status=500)
 	
