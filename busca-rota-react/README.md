@@ -25,3 +25,6 @@ If you are developing a production application, we recommend using TypeScript wi
     ```bash
     npm start
    
+3. If it's not working, try removing all dependencies and reinstalling it:
+   ```bash
+   rm -rf node_modules package-lock.json
