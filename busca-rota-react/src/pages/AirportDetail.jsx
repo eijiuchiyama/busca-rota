@@ -13,8 +13,8 @@ function AirportDetail() {
     fetch(`http://localhost:8000/api/aeroporto/?iata=${iata}`)
       .then(res => res.json())
       .then(data => {
-        if (data.aeroportos && data.aeroportos.length > 0) {
-          setAirport(data.aeroportos[0]);
+        if (data.aeroporto && data.aeroporto.length > 0) {
+          setAirport(data.aeroporto[0]);
         } else {
           setAirport(null);
         }

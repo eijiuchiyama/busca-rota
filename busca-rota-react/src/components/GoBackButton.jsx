@@ -4,9 +4,17 @@ import { useNavigate } from 'react-router-dom';
 const GoBackButton = () => {
   const navigate = useNavigate();
 
+  function handleGoBack() {
+    if (window.history.length > 2) {
+      navigate(-1);
+    } else {
+      navigate('/', { replace: true }); // Vai para o menu se não houver histórico suficiente
+    }
+  }
+
   return (
     <button
-      onClick={() => navigate(-1)}
+      onClick={handleGoBack}
       style={{
         position: 'absolute',
         top: 24,
@@ -27,7 +35,6 @@ const GoBackButton = () => {
       aria-label="Voltar para a página anterior"
       title="Voltar para a página anterior"
     >
-      {/* Ícone de seta para a esquerda */}
       <span style={{ display: 'inline-block', transform: 'translateX(-2px)' }}>←</span>
     </button>
   );

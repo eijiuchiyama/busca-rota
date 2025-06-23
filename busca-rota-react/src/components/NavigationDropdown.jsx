@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const NavigationDropdown = () => {
   const [open, setOpen] = useState(false);
+  const username = localStorage.getItem('username');
 
   return (
     <div
@@ -25,7 +26,15 @@ const NavigationDropdown = () => {
             width: '200px'
           }}
         >
-          <Link to="/login" style={{ display: 'block', padding: '8px', textDecoration: 'none', color: '#333' }}>Log In/Sign In</Link>
+          {!username ? (
+            <Link to="/login" style={{ display: 'block', padding: '8px', textDecoration: 'none', color: '#333' }}>
+              Log In/Sign In
+            </Link>
+          ) : (
+            <Link to="/user-profile" style={{ display: 'block', padding: '8px', textDecoration: 'none', color: '#333' }}>
+              Profile
+            </Link>
+          )}
           <Link to="/all-airports" style={{ display: 'block', padding: '8px', textDecoration: 'none', color: '#333' }}>Aeroportos</Link>
           <Link to="/all-airlines" style={{ display: 'block', padding: '8px', textDecoration: 'none', color: '#333' }}>Companhias Aéreas</Link>
         </div>

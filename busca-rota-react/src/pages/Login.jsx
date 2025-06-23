@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Adicione esta linha
 import GoBackButton from '../components/GoBackButton';
 
 function Login() {
@@ -10,6 +11,7 @@ function Login() {
     confirmPassword: '',
     nickname: ''
   });
+  const navigate = useNavigate(); // Adicione esta linha
 
   function handleLoginChange(e) {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
@@ -21,17 +23,21 @@ function Login() {
 
   function handleLoginSubmit(e) {
     e.preventDefault();
-    // Chamada para o endpoint de autenticação
     fetch(
       `http://localhost:8000/api/verifica_usuario/?username=${loginData.username}&senha=${loginData.password}`
     )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.autenticado) {
+      .then(async (res) => {
+        if (res.status === 204) {
+          alert('Usuário ou senha inválidos!');
+          return;
+        }
+        const data = await res.json();
+        if (data.usuario && data.usuario.length > 0) {
           alert('Login realizado com sucesso!');
-          // Aqui você pode redirecionar ou salvar o usuário logado
+          localStorage.setItem('username', loginData.username);
+          navigate('/user-profile', { replace: true });
         } else {
-          alert(data.erro || 'Usuário ou senha inválidos!');
+          alert(data.erro || data.Erro || 'Usuário ou senha inválidos!');
         }
       })
       .catch(() => {
