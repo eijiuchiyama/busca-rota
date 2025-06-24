@@ -114,8 +114,9 @@ def lista_caminhos(request):
 def comentarios_relacionados(request):
 	id_companhia = request.GET.get("id")
 	iata = request.GET.get("iata")
-	if id_companhia and iata:
-		return Response({"Erro": "Informe apenas um: 'id' ou 'iata'"}, status=400)
+	id_pai = request.GET.get("id_pai")
+	if (id_companhia and iata) or (id_companhia and id_pai) or (iata and id_pai):
+		return Response({"Erro": "Informe apenas um: 'id' ou 'iata' ou 'id_pai'"}, status=400)
 	elif id_companhia:
 		try:
 			comentarios = Comentario.objects.raw("SELECT * FROM comentario WHERE companhia_id = %s", [id_companhia])
@@ -136,7 +137,17 @@ def comentarios_relacionados(request):
 			return Response({"comentarios": comentarios_dict})
 		except Exception as e:
 			return Response({"erro": str(e)}, status=500)
-	return Response({"Erro": "Informe 'id' ou 'iata'"}, status=400)
+	elif id_pai:
+		try:
+			comentarios = Comentario.objects.raw("SELECT * FROM comentario WHERE comentario_pai_id = %s", [id_pai])
+			comentarios_dict = [
+				{"conteudo": a.conteudo, "horario_postagem": a.horario_postagem, "usuario_username": a.usuario_username, 
+				"aeroporto_iata": a.aeroporto_iata, "companhia_id": a.companhia_id, "comentario_pai_id": a.comentario_pai_id} for a in comentarios
+			]
+			return Response({"comentarios": comentarios_dict})
+		except Exception as e:
+			return Response({"erro": str(e)}, status=500)
+	return Response({"Erro": "Informe 'id' ou 'iata' ou 'id_pai'"}, status=400)
 
 @swagger_auto_schema(
 	methods=['get'],
@@ -181,15 +192,13 @@ def insere_usuario(request):
 	usuario = request.data.get("username")
 	senha = request.data.get("senha")
 	nickname = request.data.get("nickname")
-	data = date.today()
-	is_admin = False
-	if usuario and data and nickname:
+	if usuario and senha and nickname:
 		try:
 			with connection.cursor() as cursor: #Adiciona no postgres
 				cursor.execute(""" 
-				INSERT INTO usuario (username, senha, nickname, data_cadastro, is_role_admin)
-				VALUES (%s, %s, %s, %s, %s)
-				""", [usuario, senha, nickname, data, is_admin])
+				INSERT INTO usuario (username, senha, nickname)
+				VALUES (%s, %s, %s)
+				""", [usuario, senha, nickname])
 			rotas_mongo.insert_one({"_id": usuario, "rotas": []}) #Adiciona no mongo
 			return Response({"mensagem": "Usuário adicionado", "username": usuario})
 		except IntegrityError:
@@ -328,33 +337,46 @@ def listar_comentarios(request):
 @api_view(['POST'])
 def insere_comentario(request):
 	conteudo = request.data.get("conteudo")
-	horario_postagem = datetime.now()
 	usuario = request.data.get("username")
 	aeroporto_iata = request.data.get("iata")
 	companhia_id = request.data.get("id")
 	comentario_pai_id = request.data.get("comentario_pai")
-	if conteudo and usuario and aeroporto_iata and not companhia_id:
+	if conteudo and usuario and aeroporto_iata and not companhia_id and not comentario_pai_id:
 		try:
 			with connection.cursor() as cursor:
 				cursor.execute(""" 
-				INSERT INTO comentario (conteudo, horario_postagem, usuario_username, aeroporto_iata, companhia_id, comentario_pai_id)
-				VALUES (%s, %s, %s, %s, %s, %s)
+				INSERT INTO comentario (conteudo, usuario_username, aeroporto_iata)
+				VALUES (%s, %s, %s)
 				RETURNING id
-				""", [conteudo, horario_postagem, usuario, aeroporto_iata, companhia_id, comentario_pai_id])
+				""", [conteudo, usuario, aeroporto_iata])
 				comentario_id = cursor.fetchone()[0]
 			return Response({"mensagem": "Comentario adicionado", "id": comentario_id})
 		except IntegrityError:
 			return Response({"erro": "Dados inválidos ou conflito no banco"}, status=status.HTTP_400_BAD_REQUEST)
 		except Exception as e:
 			return Response({"erro": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-	if conteudo and not usuario and not aeroporto_iata and companhia_id:
+	if conteudo and usuario and not aeroporto_iata and companhia_id and not comentario_pai_id:
 		try:
 			with connection.cursor() as cursor:
 				cursor.execute(""" 
-				INSERT INTO comentario (conteudo, horario_postagem, usuario_username, aeroporto_iata, companhia_id, comentario_pai_id)
-				VALUES (%s, %s, %s, %s, %s, %s)
+				INSERT INTO comentario (conteudo, usuario_username, companhia_id)
+				VALUES (%s, %s, %s)
 				RETURNING id
-				""", [conteudo, horario_postagem, usuario, aeroporto_iata, companhia_id, comentario_pai_id])
+				""", [conteudo, usuario, companhia_id])
+				comentario_id = cursor.fetchone()[0]
+			return Response({"mensagem": "Comentario adicionado", "id": comentario_id})
+		except IntegrityError:
+			return Response({"erro": "Dados inválidos ou conflito no banco"}, status=status.HTTP_400_BAD_REQUEST)
+		except Exception as e:
+			return Response({"erro": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+	if conteudo and usuario and not aeroporto_iata and not companhia_id and comentario_pai_id:
+		try:
+			with connection.cursor() as cursor:
+				cursor.execute(""" 
+				INSERT INTO comentario (conteudo, usuario_username, comentario_pai_id)
+				VALUES (%s, %s, %s)
+				RETURNING id
+				""", [conteudo, usuario, comentario_pai_id])
 				comentario_id = cursor.fetchone()[0]
 			return Response({"mensagem": "Comentario adicionado", "id": comentario_id})
 		except IntegrityError:
@@ -362,8 +384,8 @@ def insere_comentario(request):
 		except Exception as e:
 			return Response({"erro": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 	if not conteudo or not usuario:
-		return Response({"Erro": "Informe 'conteudo', 'username' e 'iata' ou 'id'"}, status=400)
-	return Response({"Erro": "Informe apenas um: 'username' ou 'iata' ou 'id'"}, status=400)
+		return Response({"Erro": "Informe 'conteudo', 'username' e 'iata' ou 'id' ou 'comentario_pai'"}, status=400)
+	return Response({"Erro": "Informe apenas um: 'iata' ou 'id' ou 'comentario_pai'"}, status=400)
 
 @api_view(['GET'])
 def pesquisa(request):
@@ -458,5 +480,33 @@ def pesquisa(request):
 			except Exception as e:
 				return Response({"erro": str(e)}, status=500)
 	return Response({"Erro": "Informe 'partida', 'chegada' e 'tipo_busca'"}, status=400)
-	
 
+@swagger_auto_schema(
+	methods=['post'],
+	request_body=openapi.Schema(
+		type=openapi.TYPE_OBJECT,
+		properties={
+			'username': openapi.Schema(type=openapi.TYPE_STRING),
+			'nova_senha': openapi.Schema(type=openapi.TYPE_STRING),
+		},
+		required=['username', 'nova_senha']
+	)
+)
+@api_view(['POST'])
+def atualiza_senha(request):
+	usuario = request.data.get("username")
+	nova_senha = request.data.get("nova_senha")
+	if usuario and nova_senha:
+		try:
+			with connection.cursor() as cursor:
+				cursor.execute(
+					"UPDATE usuario SET senha = %s WHERE username = %s", [nova_senha, usuario]
+				)
+			return Response({"mensagem": "Senha atualizada"})
+		except IntegrityError:
+			return Response({"erro": "Dados inválidos ou conflito no banco"}, status=status.HTTP_400_BAD_REQUEST)
+		except Exception as e:
+			return Response({"erro": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+	return Response({"Erro": "Informe 'username' e 'nova_senha'"}, status=400)
+	
+	

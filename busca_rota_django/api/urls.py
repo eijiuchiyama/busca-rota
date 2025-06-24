@@ -1,6 +1,6 @@
 # busca_rota_django/api/urls.py
 from django.urls import path
-from .views import listar_todos_aeroportos, pega_aeroporto, listar_todas_companhias, pega_companhia, lista_caminhos, comentarios_relacionados, verifica_usuario, insere_usuario, insere_rota, retorna_rotas, listar_usuarios_postgres, listar_usuarios_mongo, listar_comentarios, insere_comentario, pesquisa
+from .views import listar_todos_aeroportos, pega_aeroporto, listar_todas_companhias, pega_companhia, lista_caminhos, comentarios_relacionados, verifica_usuario, insere_usuario, insere_rota, retorna_rotas, listar_usuarios_postgres, listar_usuarios_mongo, listar_comentarios, insere_comentario, pesquisa, atualiza_senha
 
 urlpatterns = [
     path('todos_aeroportos/', listar_todos_aeroportos), #Funcionando
@@ -12,11 +12,12 @@ urlpatterns = [
     path('verifica_usuario/', verifica_usuario), #Funcionando
     path('todos_usuarios_postgres/', listar_usuarios_postgres), #Funcionando, usado para testes
     path('todos_usuarios_mongo/', listar_usuarios_mongo), #Funcionando, usado para testes
-    path('insere_rota/', insere_rota),
-    path('retorna_rotas/', retorna_rotas), 
+    path('insere_rota/', insere_rota), #Funcionando
+    path('retorna_rotas/', retorna_rotas), #Funcionando
     path('insere_comentario/', insere_comentario), #Funcionando
     path('todos_comentarios/', listar_comentarios), #Funcionando, usado para testes
     path('comentarios_relacionados/', comentarios_relacionados), #Funcionando
     path('pesquisa/', pesquisa),
+    path('atualiza_senha/', atualiza_senha) #Funcionando
 ]
 
