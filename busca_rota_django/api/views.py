@@ -162,10 +162,10 @@ def verifica_usuario(request):
 	senha = request.GET.get("senha")
 	if usuario and senha:
 		try:
-			usuario = Usuario.objects.raw("SELECT * FROM usuario WHERE (username = %s AND senha = %s)", [usuario, senha])
+			usuario_resposta = Usuario.objects.raw("SELECT * FROM usuario WHERE (username = %s AND senha = %s)", [usuario, senha])
 			usuario_dict = [
 				{"username": a.username, "senha": a.senha, "nickname": a.nickname, 
-				"data_cadastro": a.data_cadastro, "is_role_admin": a.is_role_admin} for a in usuario
+				"data_cadastro": a.data_cadastro, "is_role_admin": a.is_role_admin} for a in usuario_resposta
 			]
 			if(len(usuario_dict) == 1):
 				return Response({"usuario": usuario_dict})
@@ -391,14 +391,14 @@ def insere_comentario(request):
 def pesquisa(request):
 	aero_partida = request.GET.get("partida")
 	aero_chegada = request.GET.get("chegada")
+	classe = request.GET.get("classe")
 	tipo_busca = request.GET.get("tipo_busca")
 	if aero_partida and aero_chegada and tipo_busca:
 		if tipo_busca == 'distancia':
 			query = '''
 			MATCH path = (a1:Aeroporto {iata: $partida})-[:ORIGEM|DESTINO*1..9]-(a2:Aeroporto {iata: $chegada})
 			WHERE ALL(n IN nodes(path) WHERE single(m IN nodes(path) WHERE m = n))
-			WITH [n IN nodes(path) WHERE n:Trajeto] AS trechos,
-				[n IN nodes(path) WHERE n:Aeroporto AND exists(n.iata) | n.iata] AS rota
+			WITH [n IN nodes(path) WHERE n:Trajeto] AS trechos, [n IN nodes(path) WHERE n:Aeroporto AND n.iata IS NOT NULL | n.iata] AS rota
 			WITH rota, reduce(soma = 0, trecho IN trechos | soma + trecho.distancia) AS totalDist
 			RETURN rota, totalDist
 			ORDER BY totalDist ASC
@@ -413,40 +413,44 @@ def pesquisa(request):
 				return Response({"erro": str(e)}, status=500)
 		elif tipo_busca == 'tempo':
 			query = '''
-			MATCH path = (a1:Aeroporto {iata: $partida})-[:ORIGEM|DESTINO*1..5]->(a2:Aeroporto {iata: $chegada})
+			MATCH path = (a1:Aeroporto {iata: $partida})-[:ORIGEM|DESTINO*1..3]->(a2:Aeroporto {iata: $chegada})
 			WHERE ALL(n IN nodes(path) WHERE single(m IN nodes(path) WHERE m = n))
+			WITH nodes(path) AS stops
 
-			WITH path, nodes(path) AS stops
-			CALL {
-				WITH stops
-				WITH stops, range(0, size(stops)-2) AS indices
-				UNWIND indices AS i
-				MATCH (stops[i])<-[:ORIGEM]-(t:Trajeto)-[:DESTINO]->(stops[i+1])
-				MATCH (v:Voo)-[:PERTENCE_A]->(t)
-				RETURN collect(v) AS voosPossiveis
-			}
-			WITH path, voosPossiveis
-			WHERE size(voosPossiveis) = length(relationships(path))
+			WITH [i IN range(0, size(stops)-2) |
+				{
+					origem: stops[i],
+					destino: stops[i+1]
+				}] AS trechos
 
-			UNWIND voosPossiveis AS voos
-			WITH path, voos
-			ORDER BY voos.horario_partida ASC
+			UNWIND trechos AS trecho
+			MATCH (trecho.origem)<-[:ORIGEM]-(t:Trajeto)-[:DESTINO]->(trecho.destino)
+			MATCH (v:Voo)-[:PERTENCE_A]->(t)
+			WITH trecho, v
+			ORDER BY v.horario_partida ASC
+			WITH trecho, collect(v) AS voos_por_trecho
+			WITH collect(voos_por_trecho) AS listas_voos
 
-			WITH path,
-				voos,
-				head(voos).horario_partida AS inicio,
-				last(voos).horario_chegada AS fim,
-				duration.inSeconds(head(voos).horario_partida, last(voos).horario_chegada).seconds AS tempo_total
+			CALL apoc.permute.cartesianProduct(listas_voos) YIELD value AS combinacao
+			WITH combinacao
+			WHERE ALL(i IN range(0, size(combinacao)-2) WHERE combinacao[i].horario_chegada < combinacao[i+1].horario_partida)
+			WITH combinacao,
+				head(combinacao).horario_partida AS inicio,
+				last(combinacao).horario_chegada AS fim,
+				duration.inSeconds(head(combinacao).horario_partida, last(combinacao).horario_chegada).seconds AS tempo_total
 			ORDER BY tempo_total ASC
 			LIMIT 1
 
-			RETURN [n IN nodes(path) WHERE n.iata IS NOT NULL | n.iata] AS rota,
-				[v IN voos | {
+			WITH combinacao, tempo_total
+			UNWIND combinacao AS v
+			WITH collect({
 				partida: v.horario_partida,
 				chegada: v.horario_chegada,
 				companhia: v.companhia
-				}] AS voos,
-			tempo_total
+			}) AS voos, tempo_total
+
+			RETURN voos, tempo_total
+
 			'''
 			try:
 				with driver.session() as session:
@@ -459,22 +463,51 @@ def pesquisa(request):
 			query = '''
 			MATCH path = (a1:Aeroporto {iata: $partida})-[:ORIGEM|DESTINO*1..5]->(a2:Aeroporto {iata: $chegada})
 			WHERE ALL(n IN nodes(path) WHERE single(m IN nodes(path) WHERE m = n))
-				AND ALL(n IN nodes(path) WHERE n:Aeroporto OR n:Trajeto)
-			WITH path,
-				[n IN nodes(path) WHERE n:Trajeto] AS trechos
-			UNWIND trechos AS trajeto
-			MATCH (v:Voo)-[:PERTENCE_A]->(trajeto)
-			WITH path, trajeto, min(v.preco_economica) AS precoMinimo
-			WITH path, sum(precoMinimo) AS precoTotal
-			RETURN 
-				[n IN nodes(path) WHERE n:Aeroporto | n.iata] AS rota,
-				precoTotal
+  			AND ALL(n IN nodes(path) WHERE n:Aeroporto OR n:Trajeto)
+
+			WITH nodes(path) AS stops
+			WITH [i IN range(0, size(stops)-2) | {origem: stops[i], destino: stops[i+1]}] AS trechos
+
+			UNWIND trechos AS trecho
+			MATCH (trecho.origem)<-[:ORIGEM]-(t:Trajeto)-[:DESTINO]->(trecho.destino)
+			MATCH (v:Voo)-[:PERTENCE_A]->(t)
+			WITH trecho, v,
+     			CASE $classe
+				WHEN 'executiva' THEN v.preco_executiva
+				ELSE v.preco_economica
+			END AS preco
+			WITH trecho, collect({voo: v, preco: preco}) AS voosPorTrecho
+			WITH collect(voosPorTrecho) AS listasDeVoos
+
+			CALL apoc.permute.cartesianProduct(listasDeVoos) YIELD value AS combinacao
+			WITH combinacao
+			WHERE ALL(i IN range(0, size(combinacao)-2) 
+				WHERE combinacao[i].voo.horario_chegada < combinacao[i+1].voo.horario_partida)
+
+			WITH combinacao,
+				 head(combinacao).voo.horario_partida AS inicio,
+				 last(combinacao).voo.horario_chegada AS fim,
+				 reduce(total = 0, item IN combinacao | total + item.preco) AS precoTotal
+
 			ORDER BY precoTotal ASC
 			LIMIT 1
+
+			WITH combinacao, precoTotal,
+			[n IN nodes(path) WHERE n:Aeroporto | n.iata] AS rota,
+			[v IN combinacao | {
+				partida: v.voo.horario_partida,
+				chegada: v.voo.horario_chegada,
+				companhia: v.voo.companhia,
+				preco: v.preco,
+				classe: $classe
+			}] AS voos
+
+			RETURN rota, voos, precoTotal
+
 			'''
 			try:
 				with driver.session() as session:
-					result = session.run(query, partida=aero_partida, chegada=aero_chegada)
+					result = session.run(query, partida=aero_partida, chegada=aero_chegada, classe=classe)
 					rotas = [{"rota": record["rota"], "precoTotal": record["precoTotal"]} for record in result]
 					return Response({"rotas": rotas})
 			except Exception as e:
@@ -508,5 +541,31 @@ def atualiza_senha(request):
 		except Exception as e:
 			return Response({"erro": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 	return Response({"Erro": "Informe 'username' e 'nova_senha'"}, status=400)
+
+@swagger_auto_schema(
+	methods=['get'],
+	manual_parameters = [
+		openapi.Parameter('username', openapi.IN_QUERY, description="Nome de usuário", type=openapi.TYPE_STRING, required=True),
+	],
+)		
+@api_view(['GET'])
+def verifica_admin(request):
+	usuario = request.data.get("username")
+	if usuario:
+		try:
+			usuario_resposta = Usuario.objects.raw("SELECT * FROM usuario WHERE (username = %s AND is_role_admin = %s)", [usuario, True])
+			usuario_dict = [
+				{"username": a.username, "senha": a.senha, "nickname": a.nickname, 
+				"data_cadastro": a.data_cadastro, "is_role_admin": a.is_role_admin} for a in usuario_resposta
+			]
+			if(len(usuario_dict) > 0):
+				return Response({"is_admin": True})
+			else:
+				return Response({"is_admin": False})
+		except Exception as e:
+			return Response({"erro": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+	return Response({"Erro": "Informe 'username'"}, status=400)
+	
+
 	
 	

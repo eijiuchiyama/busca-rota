@@ -37,6 +37,9 @@ services:
     image: neo4j:5
     environment:
       NEO4J_AUTH: neo4j/neo4jneo4j
+      NEO4J_PLUGINS: '["apoc"]'
+      NEO4J_dbms_security_procedures_unrestricted: 'apoc.*'
+      NEO4J_dbms_security_procedures_allowlist: 'apoc.*'
     ports:
       - "7474:7474"   # HTTP interface
       - "7687:7687"   # Bolt protocol
