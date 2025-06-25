@@ -34,7 +34,8 @@ function Login() {
         const data = await res.json();
         if (data.usuario && data.usuario.length > 0) {
           alert('Login realizado com sucesso!');
-          localStorage.setItem('username', loginData.username);
+          localStorage.setItem('username', data.usuario[0].username);
+          localStorage.setItem('nickname', data.usuario[0].nickname);
           navigate('/user-profile', { replace: true });
         } else {
           alert(data.erro || data.Erro || 'Usuário ou senha inválidos!');

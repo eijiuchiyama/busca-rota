@@ -3,29 +3,76 @@ import GoBackButton from '../components/GoBackButton';
 
 function UserProfile() {
   const username = localStorage.getItem('username');
+  const nickname = localStorage.getItem('nickname');
   const [activeTab, setActiveTab] = useState('history');
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordMessage, setPasswordMessage] = useState('');
 
   function handleLogout() {
     localStorage.removeItem('username');
+    localStorage.removeItem('nickname');
     window.location.href = '/';
   }
 
-  function handleChangePassword(e) {
+  async function handleChangePassword(e) {
     e.preventDefault();
+    setPasswordMessage('');
     if (newPassword !== confirmPassword) {
-      alert('As senhas novas não coincidem!');
+      setPasswordMessage('As senhas novas não coincidem!');
       return;
     }
-    alert('Funcionalidade de troca de senha será implementada.');
+    if (!oldPassword) {
+      setPasswordMessage('Informe a senha atual.');
+      return;
+    }
+    // Verifica se a senha antiga está correta antes de atualizar
+    try {
+      const verifyRes = await fetch(
+        `http://localhost:8000/api/verifica_usuario/?username=${encodeURIComponent(username)}&senha=${encodeURIComponent(oldPassword)}`
+      );
+      if (verifyRes.status === 204) {
+        setPasswordMessage('Senha atual incorreta!');
+        return;
+      }
+      const verifyData = await verifyRes.json();
+      if (!verifyData.usuario || verifyData.usuario.length === 0) {
+        setPasswordMessage('Senha atual incorreta!');
+        return;
+      }
+    } catch {
+      setPasswordMessage('Erro ao verificar senha atual');
+      return;
+    }
+    // Se passou na verificação, atualiza a senha
+    try {
+      const res = await fetch('http://localhost:8000/api/atualiza_senha/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: username,
+          nova_senha: newPassword,
+        }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setPasswordMessage('Senha alterada com sucesso!');
+        setOldPassword('');
+        setNewPassword('');
+        setConfirmPassword('');
+      } else {
+        setPasswordMessage(data.erro || data.Erro || 'Erro ao alterar senha');
+      }
+    } catch {
+      setPasswordMessage('Erro ao conectar ao servidor');
+    }
   }
 
   return (
     <div>
       <GoBackButton />
-      <h1 style={{ textAlign: 'center', marginTop: 40, fontSize: 48 }}>Bem Vindo! {username}</h1>
+      <h1 style={{ textAlign: 'center', marginTop: 40, fontSize: 48 }}>Bem Vindo! {nickname}</h1>
       <div style={{ maxWidth: 500, margin: '40px auto', padding: 32, border: '1px solid #ccc', borderRadius: 16, background: '#f9f9f9' }}>
         <div style={{ display: 'flex', marginBottom: 24 }}>
           <button
@@ -98,6 +145,11 @@ function UserProfile() {
             <button type="submit" style={{ width: '100%', padding: 12, background: '#1976d2', color: '#fff', border: 'none', borderRadius: 8 }}>
               Alterar Senha
             </button>
+            {passwordMessage && (
+              <div style={{ marginTop: 16, color: passwordMessage.includes('sucesso') ? 'green' : 'red' }}>
+                {passwordMessage}
+              </div>
+            )}
           </form>
         )}
       </div>
