@@ -13,17 +13,17 @@ function Home() {
 
   const options = ['Menor distância', 'Menor custo', 'Menor Tempo'];
   const [selectedOption, setSelectedOption] = useState(options[0]);
-  const [searchOption, setSearchOption] = useState(options[0]); // NOVO
+  const [searchOption, setSearchOption] = useState(options[0]);
 
   useEffect(() => {
     async function fetchAirports() {
-      const fakeApiResponse = [
-        { nome: 'Aeroporto Internacional de Guarulhos', iata: 'GRU', icao: 'SBGR', latitude: -23.4356, longitude: -46.4731 },
-        { nome: 'Aeroporto Santos Dumont', iata: 'SDU', icao: 'SBRJ', latitude: -22.9105, longitude: -43.1631 },
-        { nome: 'Aeroporto de Confins', iata: 'CNF', icao: 'SBCF', latitude: -19.6244, longitude: -43.9711 },
-        { nome: 'Aeroporto de Congonhas', iata: 'CGH', icao: 'SBSP', latitude: -23.6261, longitude: -46.6566 },
-      ];
-      setTimeout(() => setAirportList(fakeApiResponse), 200);
+      try {
+        const res = await fetch('http://localhost:8000/api/todos_aeroportos/');
+        const data = await res.json();
+        setAirportList(data);
+      } catch (err) {
+        setAirportList([]);
+      }
     }
     fetchAirports();
   }, []);
@@ -34,28 +34,42 @@ function Home() {
       return;
     }
     setSearchOption(selectedOption);
-    // Simula chamada à API para buscar rota e voos
-    const fakeRoute = airportList.filter(a =>
-      [departure, destination].includes(a.iata)
-    );
-    // Simula info dos voos entre aeroportos
-    const fakeFlights = [
-      {
-        horarioPartida: '08:00',
-        horarioChegada: '10:00',
-        companhiaAerea: 'LATAM',
-        modeloAviao: 'Airbus A320',
-        distancia: 400,
-        tempoVoo: '2h',
-        precoEconomico: 350,
-        precoExecutivo: 900,
-        precoPrimeiraClasse: 2000
+
+    let tipo_busca = '';
+    if (selectedOption === 'Menor distância') tipo_busca = 'distancia';
+    else if (selectedOption === 'Menor custo') tipo_busca = 'preco';
+    else if (selectedOption === 'Menor Tempo') tipo_busca = 'tempo';
+
+    const classe = 'economica';
+
+    let url = `http://localhost:8000/api/pesquisa/?partida=${encodeURIComponent(departure)}&chegada=${encodeURIComponent(destination)}&tipo_busca=${tipo_busca}`;
+    if (tipo_busca === 'preco') {
+      url += `&classe=${classe}`;
+    }
+
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data.erro || data.Erro) {
+        alert(data.erro || data.Erro);
+        setRouteAirports(null);
+        setFlights([]);
+        return;
       }
-    ];
-    setTimeout(() => {
-      setRouteAirports(fakeRoute);
-      setFlights(fakeFlights);
-    }, 500);
+      if (data.rotas && data.rotas.length > 0) {
+        setRouteAirports(
+          airportList.filter(a => data.rotas[0].rota && data.rotas[0].rota.includes(a.iata))
+        );
+        setFlights(data.rotas[0].voos || []);
+      } else {
+        setRouteAirports(null);
+        setFlights([]);
+        alert('Nenhuma rota encontrada!');
+      }
+    } catch (error) {
+      console.error('Erro ao buscar rotas:', error);
+      alert('Erro ao buscar rotas. Tente novamente mais tarde.');
+    }
   }
 
   return (
