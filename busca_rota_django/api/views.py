@@ -396,7 +396,7 @@ def pesquisa(request):
 	if aero_partida and aero_chegada and tipo_busca:
 		if tipo_busca == 'distancia':
 			query = '''
-			MATCH path = (a1:Aeroporto {iata: $partida})-[:ORIGEM|DESTINO*1..9]-(a2:Aeroporto {iata: $chegada})
+			MATCH path = (a1:Aeroporto {iata: $partida})-[:ORIGEM|DESTINO*1..5]-(a2:Aeroporto {iata: $chegada})
 			WHERE ALL(n IN nodes(path) WHERE single(m IN nodes(path) WHERE m = n))
 			WITH [n IN nodes(path) WHERE n:Trajeto] AS trechos, [n IN nodes(path) WHERE n:Aeroporto AND n.iata IS NOT NULL | n.iata] AS rota
 			WITH rota, reduce(soma = 0, trecho IN trechos | soma + trecho.distancia) AS totalDist
@@ -415,47 +415,51 @@ def pesquisa(request):
 			query = '''
 			MATCH path = (a1:Aeroporto {iata: $partida})-[:ORIGEM|DESTINO*1..3]->(a2:Aeroporto {iata: $chegada})
 			WHERE ALL(n IN nodes(path) WHERE single(m IN nodes(path) WHERE m = n))
-			WITH nodes(path) AS stops
+			WITH path, nodes(path) AS stops
 
-			WITH [i IN range(0, size(stops)-2) |
+			WITH path, [i IN range(0, size(stops)-2) |
 				{
 					origem: stops[i],
 					destino: stops[i+1]
 				}] AS trechos
 
 			UNWIND trechos AS trecho
-			MATCH (trecho.origem)<-[:ORIGEM]-(t:Trajeto)-[:DESTINO]->(trecho.destino)
+			WITH path, trecho, trecho.origem AS origem, trecho.destino AS destino
+			MATCH (origem)<-[:ORIGEM]-(t:Trajeto)-[:DESTINO]->(destino)
 			MATCH (v:Voo)-[:PERTENCE_A]->(t)
-			WITH trecho, v
+			WITH path, trecho, v
 			ORDER BY v.horario_partida ASC
-			WITH trecho, collect(v) AS voos_por_trecho
-			WITH collect(voos_por_trecho) AS listas_voos
+			WITH path, trecho, collect(v)[..5] AS voos_por_trecho
+			WITH path, collect(voos_por_trecho) AS listas_voos
 
 			CALL apoc.permute.cartesianProduct(listas_voos) YIELD value AS combinacao
-			WITH combinacao
-			WHERE ALL(i IN range(0, size(combinacao)-2) WHERE combinacao[i].horario_chegada < combinacao[i+1].horario_partida)
-			WITH combinacao,
-				head(combinacao).horario_partida AS inicio,
-				last(combinacao).horario_chegada AS fim,
-				duration.inSeconds(head(combinacao).horario_partida, last(combinacao).horario_chegada).seconds AS tempo_total
-			ORDER BY tempo_total ASC
+			WITH path, combinacao
+			WHERE ALL(i IN range(0, size(combinacao)-2) 
+					  WHERE combinacao[i].horario_chegada < combinacao[i+1].horario_partida)
+
+			WITH path, combinacao,
+				 head(combinacao).horario_partida AS inicio,
+				 last(combinacao).horario_chegada AS fim
+			WITH path, combinacao, inicio, fim,
+     			duration.inSeconds(inicio, fim).seconds AS tempoTotal
+			ORDER BY tempoTotal ASC
 			LIMIT 1
 
-			WITH combinacao, tempo_total
+			WITH path, combinacao, tempoTotal,
+				 [n IN nodes(path) WHERE n:Aeroporto AND n.iata IS NOT NULL | n.iata] AS rota
 			UNWIND combinacao AS v
-			WITH collect({
+			WITH rota, tempoTotal, collect({
 				partida: v.horario_partida,
 				chegada: v.horario_chegada,
 				companhia: v.companhia
-			}) AS voos, tempo_total
+			}) AS voos
 
-			RETURN voos, tempo_total
-
+			RETURN rota, voos, tempoTotal
 			'''
 			try:
 				with driver.session() as session:
 					result = session.run(query, partida=aero_partida, chegada=aero_chegada)
-					rotas = [{"rota": record["rota"], "tempoTotal": record["tempoTotal"]} for record in result]
+					rotas = [{"rota": record["rota"], "voos": record["voos"], "tempoTotal": record["tempoTotal"]} for record in result]
 					return Response({"rotas": rotas})
 			except Exception as e:
 				return Response({"erro": str(e)}, status=500)
@@ -465,26 +469,27 @@ def pesquisa(request):
 			WHERE ALL(n IN nodes(path) WHERE single(m IN nodes(path) WHERE m = n))
   			AND ALL(n IN nodes(path) WHERE n:Aeroporto OR n:Trajeto)
 
-			WITH nodes(path) AS stops
-			WITH [i IN range(0, size(stops)-2) | {origem: stops[i], destino: stops[i+1]}] AS trechos
+			WITH path, nodes(path) AS stops
+			WITH path, [i IN range(0, size(stops)-2) | {origem: stops[i], destino: stops[i+1]}] AS trechos
 
 			UNWIND trechos AS trecho
-			MATCH (trecho.origem)<-[:ORIGEM]-(t:Trajeto)-[:DESTINO]->(trecho.destino)
+			WITH path, trecho, trecho.origem AS origem, trecho.destino AS destino
+			MATCH (origem)<-[:ORIGEM]-(t:Trajeto)-[:DESTINO]->(destino)
 			MATCH (v:Voo)-[:PERTENCE_A]->(t)
-			WITH trecho, v,
+			WITH path, trecho, v,
      			CASE $classe
 				WHEN 'executiva' THEN v.preco_executiva
 				ELSE v.preco_economica
 			END AS preco
-			WITH trecho, collect({voo: v, preco: preco}) AS voosPorTrecho
-			WITH collect(voosPorTrecho) AS listasDeVoos
+			WITH path, trecho, collect({voo: v, preco: preco})[..5] AS voosPorTrecho
+			WITH path, collect(voosPorTrecho) AS listasDeVoos
 
 			CALL apoc.permute.cartesianProduct(listasDeVoos) YIELD value AS combinacao
-			WITH combinacao
+			WITH path, combinacao
 			WHERE ALL(i IN range(0, size(combinacao)-2) 
 				WHERE combinacao[i].voo.horario_chegada < combinacao[i+1].voo.horario_partida)
 
-			WITH combinacao,
+			WITH path, combinacao,
 				 head(combinacao).voo.horario_partida AS inicio,
 				 last(combinacao).voo.horario_chegada AS fim,
 				 reduce(total = 0, item IN combinacao | total + item.preco) AS precoTotal
@@ -492,7 +497,7 @@ def pesquisa(request):
 			ORDER BY precoTotal ASC
 			LIMIT 1
 
-			WITH combinacao, precoTotal,
+			WITH path, combinacao, precoTotal,
 			[n IN nodes(path) WHERE n:Aeroporto | n.iata] AS rota,
 			[v IN combinacao | {
 				partida: v.voo.horario_partida,
@@ -503,12 +508,11 @@ def pesquisa(request):
 			}] AS voos
 
 			RETURN rota, voos, precoTotal
-
 			'''
 			try:
 				with driver.session() as session:
 					result = session.run(query, partida=aero_partida, chegada=aero_chegada, classe=classe)
-					rotas = [{"rota": record["rota"], "precoTotal": record["precoTotal"]} for record in result]
+					rotas = [{"rota": record["rota"], "voos":record["voos"], "precoTotal": record["precoTotal"]} for record in result]
 					return Response({"rotas": rotas})
 			except Exception as e:
 				return Response({"erro": str(e)}, status=500)

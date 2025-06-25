@@ -10,6 +10,7 @@ fim = datetime(2025, 7, 31, 23, 59, 59)
 rotas = []
 with open('paths.dat', newline='') as csvfile:
 	reader = csv.reader(csvfile)
+	next(reader)
 	for row in reader:
 		iata1 = row[0]
 		iata2 = row[1]
@@ -33,7 +34,7 @@ with open('flights.dat', mode='w', newline='') as outfile:
 			
 			seg2 = random.randint(0, delta_segs)
 			partida2 = inicio + timedelta(seconds=seg2)
-			chegada1 = partida2 + timedelta(seconds = distancia/velocidade*3600)
+			chegada2 = partida2 + timedelta(seconds = distancia/velocidade*3600)
 			
 			preco_por_km_econ = random.uniform(0.2, 0.5) 
 			preco_economica = round(distancia * preco_por_km_econ,2)

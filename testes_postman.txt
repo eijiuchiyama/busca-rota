@@ -79,11 +79,11 @@ http://localhost:8000/api/insere_rota/
 
 http://localhost:8000/api/retorna_rotas/?username=eiji&quantidade=5
 
-http://localhost:8000/api/pesquisa/?partida=GRU&chegada=SDU&tipo_busca=distancia
+http://localhost:8000/api/pesquisa/?partida=POA&chegada=MCZ&tipo_busca=distancia
 
-http://localhost:8000/api/pesquisa/?partida=GRU&chegada=SDU&tipo_busca=tempo
+http://localhost:8000/api/pesquisa/?partida=POA&chegada=MCZ&tipo_busca=tempo
 
-http://localhost:8000/api/pesquisa/?partida=GRU&chegada=SDU&tipo_busca=preco
+http://localhost:8000/api/pesquisa/?partida=POA&chegada=MCZ&tipo_busca=preco
 
 http://localhost:8000/api/atualiza_senha/
 {
