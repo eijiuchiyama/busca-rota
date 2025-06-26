@@ -397,51 +397,35 @@ def combina_voos_por_trecho_por_preco(listas_de_voos):
             melhor_rota = combo
 
     return melhor_rota, menor_preco
-    
-def combina_voos_por_trecho(listas_voos):
-    combinacoes = product(*listas_voos)
-    combinacoes_validas = []
 
-    for combo in combinacoes:
-        valido = True
-        for i in range(len(combo) - 1):
-            chegada = combo[i]['voo']['horario_chegada']
-            partida = combo[i+1]['voo']['horario_partida']
+def combina_voos_por_trecho_por_tempo(listas_voos):
+	combinacoes = product(*listas_voos)
+	combinacoes_validas = []
 
-            # Se não for datetime, converta (exemplo se forem strings)
-            if isinstance(chegada, str):
-                chegada = isoparse(chegada)
-            if isinstance(partida, str):
-                partida = isoparse(partida)
+	for combo in combinacoes:
+		valido = True
+		for i in range(len(combo) - 1):
+			chegada = combo[i]["horario_chegada"]
+			partida_proximo = combo[i+1]["horario_partida"]
+			if chegada >= partida_proximo:
+				valido = False
+				break
+		if valido:
+			combinacoes_validas.append(combo)
 
-            if chegada > partida:  # Se chega depois do próximo começar => inválido
-                valido = False
-                break
+	melhor_rota = None
+	menor_tempo = None
 
-        if valido:
-            combinacoes_validas.append(combo)
+	for combo in combinacoes_validas:
+		inicio = combo[0]["horario_partida"]
+		fim = combo[-1]["horario_chegada"]
+		tempo_total = (fim - inicio).total_seconds()
 
-    melhor_rota = None
-    menor_tempo = None
+		if menor_tempo is None or tempo_total < menor_tempo:
+			menor_tempo = tempo_total
+			melhor_rota = combo
 
-    for combo in combinacoes_validas:
-        inicio = combo[0]['voo']['horario_partida']
-        fim = combo[-1]['voo']['horario_chegada']
-
-        if isinstance(inicio, str):
-            inicio = isoparse(inicio)
-        if isinstance(fim, str):
-            fim = isoparse(fim)
-
-        tempo_total = (fim - inicio).total_seconds()
-
-        if menor_tempo is None or tempo_total < menor_tempo:
-            menor_tempo = tempo_total
-            melhor_rota = combo
-
-    return melhor_rota, menor_tempo
-
-
+	return melhor_rota, menor_tempo
 
 @swagger_auto_schema(
 	methods=['get'],
@@ -566,22 +550,23 @@ def pesquisa(request):
 					for record in result:
 						rota = record["rota"]
 						listas_voos = record["listas_voos"]
-						
-						print(rota)
-						print(listas_voos)
 
 						for lista in listas_voos:
-							for item in lista:
-								if not item or "voo" not in item or not item["voo"]:
+							for i in range(len(lista)):
+								node = lista[i]
+								if hasattr(node, "_properties"):
+									voo = dict(node._properties)
+
+									if "horario_partida" in voo and hasattr(voo["horario_partida"], "to_native"):
+										voo["horario_partida"] = voo["horario_partida"].to_native()
+									if "horario_chegada" in voo and hasattr(voo["horario_chegada"], "to_native"):
+										voo["horario_chegada"] = voo["horario_chegada"].to_native()
+
+									lista[i] = voo
+								else:
 									continue
-								voo = item["voo"]
-								if "horario_partida" in voo and hasattr(voo["horario_partida"], "to_native"):
-									voo["horario_partida"] = voo["horario_partida"].to_native()
-								if "horario_chegada" in voo and hasattr(voo["horario_chegada"], "to_native"):
-									voo["horario_chegada"] = voo["horario_chegada"].to_native()
-								print(voo)
 									
-						melhor_rota, tempo_total = combina_voos_por_trecho(listas_voos)
+						melhor_rota, tempo_total = combina_voos_por_trecho_por_tempo(listas_voos)
 
 						if melhor_rota is not None:
 						    voos_formatados = [{
@@ -601,8 +586,6 @@ def pesquisa(request):
 
 			except Exception as e:
 				return Response({"erro": str(e)}, status=500)
-
-
 
 		elif tipo_busca == 'preco' and classe:
 			query = '''
@@ -629,6 +612,7 @@ def pesquisa(request):
 			WITH path, trecho,
 				 CASE $classe
 				   WHEN 'executiva' THEN v.preco_executiva
+				   WHEN 'primeira' THEN v.preco_primeira
 				   ELSE v.preco_economica
 				 END AS preco,
 				 v
@@ -662,16 +646,25 @@ def pesquisa(request):
 						return Response({"rotas": []})
 
 					rota = record["rota"]
-					listas_de_voos = record["listasDeVoos"]
+					listas_voos = record["listasDeVoos"]
 					preco_total = record["preco_est"]
+					
+					for lista in listas_voos:
+							for i in range(len(lista)):
+								node = lista[i]
+								if hasattr(node, "_properties"):
+									voo = dict(node._properties)
 
-					for lista in listas_de_voos:
-						for item in lista:
-							voo = item['voo']
-							voo['horario_partida'] = isoparse(voo['horario_partida'])
-							voo['horario_chegada'] = isoparse(voo['horario_chegada'])
+									if "horario_partida" in voo and hasattr(voo["horario_partida"], "to_native"):
+										voo["horario_partida"] = voo["horario_partida"].to_native()
+									if "horario_chegada" in voo and hasattr(voo["horario_chegada"], "to_native"):
+										voo["horario_chegada"] = voo["horario_chegada"].to_native()
+									
+									lista[i] = voo
+								else:
+									continue
 
-					melhor_rota, preco_total = combina_voos_por_trecho_por_preco(listas_de_voos)
+					melhor_rota, preco_total = combina_voos_por_trecho_por_preco(listas_voos)
 
 					if melhor_rota is None:
 						return Response({"rotas": []})
@@ -691,7 +684,8 @@ def pesquisa(request):
 					})
 			except Exception as e:
 				return Response({"erro": str(e)}, status=500)
-	return Response({"Erro": "Informe 'partida', 'chegada' e 'classe'(no caso de preço) e 'tipo_busca'"}, status=400)
+		return Response({"Erro": "Informe 'partida', 'chegada', 'classe'(no caso de preço) e 'tipo_busca'"}, status=400)
+	return Response({"Erro": "Informe 'partida', 'chegada', 'classe'(no caso de preço) e 'tipo_busca'"}, status=400)
 
 @swagger_auto_schema(
 	methods=['post'],
