@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import GoBackButton from '../components/GoBackButton';
+import { useNavigate } from 'react-router-dom';
 
 function UserProfile() {
   const username = localStorage.getItem('username');
@@ -9,6 +10,22 @@ function UserProfile() {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordMessage, setPasswordMessage] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    async function checkAdmin() {
+      if (!username) return;
+      try {
+        const res = await fetch(`http://localhost:8000/api/verifica_admin/?username=${encodeURIComponent(username)}`);
+        const data = await res.json();
+        setIsAdmin(data.is_admin === true);
+      } catch {
+        setIsAdmin(false);
+      }
+    }
+    checkAdmin();
+  }, [username]);
 
   function handleLogout() {
     localStorage.removeItem('username');
@@ -27,7 +44,6 @@ function UserProfile() {
       setPasswordMessage('Informe a senha atual.');
       return;
     }
-    // Verifica se a senha antiga está correta antes de atualizar
     try {
       const verifyRes = await fetch(
         `http://localhost:8000/api/verifica_usuario/?username=${encodeURIComponent(username)}&senha=${encodeURIComponent(oldPassword)}`
@@ -45,7 +61,6 @@ function UserProfile() {
       setPasswordMessage('Erro ao verificar senha atual');
       return;
     }
-    // Se passou na verificação, atualiza a senha
     try {
       const res = await fetch('http://localhost:8000/api/atualiza_senha/', {
         method: 'POST',
@@ -72,6 +87,26 @@ function UserProfile() {
   return (
     <div>
       <GoBackButton />
+      {isAdmin && (
+        <div style={{ position: 'absolute', top: 24, right: 24 }}>
+          <button
+            onClick={() => navigate('/admin')}
+            style={{
+              padding: '10px 24px',
+              background: '#1976d2',
+              color: '#fff',
+              border: 'none',
+              borderRadius: 8,
+              fontWeight: 'bold',
+              fontSize: 16,
+              cursor: 'pointer',
+              boxShadow: '0 2px 8px #0002'
+            }}
+          >
+            Página do Admin
+          </button>
+        </div>
+      )}
       <h1 style={{ textAlign: 'center', marginTop: 40, fontSize: 48 }}>Bem Vindo! {nickname}</h1>
       <div style={{ maxWidth: 500, margin: '40px auto', padding: 32, border: '1px solid #ccc', borderRadius: 16, background: '#f9f9f9' }}>
         <div style={{ display: 'flex', marginBottom: 24 }}>

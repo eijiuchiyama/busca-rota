@@ -8,6 +8,7 @@ import AllAirlines from "./pages/AllAirlines";
 import AirportDetail from './pages/AirportDetail';
 import AirlineDetail from './pages/AirlineDetail';
 import UserProfile from './pages/UserProfile';
+import AdminPage from './pages/AdminPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/airport/:iata" element={<AirportDetail />} />
         <Route path="/airline/:id" element={<AirlineDetail />} />
         <Route path="/user-profile" element={<UserProfile />} />
+        <Route path="/admin" element={<AdminPage />} />
         <Route path="*" element={<div>404 Not Found</div>} />
       </Routes>
     </BrowserRouter>
