@@ -80,33 +80,6 @@ def pega_companhia(request):
 @swagger_auto_schema(
 	methods=['get'],
 	manual_parameters=[
-        openapi.Parameter('partida', openapi.IN_QUERY, description="Código IATA do aeroporto de partida", type=openapi.TYPE_STRING, required=True),
-        openapi.Parameter('chegada', openapi.IN_QUERY, description="Código IATA do aeroporto de chegada", type=openapi.TYPE_STRING, required=True),
-    ],
-)
-@api_view(['GET'])
-def lista_caminhos(request):
-	aero_partida = request.GET.get("partida")
-	aero_chegada = request.GET.get("chegada")
-	if aero_partida and aero_chegada:
-		query = """
-		MATCH path = (a1:Aeroporto {iata: $partida})-[:ORIGEM|DESTINO*1..10]->(a2:Aeroporto {iata: $chegada})
-		WHERE ALL(n IN nodes(path) WHERE single(m IN nodes(path) WHERE m = n))
-		RETURN [n IN nodes(path) WHERE n.iata IS NOT NULL | n.iata] AS rota
-		"""
-		try:
-			with driver.session() as session:
-				result = session.run(query, partida=aero_partida, chegada=aero_chegada)
-				rotas = [{"rota": record["rota"]} for record in result]
-				return Response({"rotas": rotas})
-		except Exception as e:
-			return Response({"erro": str(e)}, status=500)
-	return Response({"erro": "Parâmetros 'partida' e 'chegada' não informados"}, status=400)
-		
-
-@swagger_auto_schema(
-	methods=['get'],
-	manual_parameters=[
 		openapi.Parameter('id', openapi.IN_QUERY, description="ID da companhia aérea", type=openapi.TYPE_STRING, required=True),
         openapi.Parameter('iata', openapi.IN_QUERY, description="Código IATA do aeroporto", type=openapi.TYPE_STRING, required=True),
     ],
@@ -450,6 +423,15 @@ def combina_voos_por_trecho(listas_voos):
 
     return melhor_rota, menor_tempo
 
+@swagger_auto_schema(
+	methods=['get'],
+	manual_parameters = [
+		openapi.Parameter('partida', openapi.IN_QUERY, description="IATA do aeroporto de origem", type=openapi.TYPE_STRING, required=True),
+		openapi.Parameter('chegada', openapi.IN_QUERY, description="IATA do aeroporto de destino", type=openapi.TYPE_STRING, required=True),
+		openapi.Parameter('classe', openapi.IN_QUERY, description="Classe escolhida", type=openapi.TYPE_STRING, required=True),
+		openapi.Parameter('tipo_busca', openapi.IN_QUERY, description="Nome de usuário", type=openapi.TYPE_STRING, required=True),
+	],
+)	
 @api_view(['GET'])
 def pesquisa(request):
 	aero_partida = request.GET.get("partida")
@@ -459,19 +441,56 @@ def pesquisa(request):
 	if aero_partida and aero_chegada and tipo_busca:
 		if tipo_busca == 'distancia':
 			query = '''
-			MATCH path = (a1:Aeroporto {iata: $partida})-[:ORIGEM|DESTINO*1..5]-(a2:Aeroporto {iata: $chegada})
+			MATCH path = (a1:Aeroporto {iata: $partida})-[:ORIGEM|DESTINO*1..5]->(a2:Aeroporto {iata: $chegada})
 			WHERE ALL(n IN nodes(path) WHERE single(m IN nodes(path) WHERE m = n))
-			WITH [n IN nodes(path) WHERE n:Trajeto] AS trechos, [n IN nodes(path) WHERE n:Aeroporto AND n.iata IS NOT NULL | n.iata] AS rota
-			WITH rota, reduce(soma = 0, trecho IN trechos | soma + trecho.distancia) AS totalDist
-			RETURN rota, totalDist
+			WITH [n IN nodes(path) WHERE n:Trajeto] AS trechos, 
+				 [n IN nodes(path) WHERE n:Aeroporto AND n.iata IS NOT NULL | n.iata] AS rota
+			WITH rota, trechos, reduce(soma = 0, trecho IN trechos | soma + trecho.distancia) AS totalDist
+			RETURN rota, totalDist, trechos
 			ORDER BY totalDist ASC
 			LIMIT 1
 			'''
 			try:
 				with driver.session() as session:
-					result = session.run(query, partida=aero_partida, chegada=aero_chegada)
-					rotas = [{"rota": record["rota"], "distancia": record["totalDist"]} for record in result]
-					return Response({"rotas": rotas})
+				    record = session.run(query, partida=aero_partida, chegada=aero_chegada).single()
+				    if not record:
+				        return Response({"erro": "Rota não encontrada"}, status=404)
+
+				    rota = record["rota"]
+				    total_dist = record["totalDist"]
+				    trechos = record["trechos"]
+
+				    horario_limite = datetime.now()
+
+				    voos_resultado = []
+				    for trecho in trechos:
+				        voo_query = '''
+				        MATCH (v:Voo)-[:PERTENCE_A]->(t:Trajeto)
+				        WHERE id(t) = $id_trecho AND datetime(v.horario_partida) > datetime($limite)
+				        RETURN v
+				        ORDER BY v.horario_partida ASC
+				        LIMIT 1
+				        '''
+				        voo_result = session.run(voo_query, id_trecho=trecho.id, limite=horario_limite.isoformat())
+				        voo_record = voo_result.single()
+
+				        if not voo_record:
+				            return Response({"erro": "Sem voo válido para um dos trechos"}, status=400)
+
+				        voo = voo_record["v"]
+				        voo_dict = dict(voo)
+				        voo_dict["horario_partida"] = voo_dict["horario_partida"].isoformat()
+				        voo_dict["horario_chegada"] = voo_dict["horario_chegada"].isoformat()
+				        voos_resultado.append(voo_dict)
+
+				        # Atualiza o limite para o horário de chegada do voo atual
+				        horario_limite = voo["horario_chegada"]
+
+				    return Response({
+				        "rota": rota,
+				        "distancia_total": total_dist,
+				        "voos": voos_resultado
+				    })
 			except Exception as e:
 				return Response({"erro": str(e)}, status=500)
 		elif tipo_busca == 'tempo':
