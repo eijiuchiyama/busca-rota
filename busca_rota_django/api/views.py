@@ -76,6 +76,24 @@ def pega_companhia(request):
 		except Exception as e:
 			return Response({"erro": str(e)}, status=500)
 	return Response({"Erro": "Parâmetro 'id' não informado"}, status=400)
+	
+def buscar_comentarios_filhos(id_pai):
+	filhos_qs = Comentario.objects.filter(comentario_pai_id=id_pai)
+	filhos_lista = []
+	for filho in filhos_qs:
+		usuario = Usuario.objects.filter(username=filho.usuario_username).first()
+		nickname = usuario.nickname if usuario else None
+		filhos_lista.append({
+			"id": filho.id,
+			"conteudo": filho.conteudo,
+			"horario_postagem": filho.horario_postagem,
+			"usuario_nickname": nickname,
+			"aeroporto_iata": filho.aeroporto_iata,
+			"companhia_id": filho.companhia_id,
+			"comentario_pai_id": filho.comentario_pai_id,
+			"filhos": buscar_comentarios_filhos(filho.id)
+		})
+	return filhos_lista
 
 @swagger_auto_schema(
 	methods=['get'],
@@ -88,9 +106,8 @@ def pega_companhia(request):
 def comentarios_relacionados(request):
 	id_companhia = request.GET.get("id")
 	iata = request.GET.get("iata")
-	id_pai = request.GET.get("id_pai")
-	if (id_companhia and iata) or (id_companhia and id_pai) or (iata and id_pai):
-		return Response({"Erro": "Informe apenas um: 'id' ou 'iata' ou 'id_pai'"}, status=400)
+	if id_companhia and iata:
+		return Response({"Erro": "Informe apenas um: 'id' ou 'iata'"}, status=400)
 	elif id_companhia:
 		try:
 			comentarios = Comentario.objects.raw("SELECT * FROM comentario WHERE companhia_id = %s", [id_companhia])
@@ -100,7 +117,7 @@ def comentarios_relacionados(request):
 				usuario = next(iter(usuario_qs), None)
 				nickname = usuario.nickname
 				comentarios_dict.append({"id": a.id, "conteudo": a.conteudo, "horario_postagem": a.horario_postagem, "usuario_nickname": nickname, 
-					"aeroporto_iata": a.aeroporto_iata, "companhia_id": a.companhia_id, "comentario_pai_id": a.comentario_pai_id}) 
+					"aeroporto_iata": a.aeroporto_iata, "companhia_id": a.companhia_id, "comentario_pai_id": a.comentario_pai_id, "filhos": buscar_comentarios_filhos(a.id)}) 
 			return Response({"comentarios": comentarios_dict})
 		except Exception as e:
 			return Response({"erro": str(e)}, status=500)
@@ -113,24 +130,11 @@ def comentarios_relacionados(request):
 				usuario = next(iter(usuario_qs), None)
 				nickname = usuario.nickname
 				comentarios_dict.append({"id": a.id, "conteudo": a.conteudo, "horario_postagem": a.horario_postagem, "usuario_nickname": nickname, 
-					"aeroporto_iata": a.aeroporto_iata, "companhia_id": a.companhia_id, "comentario_pai_id": a.comentario_pai_id})
+					"aeroporto_iata": a.aeroporto_iata, "companhia_id": a.companhia_id, "comentario_pai_id": a.comentario_pai_id, "filhos": buscar_comentarios_filhos(a.id)})
 			return Response({"comentarios": comentarios_dict})
 		except Exception as e:
 			return Response({"erro": str(e)}, status=500)
-	elif id_pai:
-		try:
-			comentarios = Comentario.objects.raw("SELECT * FROM comentario WHERE comentario_pai_id = %s", [id_pai])
-			comentarios_dict = []
-			for a in comentarios:
-				usuario_qs = Usuario.objects.raw("SELECT * FROM usuario WHERE username = %s", [a.usuario_username])
-				usuario = next(iter(usuario_qs), None)
-				nickname = usuario.nickname
-				comentarios_dict.append({"id": a.id, "conteudo": a.conteudo, "horario_postagem": a.horario_postagem, "usuario_nickname": nickname, 
-					"aeroporto_iata": a.aeroporto_iata, "companhia_id": a.companhia_id, "comentario_pai_id": a.comentario_pai_id})
-			return Response({"comentarios": comentarios_dict})
-		except Exception as e:
-			return Response({"erro": str(e)}, status=500)
-	return Response({"Erro": "Informe 'id' ou 'iata' ou 'id_pai'"}, status=400)
+	return Response({"Erro": "Informe 'id' ou 'iata'"}, status=400)
 
 @swagger_auto_schema(
 	methods=['get'],
@@ -394,7 +398,6 @@ def combina_voos_por_trecho_por_preco(listas_de_voos):
 
     return melhor_rota, menor_preco
     
-
 def combina_voos_por_trecho(listas_voos):
     combinacoes = product(*listas_voos)
     combinacoes_validas = []
@@ -402,19 +405,34 @@ def combina_voos_por_trecho(listas_voos):
     for combo in combinacoes:
         valido = True
         for i in range(len(combo) - 1):
-            if combo[i]['horario_chegada'] >= combo[i+1]['horario_partida']:
+            chegada = combo[i]['voo']['horario_chegada']
+            partida = combo[i+1]['voo']['horario_partida']
+
+            # Se não for datetime, converta (exemplo se forem strings)
+            if isinstance(chegada, str):
+                chegada = isoparse(chegada)
+            if isinstance(partida, str):
+                partida = isoparse(partida)
+
+            if chegada > partida:  # Se chega depois do próximo começar => inválido
                 valido = False
                 break
+
         if valido:
             combinacoes_validas.append(combo)
 
-    # Escolhe a combinação com menor tempo total
     melhor_rota = None
     menor_tempo = None
 
     for combo in combinacoes_validas:
-        inicio = combo[0]['horario_partida']
-        fim = combo[-1]['horario_chegada']
+        inicio = combo[0]['voo']['horario_partida']
+        fim = combo[-1]['voo']['horario_chegada']
+
+        if isinstance(inicio, str):
+            inicio = isoparse(inicio)
+        if isinstance(fim, str):
+            fim = isoparse(fim)
+
         tempo_total = (fim - inicio).total_seconds()
 
         if menor_tempo is None or tempo_total < menor_tempo:
@@ -422,6 +440,8 @@ def combina_voos_por_trecho(listas_voos):
             melhor_rota = combo
 
     return melhor_rota, menor_tempo
+
+
 
 @swagger_auto_schema(
 	methods=['get'],
@@ -448,140 +468,191 @@ def pesquisa(request):
 			WITH rota, trechos, reduce(soma = 0, trecho IN trechos | soma + trecho.distancia) AS totalDist
 			RETURN rota, totalDist, trechos
 			ORDER BY totalDist ASC
-			LIMIT 1
+			LIMIT 5
 			'''
 			try:
 				with driver.session() as session:
-				    record = session.run(query, partida=aero_partida, chegada=aero_chegada).single()
-				    if not record:
-				        return Response({"erro": "Rota não encontrada"}, status=404)
+					results = session.run(query, partida=aero_partida, chegada=aero_chegada)
+					for record in results:
+						rota = record["rota"]
+						trechos = record["trechos"]
+						total_dist = record["totalDist"]
 
-				    rota = record["rota"]
-				    total_dist = record["totalDist"]
-				    trechos = record["trechos"]
+						horario_limite = datetime.now()
+						voos_resultado = []
+						falha = False
 
-				    horario_limite = datetime.now()
+						for trecho in trechos:
+							voo_query = '''
+							MATCH (v:Voo)-[:PERTENCE_A]->(t:Trajeto)
+							WHERE id(t) = $id_trecho AND datetime(v.horario_partida) > datetime($limite)
+							RETURN v
+							ORDER BY v.horario_partida ASC
+							LIMIT 1
+							'''
+							voo_result = session.run(voo_query, id_trecho=trecho.id, limite=horario_limite.isoformat())
+							voo_record = voo_result.single()
 
-				    voos_resultado = []
-				    for trecho in trechos:
-				        voo_query = '''
-				        MATCH (v:Voo)-[:PERTENCE_A]->(t:Trajeto)
-				        WHERE id(t) = $id_trecho AND datetime(v.horario_partida) > datetime($limite)
-				        RETURN v
-				        ORDER BY v.horario_partida ASC
-				        LIMIT 1
-				        '''
-				        voo_result = session.run(voo_query, id_trecho=trecho.id, limite=horario_limite.isoformat())
-				        voo_record = voo_result.single()
+							if not voo_record:
+								falha = True
+								break  # Sai do loop para tentar próxima rota
 
-				        if not voo_record:
-				            return Response({"erro": "Sem voo válido para um dos trechos"}, status=400)
+							voo = voo_record["v"]
+							voo_dict = dict(voo)
+							voo_dict["horario_partida"] = voo_dict["horario_partida"].isoformat()
+							voo_dict["horario_chegada"] = voo_dict["horario_chegada"].isoformat()
+							voos_resultado.append(voo_dict)
 
-				        voo = voo_record["v"]
-				        voo_dict = dict(voo)
-				        voo_dict["horario_partida"] = voo_dict["horario_partida"].isoformat()
-				        voo_dict["horario_chegada"] = voo_dict["horario_chegada"].isoformat()
-				        voos_resultado.append(voo_dict)
+							horario_limite = voo["horario_chegada"]
 
-				        # Atualiza o limite para o horário de chegada do voo atual
-				        horario_limite = voo["horario_chegada"]
+						if not falha:
+							return Response({
+								"rota": rota,
+								"distancia_total": total_dist,
+								"voos": voos_resultado
+							})
 
-				    return Response({
-				        "rota": rota,
-				        "distancia_total": total_dist,
-				        "voos": voos_resultado
-				    })
+					# Se chegou aqui, nenhuma rota funcionou
+					return Response({"erro": "Não há rotas com voos disponíveis"}, status=404)
+
 			except Exception as e:
 				return Response({"erro": str(e)}, status=500)
 		elif tipo_busca == 'tempo':
 			query = '''
-			MATCH path = (a1:Aeroporto {iata: $partida})-[:ORIGEM|DESTINO*1..3]->(a2:Aeroporto {iata: $chegada})
-			WHERE ALL(n IN nodes(path) WHERE single(m IN nodes(path) WHERE m = n))
-			WITH path, nodes(path) AS stops
+			MATCH (start:Aeroporto {iata: $partida}), (end:Aeroporto {iata: $chegada})
+			CALL apoc.path.expandConfig(start, {
+			  relationshipFilter: "ORIGEM>,DESTINO>",
+			  labelFilter: "+Aeroporto|Trajeto",
+			  endNodes: [end],
+			  maxLevel: 9,
+			  uniqueness: "NODE_GLOBAL"
+			}) YIELD path
 
-			WITH path, [i IN range(0, size(stops)-2) | {
-				origem: stops[i],
-				destino: stops[i+1]
+			WITH path, [n IN nodes(path) WHERE n:Aeroporto] AS aeroportos
+			WITH path, [i IN range(0, size(aeroportos)-2) | {
+			  origem: aeroportos[i],
+			  destino: aeroportos[i+1]
 			}] AS trechos
 
 			UNWIND trechos AS trecho
 			WITH path, trecho, trecho.origem AS origem, trecho.destino AS destino
 
-			MATCH (origem)<-[:ORIGEM]-(t:Trajeto)-[:DESTINO]->(destino)
+			MATCH (origem)-[:ORIGEM]->(t:Trajeto)-[:DESTINO]->(destino)
 			MATCH (v:Voo)-[:PERTENCE_A]->(t)
 
-			WITH path, trecho, collect(v)[..5] AS voos_por_trecho
-			WITH path, collect(voos_por_trecho) AS listas_voos
 
-			WITH path, listas_voos,
+			WITH path, trecho,
+				 min(duration.between(v.horario_partida, v.horario_chegada)) AS menorDuracao,
+				 collect(v)[..5] AS voos_por_trecho
+
+			WITH path,
+				 collect(voos_por_trecho) AS listas_voos,
+				 collect(menorDuracao) AS duracoes,
 				 [n IN nodes(path) WHERE n:Aeroporto AND n.iata IS NOT NULL | n.iata] AS rota
 
-			RETURN rota, listas_voos
-			LIMIT 1
+			WITH rota, listas_voos, reduce(soma = duration({seconds:0}), d IN duracoes | soma + d) AS tempo_est
+
+			WHERE all(voosList IN listas_voos WHERE size(voosList) > 0)
+
+			RETURN rota, listas_voos, tempo_est
+			ORDER BY tempo_est ASC
+			LIMIT 10
 			'''
+
 			try:
 				with driver.session() as session:
 					result = session.run(query, partida=aero_partida, chegada=aero_chegada)
-					record = result.single()
-					if not record:
-						return Response({"rotas": []})
+					
+					for record in result:
+						rota = record["rota"]
+						listas_voos = record["listas_voos"]
+						
+						print(rota)
+						print(listas_voos)
 
-					rota = record["rota"]
-					listas_voos = record["listas_voos"]
+						for lista in listas_voos:
+							for item in lista:
+								if not item or "voo" not in item or not item["voo"]:
+									continue
+								voo = item["voo"]
+								if "horario_partida" in voo and hasattr(voo["horario_partida"], "to_native"):
+									voo["horario_partida"] = voo["horario_partida"].to_native()
+								if "horario_chegada" in voo and hasattr(voo["horario_chegada"], "to_native"):
+									voo["horario_chegada"] = voo["horario_chegada"].to_native()
+								print(voo)
+									
+						melhor_rota, tempo_total = combina_voos_por_trecho(listas_voos)
 
-					for i, lista in enumerate(listas_voos):
-						for j, voo in enumerate(lista):
-							voo['horario_partida'] = isoparse(voo['horario_partida'])
-							voo['horario_chegada'] = isoparse(voo['horario_chegada'])
+						if melhor_rota is not None:
+						    voos_formatados = [{
+						        "partida": v["horario_partida"].isoformat(),
+						        "chegada": v["horario_chegada"].isoformat(),
+						        "companhia": v["companhia"]
+						    } for v in melhor_rota]
 
-					melhor_rota, tempo_total = combina_voos_por_trecho(listas_voos)
+						    return Response({
+						        "rota": rota,
+						        "voos": voos_formatados,
+						        "tempoTotal": tempo_total
+						    })
 
-					if melhor_rota is None:
-						return Response({"rotas": []})
-
-					voos_formatados = [{
-						"partida": v['horario_partida'].isoformat(),
-						"chegada": v['horario_chegada'].isoformat(),
-						"companhia": v['companhia']
-					} for v in melhor_rota]
-
-					return Response({
-						"rota": rota,
-						"voos": voos_formatados,
-						"tempoTotal": tempo_total
-					})
+					# Se nenhuma rota válida encontrada
+					return Response({"erro": "Não há rotas com voos disponíveis"}, status=404)
 
 			except Exception as e:
 				return Response({"erro": str(e)}, status=500)
-		elif tipo_busca == 'preco':
-			query = '''
-			MATCH path = (a1:Aeroporto {iata: $partida})-[:ORIGEM|DESTINO*1..5]->(a2:Aeroporto {iata: $chegada})
-			WHERE ALL(n IN nodes(path) WHERE single(m IN nodes(path) WHERE m = n))
-			  AND ALL(n IN nodes(path) WHERE n:Aeroporto OR n:Trajeto)
 
-			WITH path, nodes(path) AS stops
-			WITH path, [i IN range(0, size(stops)-2) | {origem: stops[i], destino: stops[i+1]}] AS trechos
+
+
+		elif tipo_busca == 'preco' and classe:
+			query = '''
+			MATCH (start:Aeroporto {iata: $partida}), (end:Aeroporto {iata: $chegada})
+			CALL apoc.path.expandConfig(start, {
+			  relationshipFilter: "ORIGEM>,DESTINO>",
+			  labelFilter: "+Aeroporto|Trajeto",
+			  endNodes: [end],
+			  maxLevel: 5,
+			  uniqueness: "NODE_GLOBAL"
+			}) YIELD path
+
+			WITH path, [n IN nodes(path) WHERE n:Aeroporto] AS aeroportos
+			WITH path, [i IN range(0, size(aeroportos)-2) | {
+			  origem: aeroportos[i],
+			  destino: aeroportos[i+1]
+			}] AS trechos
 
 			UNWIND trechos AS trecho
 			WITH path, trecho, trecho.origem AS origem, trecho.destino AS destino
-			MATCH (origem)<-[:ORIGEM]-(t:Trajeto)-[:DESTINO]->(destino)
+			MATCH (origem)-[:ORIGEM]->(t:Trajeto)-[:DESTINO]->(destino)
 			MATCH (v:Voo)-[:PERTENCE_A]->(t)
 
-			WITH path, trecho, v,
+			WITH path, trecho,
 				 CASE $classe
 				   WHEN 'executiva' THEN v.preco_executiva
 				   ELSE v.preco_economica
-				 END AS preco
+				 END AS preco,
+				 v
+
+			ORDER BY preco ASC
 
 			WITH path, trecho, collect({voo: v, preco: preco})[..5] AS voosPorTrecho
-			WITH path, collect(voosPorTrecho) AS listasDeVoos
 
-			WITH path,
-				 [n IN nodes(path) WHERE n:Aeroporto AND n.iata IS NOT NULL | n.iata] AS rota,
-				 listasDeVoos
+			WITH path, collect(voosPorTrecho) AS listasDeVoos,
+				 [n IN nodes(path) WHERE n:Aeroporto AND n.iata IS NOT NULL | n.iata] AS rota
 
-			RETURN rota, listasDeVoos
-			LIMIT 1
+			WHERE all(voos IN listasDeVoos WHERE size(voos) > 0)
+
+			UNWIND listasDeVoos AS lista
+			UNWIND lista AS item
+			WITH rota, listasDeVoos, lista, min(item.preco) AS precoMinimoPorTrecho
+
+			WITH rota, listasDeVoos, collect(precoMinimoPorTrecho) AS precosMinimos
+
+			WITH rota, listasDeVoos, reduce(soma = 0, p IN precosMinimos | soma + p) AS preco_est
+
+			RETURN rota, listasDeVoos, preco_est
+			ORDER BY preco_est ASC
+			LIMIT 5
 			'''
 			try:
 				with driver.session() as session:
@@ -592,6 +663,7 @@ def pesquisa(request):
 
 					rota = record["rota"]
 					listas_de_voos = record["listasDeVoos"]
+					preco_total = record["preco_est"]
 
 					for lista in listas_de_voos:
 						for item in lista:
@@ -619,7 +691,7 @@ def pesquisa(request):
 					})
 			except Exception as e:
 				return Response({"erro": str(e)}, status=500)
-	return Response({"Erro": "Informe 'partida', 'chegada' e 'tipo_busca'"}, status=400)
+	return Response({"Erro": "Informe 'partida', 'chegada' e 'classe'(no caso de preço) e 'tipo_busca'"}, status=400)
 
 @swagger_auto_schema(
 	methods=['post'],
