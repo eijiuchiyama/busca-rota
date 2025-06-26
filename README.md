@@ -117,3 +117,24 @@ sudo docker compose exec -T postgres psql -U postgres -d busca-rota-postgres < t
 ```
 sudo docker exec -i busca-rota-neo4j-1 cypher-shell -u neo4j -p neo4jneo4j < testes_neo4j.cypher
 ```
+
+## Uso do Postman
+
+O Postman foi utilizado para verificar as saídas das APIs a partir de requisições do tipo get e post
+
+Para utilizá-lo, você pode clicar em 'Send an API request' e escolher se a sua requisição é get ou post
+
+Após isso, adicione a URL da API no campo correspondente. Para requisições get insira os parâmetros na própria URL,
+enquanto para requisições post insira parâmetros em raw, no formato json, em que o nome do parâmetro é a chave e 
+o seu valor é o valor, como no exemplo.
+
+```
+{
+    "conteudo": "Adorei o aeroporto",
+    "username": "eiji",
+    "iata": "GRU"
+}
+```
+
+Foi criado um documento em txt com algumas consultas a serem feitas no Postman, 
+de modo que o comportamento das APIs possa ser mais facilmente visualizado.
