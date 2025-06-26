@@ -107,10 +107,8 @@ function CommentsBox({ iata, airlineId }) {
     return `${dt.getFullYear()}-${pad(dt.getMonth() + 1)}-${pad(dt.getDate())} ${pad(dt.getHours())}:${pad(dt.getMinutes())}:${pad(dt.getSeconds())}`;
   }
 
-  function renderComments(parentId = null, isReply = false) {
-    const filteredComments = comments.filter(c => (c.comentario_pai_id ?? null) === parentId);
-
-    return filteredComments.map((c) => (
+  function renderComments(commentsList, isReply = false) {
+    return commentsList.map((c) => (
       <li
         key={c.id}
         style={{
@@ -197,9 +195,11 @@ function CommentsBox({ iata, airlineId }) {
             {replyerror && <div style={{ color: 'red', marginTop: 8 }}>{replyerror}</div>}
           </form>
         )}
-        <ul style={{ marginTop: 8, paddingLeft: 0, listStyle: 'none' }}>
-          {renderComments(c.id, true)}
-        </ul>
+        {c.filhos && c.filhos.length > 0 && (
+          <ul style={{ marginTop: 8, paddingLeft: 0, listStyle: 'none' }}>
+            {renderComments(c.filhos, true)}
+          </ul>
+        )}
       </li>
     ));
   }
@@ -249,7 +249,7 @@ function CommentsBox({ iata, airlineId }) {
         <div><strong>Nenhum comentário encontrado.</strong></div>
       ) : (
         <ul style={{ marginTop: 12, paddingLeft: 0, listStyle: 'none', textAlign: 'left' }}>
-          {renderComments()}
+          {renderComments(comments)}
         </ul>
       )}
     </div>

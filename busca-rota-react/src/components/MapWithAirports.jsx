@@ -35,45 +35,59 @@ function FitBounds({ airports }) {
 
 // Componente para Polyline com Popup customizado
 function PolylineWithPopup({ positions, info, selectedOption }) {
-  const [showPopup, setShowPopup] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [fixed, setFixed] = useState(false);
   const map = useMap();
 
-  // Calcula o ponto médio para exibir o popup
   const midLat = (positions[0][0] + positions[1][0]) / 2;
   const midLng = (positions[0][1] + positions[1][1]) / 2;
 
+  // Fecha popup fixo ao clicar fora do mapa
   useEffect(() => {
-    if (!showPopup) return;
-    // Fecha popup se o mouse sair do mapa
-    const close = () => setShowPopup(false);
-    map.on('mouseout', close);
-    return () => map.off('mouseout', close);
-  }, [showPopup, map]);
+    if (!fixed) return;
+    function handleMapClick() {
+      setFixed(false);
+    }
+    map.on('click', handleMapClick);
+    return () => map.off('click', handleMapClick);
+  }, [fixed, map]);
 
   // Renderiza conteúdo do popup conforme opção selecionada
   function renderPopupContent() {
     return (
       <div>
-        <div><strong>Horário de Partida:</strong> {info.horarioPartida}</div>
-        <div><strong>Horário de Chegada:</strong> {info.horarioChegada}</div>
-        <div><strong>Companhia Aérea:</strong> {info.companhiaAerea}</div>
-        <div><strong>Modelo de Avião:</strong> {info.modeloAviao}</div>
+        <div><strong>Horário de Partida:</strong> {info.horarioPartida || 'Desconhecido'}</div>
+        <div><strong>Horário de Chegada:</strong> {info.horarioChegada || 'Desconhecido'}</div>
+        <div>
+          <strong>Companhia Aérea:</strong>{' '}
+          {info.companhiaID ? (
+            <Link
+              to={`/airline/${info.companhiaID}`}
+              style={{ color: '#1976d2', textDecoration: 'underline', cursor: 'pointer' }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {info.companhiaAerea || info.companhiaID}
+            </Link>
+          ) : (
+            info.companhiaAerea || info.companhiaID || 'Desconhecida'
+          )}
+        </div>
+        <div><strong>Modelo de Avião:</strong> {info.modeloAviao || 'Desconhecido'}</div>
         {selectedOption === 'Menor distância' && (
           <div><strong>Distância:</strong> {info.distancia || 'Desconhecida'} km</div>
         )}
         {selectedOption === 'Menor Tempo' && (
           <div><strong>Tempo de Voo:</strong> {info.tempoVoo || 'Desconhecido'}</div>
         )}
-        {selectedOption === 'Menor custo' && (
-          <>
-            <div><strong>Preço Econômico:</strong> {info.precoEconomico ? `R$ ${info.precoEconomico}` : 'Desconhecido'}</div>
-            <div><strong>Preço Executivo:</strong> {info.precoExecutivo ? `R$ ${info.precoExecutivo}` : 'Desconhecido'}</div>
-            <div><strong>Preço Primeira Classe:</strong> {info.precoPrimeiraClasse ? `R$ ${info.precoPrimeiraClasse}` : 'Desconhecido'}</div>
-          </>
-        )}
+        <div><strong>Preço Econômico:</strong> {info.precoEconomico ? `R$ ${info.precoEconomico}` : 'Desconhecido'}</div>
+        <div><strong>Preço Executivo:</strong> {info.precoExecutivo ? `R$ ${info.precoExecutivo}` : 'Desconhecido'}</div>
+        <div><strong>Preço Primeira Classe:</strong> {info.precoPrimeiraClasse ? `R$ ${info.precoPrimeiraClasse}` : 'Desconhecido'}</div>
       </div>
     );
   }
+
+  const showPopup = hovered || fixed;
 
   return (
     <>
@@ -81,8 +95,9 @@ function PolylineWithPopup({ positions, info, selectedOption }) {
         positions={positions}
         color="blue"
         eventHandlers={{
-          mouseover: () => setShowPopup(true),
-          mouseout: () => setShowPopup(false),
+          mouseover: () => { if (!fixed) setHovered(true); },
+          mouseout: () => { if (!fixed) setHovered(false); },
+          click: () => setFixed(f => !f),
         }}
       />
       {showPopup && (

@@ -28,6 +28,13 @@ function Home() {
     fetchAirports();
   }, []);
 
+  function formatDateTime(dtString) {
+    if (!dtString) return '';
+    const dt = new Date(dtString);
+    const pad = n => n.toString().padStart(2, '0');
+    return `${dt.getFullYear()}-${pad(dt.getMonth() + 1)}-${pad(dt.getDate())} ${pad(dt.getHours())}:${pad(dt.getMinutes())}:${pad(dt.getSeconds())}`;
+  }
+
   async function onSearch() {
     if (!departure || !destination) {
       alert('Preencha os campos de partida e destino!');
@@ -56,12 +63,50 @@ function Home() {
         setFlights([]);
         return;
       }
-      if (data.rotas && data.rotas.length > 0) {
+
+      async function getCompanhiaNome(id) {
+        try {
+          const res = await fetch(`http://localhost:8000/api/companhia/?id=${id}`);
+          const data = await res.json();
+          return (data.companhia && data.companhia.length > 0 && data.companhia[0].nome) ? data.companhia[0].nome : id;
+        } catch {
+          return id;
+        }
+      }
+
+      async function mapFlights(voos, distancia_total) {
+        return Promise.all(
+          (voos || []).map(async v => {
+            const companhiaNome = await getCompanhiaNome(v.companhia);
+            return {
+              precoEconomico: v.preco_economica,
+              precoExecutivo: v.preco_executiva,
+              precoPrimeiraClasse: v.preco_primeira,
+              horarioPartida: formatDateTime(v.horario_partida),
+              horarioChegada: formatDateTime(v.horario_chegada),
+              companhiaAerea: companhiaNome,
+              companhiaID: v.companhia,
+              distancia: distancia_total,
+            };
+          })
+        );
+      }
+
+      if (data.rota && Array.isArray(data.rota) && data.rota.length > 0) {
+        setRouteAirports(
+          airportList.filter(a => data.rota.includes(a.iata))
+        );
+        const mappedFlights = await mapFlights(data.voos, data.distancia_total);
+        setFlights(mappedFlights);
+      }
+      else if (data.rotas && data.rotas.length > 0) {
         setRouteAirports(
           airportList.filter(a => data.rotas[0].rota && data.rotas[0].rota.includes(a.iata))
         );
-        setFlights(data.rotas[0].voos || []);
-      } else {
+        const mappedFlights = await mapFlights(data.rotas[0].voos, data.distancia_total);
+        setFlights(mappedFlights);
+      }
+      else {
         setRouteAirports(null);
         setFlights([]);
         alert('Nenhuma rota encontrada!');
