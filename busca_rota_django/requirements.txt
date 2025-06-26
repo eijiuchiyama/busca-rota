@@ -6,4 +6,6 @@ drf-yasg
 dj-database-url
 neo4j
 pymongo
+python-dateutil
+
 

@@ -1,6 +1,6 @@
 # busca_rota_django/api/urls.py
 from django.urls import path
-from .views import listar_todos_aeroportos, pega_aeroporto, listar_todas_companhias, pega_companhia, lista_caminhos, comentarios_relacionados, verifica_usuario, insere_usuario, insere_rota, retorna_rotas, listar_usuarios_postgres, listar_usuarios_mongo, listar_comentarios, insere_comentario, pesquisa, atualiza_senha, verifica_admin
+from .views import listar_todos_aeroportos, pega_aeroporto, listar_todas_companhias, pega_companhia, lista_caminhos, comentarios_relacionados, verifica_usuario, insere_usuario, insere_rota, retorna_rotas, listar_usuarios_postgres, listar_usuarios_mongo, listar_comentarios, insere_comentario, pesquisa, atualiza_senha, verifica_admin, insere_usuario_admin
 
 urlpatterns = [
     path('todos_aeroportos/', listar_todos_aeroportos), #Funcionando
@@ -19,6 +19,7 @@ urlpatterns = [
     path('comentarios_relacionados/', comentarios_relacionados), #Funcionando
     path('pesquisa/', pesquisa),
     path('atualiza_senha/', atualiza_senha), #Funcionando
-    path('verifica_admin/', verifica_admin) #Funcionando
+    path('verifica_admin/', verifica_admin), #Funcionando
+    path('insere_usuario_admin/', insere_usuario_admin) #Funcionando
 ]
 

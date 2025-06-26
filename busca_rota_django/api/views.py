@@ -10,13 +10,14 @@ from rest_framework import status
 from django.db import IntegrityError, connection
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
+from itertools import product
+from dateutil.parser import isoparse
 
 driver = GraphDatabase.driver("bolt://neo4j:7687", auth=("neo4j", "neo4jneo4j"))
 
 client = MongoClient("mongodb://mongo:27017/")
 db = client["mongo"]
 rotas_mongo = db["rotas"]
-
 
 @api_view(['GET'])
 def listar_todos_aeroportos(request):
@@ -120,30 +121,39 @@ def comentarios_relacionados(request):
 	elif id_companhia:
 		try:
 			comentarios = Comentario.objects.raw("SELECT * FROM comentario WHERE companhia_id = %s", [id_companhia])
-			comentarios_dict = [
-				{"conteudo": a.conteudo, "horario_postagem": a.horario_postagem, "usuario_username": a.usuario_username, 
-				"aeroporto_iata": a.aeroporto_iata, "companhia_id": a.companhia_id, "comentario_pai_id": a.comentario_pai_id} for a in comentarios
-			]
+			comentarios_dict = []
+			for a in comentarios:
+				usuario_qs = Usuario.objects.raw("SELECT * FROM usuario WHERE username = %s", [a.usuario_username])
+				usuario = next(iter(usuario_qs), None)
+				nickname = usuario.nickname
+				comentarios_dict.append({"id": a.id, "conteudo": a.conteudo, "horario_postagem": a.horario_postagem, "usuario_nickname": nickname, 
+					"aeroporto_iata": a.aeroporto_iata, "companhia_id": a.companhia_id, "comentario_pai_id": a.comentario_pai_id}) 
 			return Response({"comentarios": comentarios_dict})
 		except Exception as e:
 			return Response({"erro": str(e)}, status=500)
 	elif iata:
 		try:
 			comentarios = Comentario.objects.raw("SELECT * FROM comentario WHERE aeroporto_iata = %s", [iata])
-			comentarios_dict = [
-				{"conteudo": a.conteudo, "horario_postagem": a.horario_postagem, "usuario_username": a.usuario_username, 
-				"aeroporto_iata": a.aeroporto_iata, "companhia_id": a.companhia_id, "comentario_pai_id": a.comentario_pai_id} for a in comentarios
-			]
+			comentarios_dict = []
+			for a in comentarios:
+				usuario_qs = Usuario.objects.raw("SELECT * FROM usuario WHERE username = %s", [a.usuario_username])
+				usuario = next(iter(usuario_qs), None)
+				nickname = usuario.nickname
+				comentarios_dict.append({"id": a.id, "conteudo": a.conteudo, "horario_postagem": a.horario_postagem, "usuario_nickname": nickname, 
+					"aeroporto_iata": a.aeroporto_iata, "companhia_id": a.companhia_id, "comentario_pai_id": a.comentario_pai_id})
 			return Response({"comentarios": comentarios_dict})
 		except Exception as e:
 			return Response({"erro": str(e)}, status=500)
 	elif id_pai:
 		try:
 			comentarios = Comentario.objects.raw("SELECT * FROM comentario WHERE comentario_pai_id = %s", [id_pai])
-			comentarios_dict = [
-				{"conteudo": a.conteudo, "horario_postagem": a.horario_postagem, "usuario_username": a.usuario_username, 
-				"aeroporto_iata": a.aeroporto_iata, "companhia_id": a.companhia_id, "comentario_pai_id": a.comentario_pai_id} for a in comentarios
-			]
+			comentarios_dict = []
+			for a in comentarios:
+				usuario_qs = Usuario.objects.raw("SELECT * FROM usuario WHERE username = %s", [a.usuario_username])
+				usuario = next(iter(usuario_qs), None)
+				nickname = usuario.nickname
+				comentarios_dict.append({"id": a.id, "conteudo": a.conteudo, "horario_postagem": a.horario_postagem, "usuario_nickname": nickname, 
+					"aeroporto_iata": a.aeroporto_iata, "companhia_id": a.companhia_id, "comentario_pai_id": a.comentario_pai_id})
 			return Response({"comentarios": comentarios_dict})
 		except Exception as e:
 			return Response({"erro": str(e)}, status=500)
@@ -386,6 +396,59 @@ def insere_comentario(request):
 	if not conteudo or not usuario:
 		return Response({"Erro": "Informe 'conteudo', 'username' e 'iata' ou 'id' ou 'comentario_pai'"}, status=400)
 	return Response({"Erro": "Informe apenas um: 'iata' ou 'id' ou 'comentario_pai'"}, status=400)
+	
+def combina_voos_por_trecho_por_preco(listas_de_voos):
+    combinacoes = product(*listas_de_voos)
+    combinacoes_validas = []
+
+    for combo in combinacoes:
+        valido = True
+        for i in range(len(combo) - 1):
+            if combo[i]['voo']['horario_chegada'] >= combo[i+1]['voo']['horario_partida']:
+                valido = False
+                break
+        if valido:
+            combinacoes_validas.append(combo)
+
+    melhor_rota = None
+    menor_preco = None
+
+    for combo in combinacoes_validas:
+        preco_total = sum(item['preco'] for item in combo)
+        if menor_preco is None or preco_total < menor_preco:
+            menor_preco = preco_total
+            melhor_rota = combo
+
+    return melhor_rota, menor_preco
+    
+
+def combina_voos_por_trecho(listas_voos):
+    combinacoes = product(*listas_voos)
+    combinacoes_validas = []
+
+    for combo in combinacoes:
+        valido = True
+        for i in range(len(combo) - 1):
+            if combo[i]['horario_chegada'] >= combo[i+1]['horario_partida']:
+                valido = False
+                break
+        if valido:
+            combinacoes_validas.append(combo)
+
+    # Escolhe a combinação com menor tempo total
+    melhor_rota = None
+    menor_tempo = None
+
+    for combo in combinacoes_validas:
+        inicio = combo[0]['horario_partida']
+        fim = combo[-1]['horario_chegada']
+        tempo_total = (fim - inicio).total_seconds()
+
+        if menor_tempo is None or tempo_total < menor_tempo:
+            menor_tempo = tempo_total
+            melhor_rota = combo
+
+    return melhor_rota, menor_tempo
 
 @api_view(['GET'])
 def pesquisa(request):
@@ -417,57 +480,65 @@ def pesquisa(request):
 			WHERE ALL(n IN nodes(path) WHERE single(m IN nodes(path) WHERE m = n))
 			WITH path, nodes(path) AS stops
 
-			WITH path, [i IN range(0, size(stops)-2) |
-				{
-					origem: stops[i],
-					destino: stops[i+1]
-				}] AS trechos
+			WITH path, [i IN range(0, size(stops)-2) | {
+				origem: stops[i],
+				destino: stops[i+1]
+			}] AS trechos
 
 			UNWIND trechos AS trecho
 			WITH path, trecho, trecho.origem AS origem, trecho.destino AS destino
+
 			MATCH (origem)<-[:ORIGEM]-(t:Trajeto)-[:DESTINO]->(destino)
 			MATCH (v:Voo)-[:PERTENCE_A]->(t)
-			WITH path, trecho, v
-			ORDER BY v.horario_partida ASC
+
 			WITH path, trecho, collect(v)[..5] AS voos_por_trecho
 			WITH path, collect(voos_por_trecho) AS listas_voos
 
-			CALL apoc.permute.cartesianProduct(listas_voos) YIELD value AS combinacao
-			WITH path, combinacao
-			WHERE ALL(i IN range(0, size(combinacao)-2) 
-					  WHERE combinacao[i].horario_chegada < combinacao[i+1].horario_partida)
-
-			WITH path, combinacao,
-				 head(combinacao).horario_partida AS inicio,
-				 last(combinacao).horario_chegada AS fim
-			WITH path, combinacao, inicio, fim,
-     			duration.inSeconds(inicio, fim).seconds AS tempoTotal
-			ORDER BY tempoTotal ASC
-			LIMIT 1
-
-			WITH path, combinacao, tempoTotal,
+			WITH path, listas_voos,
 				 [n IN nodes(path) WHERE n:Aeroporto AND n.iata IS NOT NULL | n.iata] AS rota
-			UNWIND combinacao AS v
-			WITH rota, tempoTotal, collect({
-				partida: v.horario_partida,
-				chegada: v.horario_chegada,
-				companhia: v.companhia
-			}) AS voos
 
-			RETURN rota, voos, tempoTotal
+			RETURN rota, listas_voos
+			LIMIT 1
 			'''
 			try:
 				with driver.session() as session:
 					result = session.run(query, partida=aero_partida, chegada=aero_chegada)
-					rotas = [{"rota": record["rota"], "voos": record["voos"], "tempoTotal": record["tempoTotal"]} for record in result]
-					return Response({"rotas": rotas})
+					record = result.single()
+					if not record:
+						return Response({"rotas": []})
+
+					rota = record["rota"]
+					listas_voos = record["listas_voos"]
+
+					for i, lista in enumerate(listas_voos):
+						for j, voo in enumerate(lista):
+							voo['horario_partida'] = isoparse(voo['horario_partida'])
+							voo['horario_chegada'] = isoparse(voo['horario_chegada'])
+
+					melhor_rota, tempo_total = combina_voos_por_trecho(listas_voos)
+
+					if melhor_rota is None:
+						return Response({"rotas": []})
+
+					voos_formatados = [{
+						"partida": v['horario_partida'].isoformat(),
+						"chegada": v['horario_chegada'].isoformat(),
+						"companhia": v['companhia']
+					} for v in melhor_rota]
+
+					return Response({
+						"rota": rota,
+						"voos": voos_formatados,
+						"tempoTotal": tempo_total
+					})
+
 			except Exception as e:
 				return Response({"erro": str(e)}, status=500)
 		elif tipo_busca == 'preco':
 			query = '''
 			MATCH path = (a1:Aeroporto {iata: $partida})-[:ORIGEM|DESTINO*1..5]->(a2:Aeroporto {iata: $chegada})
 			WHERE ALL(n IN nodes(path) WHERE single(m IN nodes(path) WHERE m = n))
-  			AND ALL(n IN nodes(path) WHERE n:Aeroporto OR n:Trajeto)
+			  AND ALL(n IN nodes(path) WHERE n:Aeroporto OR n:Trajeto)
 
 			WITH path, nodes(path) AS stops
 			WITH path, [i IN range(0, size(stops)-2) | {origem: stops[i], destino: stops[i+1]}] AS trechos
@@ -476,44 +547,57 @@ def pesquisa(request):
 			WITH path, trecho, trecho.origem AS origem, trecho.destino AS destino
 			MATCH (origem)<-[:ORIGEM]-(t:Trajeto)-[:DESTINO]->(destino)
 			MATCH (v:Voo)-[:PERTENCE_A]->(t)
+
 			WITH path, trecho, v,
-     			CASE $classe
-				WHEN 'executiva' THEN v.preco_executiva
-				ELSE v.preco_economica
-			END AS preco
+				 CASE $classe
+				   WHEN 'executiva' THEN v.preco_executiva
+				   ELSE v.preco_economica
+				 END AS preco
+
 			WITH path, trecho, collect({voo: v, preco: preco})[..5] AS voosPorTrecho
 			WITH path, collect(voosPorTrecho) AS listasDeVoos
 
-			CALL apoc.permute.cartesianProduct(listasDeVoos) YIELD value AS combinacao
-			WITH path, combinacao
-			WHERE ALL(i IN range(0, size(combinacao)-2) 
-				WHERE combinacao[i].voo.horario_chegada < combinacao[i+1].voo.horario_partida)
+			WITH path,
+				 [n IN nodes(path) WHERE n:Aeroporto AND n.iata IS NOT NULL | n.iata] AS rota,
+				 listasDeVoos
 
-			WITH path, combinacao,
-				 head(combinacao).voo.horario_partida AS inicio,
-				 last(combinacao).voo.horario_chegada AS fim,
-				 reduce(total = 0, item IN combinacao | total + item.preco) AS precoTotal
-
-			ORDER BY precoTotal ASC
+			RETURN rota, listasDeVoos
 			LIMIT 1
-
-			WITH path, combinacao, precoTotal,
-			[n IN nodes(path) WHERE n:Aeroporto | n.iata] AS rota,
-			[v IN combinacao | {
-				partida: v.voo.horario_partida,
-				chegada: v.voo.horario_chegada,
-				companhia: v.voo.companhia,
-				preco: v.preco,
-				classe: $classe
-			}] AS voos
-
-			RETURN rota, voos, precoTotal
 			'''
 			try:
 				with driver.session() as session:
 					result = session.run(query, partida=aero_partida, chegada=aero_chegada, classe=classe)
-					rotas = [{"rota": record["rota"], "voos":record["voos"], "precoTotal": record["precoTotal"]} for record in result]
-					return Response({"rotas": rotas})
+					record = result.single()
+					if not record:
+						return Response({"rotas": []})
+
+					rota = record["rota"]
+					listas_de_voos = record["listasDeVoos"]
+
+					for lista in listas_de_voos:
+						for item in lista:
+							voo = item['voo']
+							voo['horario_partida'] = isoparse(voo['horario_partida'])
+							voo['horario_chegada'] = isoparse(voo['horario_chegada'])
+
+					melhor_rota, preco_total = combina_voos_por_trecho_por_preco(listas_de_voos)
+
+					if melhor_rota is None:
+						return Response({"rotas": []})
+
+					voos_formatados = [{
+						"partida": item['voo']['horario_partida'].isoformat(),
+						"chegada": item['voo']['horario_chegada'].isoformat(),
+						"companhia": item['voo']['companhia'],
+						"preco": item['preco'],
+						"classe": classe
+					} for item in melhor_rota]
+
+					return Response({
+						"rota": rota,
+						"voos": voos_formatados,
+						"precoTotal": preco_total
+					})
 			except Exception as e:
 				return Response({"erro": str(e)}, status=500)
 	return Response({"Erro": "Informe 'partida', 'chegada' e 'tipo_busca'"}, status=400)
@@ -554,7 +638,7 @@ def atualiza_senha(request):
 )		
 @api_view(['GET'])
 def verifica_admin(request):
-	usuario = request.data.get("username")
+	usuario = request.GET.get("username")
 	if usuario:
 		try:
 			usuario_resposta = Usuario.objects.raw("SELECT * FROM usuario WHERE (username = %s AND is_role_admin = %s)", [usuario, True])
@@ -569,7 +653,19 @@ def verifica_admin(request):
 		except Exception as e:
 			return Response({"erro": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 	return Response({"Erro": "Informe 'username'"}, status=400)
-	
 
-	
-	
+@api_view(['POST'])
+def insere_usuario_admin(request):
+	try:
+		with connection.cursor() as cursor: #Adiciona no postgres
+			cursor.execute(""" 
+				INSERT INTO usuario (username, senha, nickname)
+				VALUES (%s, %s, %s)
+				""", ['admin', 'admin', 'admin'])
+		rotas_mongo.insert_one({"_id": 'admin', "rotas": []}) #Adiciona no mongo
+		with connection.cursor() as cursor:
+			cursor.execute(
+				"UPDATE usuario SET is_role_admin = %s WHERE username = %s", [True, 'admin']
+			)
+	except Exception as e:
+		return Response({"erro": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

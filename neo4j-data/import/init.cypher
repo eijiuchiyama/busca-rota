@@ -57,3 +57,5 @@ CREATE (v:Voo {
     preco_primeira: toFloat(row.preco_primeira)
 })-[:PERTENCE_A]->(t);
 RETURN count(*) AS voos_importados;
+
+
