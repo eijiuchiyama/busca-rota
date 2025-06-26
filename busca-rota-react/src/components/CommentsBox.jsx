@@ -28,7 +28,7 @@ function CommentsBox({ iata, airlineId }) {
       const res = await fetch(url);
       const data = await res.json();
       if (data.comentarios) {
-        setComments(data.comentarios.map((c, idx) => ({ ...c, _idx: idx })));
+        setComments(data.comentarios);
       } else {
         setComments([]);
       }
@@ -71,14 +71,14 @@ function CommentsBox({ iata, airlineId }) {
     setPosting(false);
   }
 
-  async function handleReplySubmit(e, comentarioPaiIdx) {
+  async function handleReplySubmit(e, comentarioPaiId) {
     e.preventDefault();
     setPosting(true);
     setReplyError('');
     const body = {
       conteudo: replyContent,
       username: username,
-      comentario_pai: comentarioPaiIdx,
+      comentario_pai: comentarioPaiId,
     };
     try {
       const res = await fetch('http://localhost:8000/api/insere_comentario/', {
@@ -108,35 +108,29 @@ function CommentsBox({ iata, airlineId }) {
   }
 
   function renderComments(parentId = null, isReply = false) {
-    const filteredComments = comments.filter(c => (c.comentario_pai_id || null) === parentId);
+    const filteredComments = comments.filter(c => (c.comentario_pai_id ?? null) === parentId);
 
-    return filteredComments.map((c, idx) => (
+    return filteredComments.map((c) => (
       <li
-        key={
-          (c.horario_postagem || '') +
-          (c.usuario_username || '') +
-          (c.aeroporto_iata || '') +
-          (c.comentario_pai_id || '') +
-          c._idx
-        }
+        key={c.id}
         style={{
-          borderBottom: !isReply && idx < filteredComments.length - 1 ? '1px solid #bbb' : 'none',
+          borderBottom: !isReply ? '1px solid #bbb' : 'none',
           marginLeft: isReply ? 32 : 0,
           textAlign: 'left',
           position: 'relative'
         }}
-        onMouseEnter={() => setHoveredIdx(c._idx)}
+        onMouseEnter={() => setHoveredIdx(c.id)}
         onMouseLeave={() => setHoveredIdx(null)}
       >
         <span style={{ fontWeight: 'bold' }}>
           {isReply && <span style={{ marginRight: 4 }}>↳</span>}
-          {c.usuario_username}
+          {c.usuario_nickname}
         </span>
         <span style={{ color: '#888', fontSize: 12, marginLeft: 8 }}>
           ({formatDateTime(c.horario_postagem)})
         </span>
         <span>: {c.conteudo}</span>
-        {username && hoveredIdx === c._idx && (
+        {username && hoveredIdx === c.id && (
           <button
             style={{
               marginLeft: 12,
@@ -148,7 +142,7 @@ function CommentsBox({ iata, airlineId }) {
               textDecoration: 'underline'
             }}
             onClick={() => {
-              setReplyingTo(c._idx);
+              setReplyingTo(c.id);
               setReplyContent('');
               setReplyError('');
             }}
@@ -156,8 +150,8 @@ function CommentsBox({ iata, airlineId }) {
             Responder
           </button>
         )}
-        {replyingTo === c._idx && (
-          <form onSubmit={e => handleReplySubmit(e, c._idx)} style={{ marginTop: 8 }}>
+        {replyingTo === c.id && (
+          <form onSubmit={e => handleReplySubmit(e, c.id)} style={{ marginTop: 8 }}>
             <textarea
               value={replyContent}
               onChange={e => setReplyContent(e.target.value)}
@@ -204,7 +198,7 @@ function CommentsBox({ iata, airlineId }) {
           </form>
         )}
         <ul style={{ marginTop: 8, paddingLeft: 0, listStyle: 'none' }}>
-          {renderComments(c._idx, true)}
+          {renderComments(c.id, true)}
         </ul>
       </li>
     ));
