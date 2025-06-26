@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Adicione esta linha
+import { useNavigate } from 'react-router-dom';
 import GoBackButton from '../components/GoBackButton';
 
 function Login() {
@@ -11,7 +11,9 @@ function Login() {
     confirmPassword: '',
     nickname: ''
   });
-  const navigate = useNavigate(); // Adicione esta linha
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
+  const [showSignInPassword, setShowSignInPassword] = useState(false);
+  const navigate = useNavigate();
 
   function handleLoginChange(e) {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
@@ -134,7 +136,7 @@ function Login() {
             <div style={{ marginBottom: 16 }}>
               <label htmlFor="login-password">Senha:</label>
               <input
-                type="password"
+                type={showLoginPassword ? "text" : "password"}
                 id="login-password"
                 name="password"
                 value={loginData.password}
@@ -142,6 +144,16 @@ function Login() {
                 required
                 style={{ width: '100%', padding: 8, marginTop: 4 }}
               />
+              <div style={{ marginTop: 4 }}>
+                <input
+                  type="checkbox"
+                  id="show-login-password"
+                  checked={showLoginPassword}
+                  onChange={() => setShowLoginPassword(v => !v)}
+                  style={{ marginRight: 6 }}
+                />
+                <label htmlFor="show-login-password" style={{ fontSize: 14 }}>Mostrar senha</label>
+              </div>
             </div>
             <button type="submit" style={{ width: '100%', padding: 12, background: '#1976d2', color: '#fff', border: 'none', borderRadius: 8 }}>Login</button>
           </form>
@@ -163,7 +175,7 @@ function Login() {
             <div style={{ marginBottom: 16 }}>
               <label htmlFor="signin-password">Senha:</label>
               <input
-                type="password"
+                type={showSignInPassword ? "text" : "password"}
                 id="signin-password"
                 name="password"
                 value={signInData.password}
@@ -175,7 +187,7 @@ function Login() {
             <div style={{ marginBottom: 16 }}>
               <label htmlFor="signin-confirm-password">Confirmar Senha:</label>
               <input
-                type="password"
+                type={showSignInPassword ? "text" : "password"}
                 id="signin-confirm-password"
                 name="confirmPassword"
                 value={signInData.confirmPassword}
@@ -195,6 +207,16 @@ function Login() {
                 required
                 style={{ width: '100%', padding: 8, marginTop: 4 }}
               />
+              <div style={{ marginTop: 4 }}>
+                <input
+                  type="checkbox"
+                  id="show-signin-password"
+                  checked={showSignInPassword}
+                  onChange={() => setShowSignInPassword(v => !v)}
+                  style={{ marginRight: 6 }}
+                />
+                <label htmlFor="show-signin-password" style={{ fontSize: 14 }}>Mostrar senha</label>
+              </div>
             </div>
             <button type="submit" style={{ width: '100%', padding: 12, background: '#1976d2', color: '#fff', border: 'none', borderRadius: 8 }}>Cadastrar</button>
           </form>
