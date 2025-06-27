@@ -19,7 +19,7 @@ urlpatterns = [
     path('pesquisa/', pesquisa), #Funcionando
     path('atualiza_senha/', atualiza_senha), #Funcionando
     path('verifica_admin/', verifica_admin), #Funcionando
-    path('insere_usuario_admin/', insere_usuario_admin) #Funcionando
+    path('insere_usuario_admin/', insere_usuario_admin), #Funcionando
     path('exclui_historico/', exclui_historico)
 ]
 
