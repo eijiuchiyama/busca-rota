@@ -170,6 +170,7 @@ def verifica_usuario(request):
 			'username': openapi.Schema(type=openapi.TYPE_STRING),
 			'senha': openapi.Schema(type=openapi.TYPE_STRING),
 			'nickname': openapi.Schema(type=openapi.TYPE_STRING),
+			'hora_pesquisa': openapi.Schema(type=openapi.TYPE_STRING, format=openapi.FORMAT_DATETIME),
 		},
 		required=['username', 'senha', 'nickname']
 	)
@@ -179,7 +180,8 @@ def insere_usuario(request):
 	usuario = request.data.get("username")
 	senha = request.data.get("senha")
 	nickname = request.data.get("nickname")
-	if usuario and senha and nickname:
+	hora_pesquisa = request.data.get("hora_pesquisa")
+	if usuario and senha and nickname and hora_pesquisa:
 		try:
 			with connection.cursor() as cursor: #Adiciona no postgres
 				cursor.execute(""" 
@@ -192,7 +194,7 @@ def insere_usuario(request):
 			return Response({"erro": "Dados inválidos ou conflito no banco"}, status=status.HTTP_400_BAD_REQUEST)
 		except Exception as e:
 			return Response({"erro": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-	return Response({"Erro": "Informe 'username', 'senha' e 'nickname'"}, status=400)
+	return Response({"Erro": "Informe 'username', 'senha', 'nickname' e 'hora_pesquisa'"}, status=400)
 	
 @swagger_auto_schema(
 	methods=['post'],
@@ -427,9 +429,10 @@ def combina_voos_por_trecho_por_tempo(listas_voos):
 
 	return melhor_rota, menor_tempo
 	
-def insere_rota_pesquisada(username, partida, chegada, busca, total, trajetos):
+def insere_rota_pesquisada(username, partida, chegada, busca, total, trajetos, hora_pesquisa):
 	try:
 		nova_rota = {
+			"hora_pesquisa": hora_pesquisa,
 			"aeroporto_partida": partida,
 			"aeroporto_chegada": chegada,
 			"tipo_busca": busca,
@@ -531,7 +534,7 @@ def pesquisa(request):
 
 						if not falha:
 							if usuario:
-								insere_rota_pesquisada(usuario, rota[0], rota[-1], tipo_busca, total_dist, voos_resultado)
+								insere_rota_pesquisada(usuario, rota[0], rota[-1], tipo_busca, total_dist, voos_resultado, datetime.now())
 						
 							return Response({
 						      	"aeroporto_partida": rota[0],
@@ -628,7 +631,7 @@ def pesquisa(request):
 								})
 							
 							if usuario:
-								insere_rota_pesquisada(usuario, rota[0], rota[-1], tipo_busca, tempo_total, voos_formatados)
+								insere_rota_pesquisada(usuario, rota[0], rota[-1], tipo_busca, tempo_total, voos_formatados, datetime.now())
 
 							return Response({
 						      	"aeroporto_partida": rota[0],
@@ -740,7 +743,7 @@ def pesquisa(request):
 						})
 						
 					if usuario:
-						insere_rota_pesquisada(usuario, rota[0], rota[-1], tipo_busca, preco_total, voos_formatados)
+						insere_rota_pesquisada(usuario, rota[0], rota[-1], tipo_busca, preco_total, voos_formatados, datetime.now())
 					
 					return Response({
 				      	"aeroporto_partida": rota[0],
@@ -821,3 +824,28 @@ def insere_usuario_admin(request):
 			)
 	except Exception as e:
 		return Response({"erro": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+		
+@swagger_auto_schema(
+	methods=['post'],
+	request_body=openapi.Schema(
+		type=openapi.TYPE_OBJECT,
+		properties={
+			'username': openapi.Schema(type=openapi.TYPE_STRING),
+		},
+		required=['username']
+	)
+)
+@api_view(['POST'])
+def exclui_historico(request):
+	usuario = request.data.get("username")
+	if usuario:
+		try:
+			rotas_mongo.update_one(
+				{"_id": usuario},
+				{"$set": {"rotas": []}}
+			)
+			return Response({"mensagem": "histórico excluído"})
+		except Exception as e:
+			return Response({"erro": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+	return Response({"Erro": "Informe 'username'"}, status=400)
+	
