@@ -77,6 +77,8 @@ function Home() {
                 }
               } catch {}
               return {
+                origem: v.origem,
+                destino: v.destino,
                 horarioPartida: formatDateTime(v.partida),
                 horarioChegada: formatDateTime(v.chegada),
                 companhiaAerea: companhiaNome,
@@ -92,6 +94,9 @@ function Home() {
         }
       }
       montarVoosComNome();
+
+      window.history.replaceState({}, document.title, window.location.pathname + window.location.search);
+
       return;
     }
   }, [location.state, airportList]);
@@ -175,6 +180,8 @@ function Home() {
           data.trajetos.map(async v => {
             const companhiaNome = await getCompanhiaNome(v.companhia);
             return {
+              origem: v.origem,
+              destino: v.destino,
               horarioPartida: formatDateTime(v.partida),
               horarioChegada: formatDateTime(v.chegada),
               companhiaAerea: companhiaNome,

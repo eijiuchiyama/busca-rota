@@ -119,24 +119,37 @@ function PolylineWithPopup({ positions, info, selectedOption }) {
 }
 
 function MapWithAirports({ airports, flights, selectedOption, style }) {
+  // Indexa aeroportos por IATA para busca rápida
+  const airportByIata = {};
+  if (airports) {
+    for (const a of airports) {
+      airportByIata[a.iata] = a;
+    }
+  }
+
+  // Cria as linhas a partir dos voos/trajetos
+  const lines = [];
+  if (flights && flights.length > 0) {
+    for (let i = 0; i < flights.length; i++) {
+      const trajeto = flights[i];
+      const origemAero = airportByIata[trajeto.origem];
+      const destinoAero = airportByIata[trajeto.destino];
+      if (origemAero && destinoAero) {
+        lines.push({
+          positions: [
+            [origemAero.latitude, origemAero.longitude],
+            [destinoAero.latitude, destinoAero.longitude]
+          ],
+          info: trajeto
+        });
+      }
+    }
+  }
+
   // Se não há aeroportos, mostra o mapa mundi centralizado
   const center = airports && airports.length
     ? [airports[0].latitude, airports[0].longitude]
     : [0, 0];
-
-  // Cria as linhas entre aeroportos consecutivos
-  const lines = [];
-  if (airports && airports.length > 1) {
-    for (let i = 0; i < airports.length - 1; i++) {
-      lines.push({
-        positions: [
-          [airports[i].latitude, airports[i].longitude],
-          [airports[i + 1].latitude, airports[i + 1].longitude]
-        ],
-        info: flights && flights[i] ? flights[i] : {}
-      });
-    }
-  }
 
   return (
     <MapContainer
