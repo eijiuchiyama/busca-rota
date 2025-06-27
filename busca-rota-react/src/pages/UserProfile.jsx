@@ -11,6 +11,11 @@ function UserProfile() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordMessage, setPasswordMessage] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
+
+  // Histórico
+  const [history, setHistory] = useState([]);
+  const [historyLoading, setHistoryLoading] = useState(false);
+  const [historyError, setHistoryError] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,10 +32,74 @@ function UserProfile() {
     checkAdmin();
   }, [username]);
 
+  // Buscar histórico ao abrir aba
+  useEffect(() => {
+    if (activeTab !== 'history' || !username) return;
+    setHistoryLoading(true);
+    setHistoryError('');
+    fetch(`http://localhost:8000/api/retorna_rotas/?username=${encodeURIComponent(username)}&quantidade=10`)
+      .then(res => res.json())
+      .then(data => {
+        setHistory(data.rotas || []);
+        setHistoryLoading(false);
+      })
+      .catch(() => {
+        setHistory([]);
+        setHistoryError('Erro ao carregar histórico.');
+        setHistoryLoading(false);
+      });
+  }, [activeTab, username]);
+
   function handleLogout() {
     localStorage.removeItem('username');
     localStorage.removeItem('nickname');
     window.location.href = '/';
+  }
+
+  // Função para formatar o total conforme tipo de busca
+  function formatTotal(tipo, total) {
+    if (tipo === 'distancia') return `Total de distância: ${total} km`;
+    if (tipo === 'tempo') return `Total de tempo: ${formatSecondsToDuration(total)}`;
+    if (tipo === 'preco') return `Total de custo: R$ ${total}`;
+    return `Total: ${total}`;
+  }
+
+  // Função para formatar segundos em tempo legível
+  function formatSecondsToDuration(totalSeconds) {
+    if (!totalSeconds || isNaN(totalSeconds)) return '0s';
+    totalSeconds = Math.floor(totalSeconds);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    let result = [];
+    if (days > 0) result.push(`${days} dia${days > 1 ? 's' : ''}`);
+    if (hours > 0) result.push(`${hours}h`);
+    if (minutes > 0) result.push(`${minutes}min`);
+    if (seconds > 0 || result.length === 0) result.push(`${seconds}s`);
+    return result.join(' ');
+  }
+
+  // Função para traduzir tipo_busca para label amigável
+  function tipoBuscaLabel(tipo, classe) {
+    if (tipo === 'distancia') return 'Menor Distância';
+    if (tipo === 'tempo') return 'Menor Tempo';
+    if (tipo === 'preco') {
+      if (classe === 'economica') return 'Menor Custo Econômico';
+      if (classe === 'executiva') return 'Menor Custo Executivo';
+      if (classe === 'primeira') return 'Menor Custo Primeira Classe';
+    }
+    return tipo;
+  }
+
+  // Ao clicar no histórico, navega para Home e passa dados via state
+  function handleHistoryClick(item) {
+    navigate('/', {
+      state: {
+        fromHistory: true,
+        rotaSalva: item,
+      }
+    });
   }
 
   async function handleChangePassword(e) {
@@ -141,8 +210,44 @@ function UserProfile() {
         </div>
         {activeTab === 'history' && (
           <div style={{ background: '#fff', border: '1px solid #eee', borderRadius: 8, padding: 16, minHeight: 120 }}>
-            {/* Aqui futuramente será exibido o histórico do usuário via API */}
-            <p>Seu histórico de pesquisa aparecerá aqui.</p>
+            {historyLoading && <p>Carregando histórico...</p>}
+            {historyError && <p style={{ color: 'red' }}>{historyError}</p>}
+            {!historyLoading && !historyError && history.length === 0 && (
+              <p>Nenhum histórico de pesquisa encontrada.</p>
+            )}
+            {!historyLoading && !historyError && history.length > 0 && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                {history.map((item, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => handleHistoryClick(item)}
+                    style={{
+                      cursor: 'pointer',
+                      border: '1px solid #1976d2',
+                      borderRadius: 8,
+                      padding: 16,
+                      background: '#f5faff',
+                      transition: 'background 0.2s',
+                      boxShadow: '0 2px 8px #1976d220',
+                      fontSize: 18,
+                      fontWeight: 500,
+                    }}
+                  >
+                    <div>
+                      <span style={{ fontWeight: 700 }}>{item.aeroporto_partida}</span>
+                      {' '}→{' '}
+                      <span style={{ fontWeight: 700 }}>{item.aeroporto_chegada}</span>
+                    </div>
+                    <div style={{ marginTop: 4, color: '#1976d2' }}>
+                      {tipoBuscaLabel(item.tipo_busca, item.trajetos[0].classe)}
+                    </div>
+                    <div style={{ marginTop: 4 }}>
+                      {formatTotal(item.tipo_busca, item.total)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
         {activeTab === 'password' && (

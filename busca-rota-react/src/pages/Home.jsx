@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import AirportAutocompleteInput from '../components/AirportAutocompleteInput';
 import OptionsDropdown from '../components/OptionsDropdown';
 import NavigationDropdown from '../components/NavigationDropdown';
 import MapWithAirports from '../components/MapWithAirports';
 
 function Home() {
+  const location = useLocation(); // Para acessar o estado passado pela navegação
+
   const [departure, setDeparture] = useState('');
   const [destination, setDestination] = useState('');
   const [airportList, setAirportList] = useState([]);
@@ -12,7 +15,6 @@ function Home() {
   const [flights, setFlights] = useState([]);
   const [total, setTotal] = useState(null);
 
-  // 1. Atualize as opções
   const options = [
     'Menor Distância',
     'Menor Tempo',
@@ -35,6 +37,64 @@ function Home() {
     }
     fetchAirports();
   }, []);
+
+  // Preenche campos ao voltar do histórico do Profile
+  useEffect(() => {
+    if (location.state?.fromHistory && location.state.rotaSalva) {
+      const rota = location.state.rotaSalva;
+      setDeparture(rota.aeroporto_partida || '');
+      setDestination(rota.aeroporto_chegada || '');
+      setTotal(rota.total ?? null);
+
+      // Define a opção correta de busca
+      let opt = options[0];
+      if (rota.tipo_busca === 'distancia') opt = 'Menor Distância';
+      else if (rota.tipo_busca === 'tempo') opt = 'Menor Tempo';
+      else if (rota.tipo_busca === 'preco') {
+        const classe = rota.trajetos[0]?.classe;
+        if (classe === 'economica') opt = 'Menor Custo Econômico';
+        else if (classe === 'executiva') opt = 'Menor Custo Executivo';
+        else if (classe === 'primeira') opt = 'Menor Custo Primeira Classe';
+        else opt = 'Menor Custo Econômico';
+      }
+      setSelectedOption(opt);
+      setSearchOption(opt);
+
+      async function montarVoosComNome() {
+        if (rota.trajetos && rota.trajetos.length > 0 && airportList.length > 0) {
+          const rotaIatas = [rota.trajetos[0].origem, ...rota.trajetos.map(t => t.destino)];
+          setRouteAirports(
+            airportList.filter(a => rotaIatas.includes(a.iata))
+          );
+          const mappedFlights = await Promise.all(
+            rota.trajetos.map(async v => {
+              let companhiaNome = v.companhia;
+              try {
+                const res = await fetch(`http://localhost:8000/api/companhia/?id=${v.companhia}`);
+                const data = await res.json();
+                if (data.companhia && data.companhia.length > 0 && data.companhia[0].nome) {
+                  companhiaNome = data.companhia[0].nome;
+                }
+              } catch {}
+              return {
+                horarioPartida: formatDateTime(v.partida),
+                horarioChegada: formatDateTime(v.chegada),
+                companhiaAerea: companhiaNome,
+                companhiaID: v.companhia,
+                distancia: v.distancia,
+                tempoVoo: formatDateTime(v.tempo),
+                classe: v.classe,
+                preco: v.preco,
+              };
+            })
+          );
+          setFlights(mappedFlights);
+        }
+      }
+      montarVoosComNome();
+      return;
+    }
+  }, [location.state, airportList]);
 
   function formatDateTime(dtString) {
     if (!dtString) return '';
