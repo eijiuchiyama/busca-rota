@@ -426,6 +426,24 @@ def combina_voos_por_trecho_por_tempo(listas_voos):
 			melhor_rota = combo
 
 	return melhor_rota, menor_tempo
+	
+def insere_rota_pesquisada(username, partida, chegada, busca, total, trajetos):
+	try:
+		nova_rota = {
+			"aeroporto_partida": partida,
+			"aeroporto_chegada": chegada,
+			"tipo_busca": busca,
+			"total": total,
+			"trajetos": trajetos
+		}
+		rotas_mongo.update_one(
+			{"_id": username},
+			{"$push": {"rotas": nova_rota}}
+		)
+		return Response({"mensagem": "Caminho adicionado"})
+	except Exception as e:
+		return Response({"erro": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 
 @swagger_auto_schema(
 	methods=['get'],
@@ -433,7 +451,8 @@ def combina_voos_por_trecho_por_tempo(listas_voos):
 		openapi.Parameter('partida', openapi.IN_QUERY, description="IATA do aeroporto de origem", type=openapi.TYPE_STRING, required=True),
 		openapi.Parameter('chegada', openapi.IN_QUERY, description="IATA do aeroporto de destino", type=openapi.TYPE_STRING, required=True),
 		openapi.Parameter('classe', openapi.IN_QUERY, description="Classe escolhida", type=openapi.TYPE_STRING, required=True),
-		openapi.Parameter('tipo_busca', openapi.IN_QUERY, description="Nome de usuário", type=openapi.TYPE_STRING, required=True),
+		openapi.Parameter('tipo_busca', openapi.IN_QUERY, description="Tipo de busca: 'distancia', 'tempo' ou 'preco'", type=openapi.TYPE_STRING, required=True),
+		openapi.Parameter('usuario', openapi.IN_QUERY, description="Nome de usuário", type=openapi.TYPE_STRING, required=True),
 	],
 )	
 @api_view(['GET'])
@@ -442,6 +461,7 @@ def pesquisa(request):
 	aero_chegada = request.GET.get("chegada")
 	classe = request.GET.get("classe")
 	tipo_busca = request.GET.get("tipo_busca")
+	usuario = request.GET.get("username")
 	if aero_partida and aero_chegada and tipo_busca:
 		if tipo_busca == 'distancia':
 			query = '''
@@ -466,7 +486,7 @@ def pesquisa(request):
 						voos_resultado = []
 						falha = False
 
-						for trecho in trechos:
+						for i, trecho in enumerate(trechos):
 							voo_query = '''
 							MATCH (v:Voo)-[:PERTENCE_A]->(t:Trajeto)
 							WHERE id(t) = $id_trecho AND datetime(v.horario_partida) > datetime($limite)
@@ -483,18 +503,43 @@ def pesquisa(request):
 
 							voo = voo_record["v"]
 							voo_dict = dict(voo)
-							voo_dict["horario_partida"] = voo_dict["horario_partida"].isoformat()
-							voo_dict["horario_chegada"] = voo_dict["horario_chegada"].isoformat()
+							
+							origem = rota[i]
+							destino = rota[i + 1]
+							voo_dict["origem"] = origem
+							voo_dict["destino"] = destino
+
+							# Converter e formatar datas
+							if hasattr(voo_dict["horario_partida"], "to_native"):
+								voo_dict["horario_partida"] = voo_dict["horario_partida"].to_native()
+							if hasattr(voo_dict["horario_chegada"], "to_native"):
+								voo_dict["horario_chegada"] = voo_dict["horario_chegada"].to_native()
+
+							voo_dict["partida"] = voo_dict["horario_partida"].isoformat()
+							voo_dict["chegada"] = voo_dict["horario_chegada"].isoformat()
+
+							# Remove as chaves antigas para evitar erro na serialização
+							del voo_dict["horario_partida"]
+							del voo_dict["horario_chegada"]
+
+							voo_dict["distancia"] = trecho["distancia"]
+
 							voos_resultado.append(voo_dict)
+
 
 							horario_limite = voo["horario_chegada"]
 
 						if not falha:
+							if usuario:
+								insere_rota_pesquisada(usuario, rota[0], rota[-1], tipo_busca, total_dist, voos_resultado)
+						
 							return Response({
-								"rota": rota,
-								"distancia_total": total_dist,
-								"voos": voos_resultado
-							})
+						      	"aeroporto_partida": rota[0],
+								"aeroporto_chegada": rota[-1],
+								"tipo_busca": tipo_busca,
+								"total": total_dist,
+								"trajetos": voos_resultado
+						    })
 
 					# Se chegou aqui, nenhuma rota funcionou
 					return Response({"erro": "Não há rotas com voos disponíveis"}, status=404)
@@ -569,16 +614,28 @@ def pesquisa(request):
 						melhor_rota, tempo_total = combina_voos_por_trecho_por_tempo(listas_voos)
 
 						if melhor_rota is not None:
-						    voos_formatados = [{
-						        "partida": v["horario_partida"].isoformat(),
-						        "chegada": v["horario_chegada"].isoformat(),
-						        "companhia": v["companhia"]
-						    } for v in melhor_rota]
+							voos_formatados = []
+							for i, v in enumerate(melhor_rota):
+								origem = rota[i]
+								destino = rota[i+1]
+								voos_formatados.append({
+									"origem": origem,
+									"destino": destino,
+								    "partida": v["horario_partida"].isoformat(),
+								    "chegada": v["horario_chegada"].isoformat(),
+								    "companhia": v["companhia"],
+								    "tempo": str(v["horario_chegada"] - v["horario_partida"])
+								})
+							
+							if usuario:
+								insere_rota_pesquisada(usuario, rota[0], rota[-1], tipo_busca, tempo_total, voos_formatados)
 
-						    return Response({
-						        "rota": rota,
-						        "voos": voos_formatados,
-						        "tempoTotal": tempo_total
+							return Response({
+						      	"aeroporto_partida": rota[0],
+								"aeroporto_chegada": rota[-1],
+								"tipo_busca": tipo_busca,
+								"total": tempo_total,
+								"trajetos": voos_formatados
 						    })
 
 					# Se nenhuma rota válida encontrada
@@ -668,19 +725,29 @@ def pesquisa(request):
 
 					if melhor_rota is None:
 						return Response({"rotas": []})
-
-					voos_formatados = [{
-						"partida": item['voo']['horario_partida'].isoformat(),
-						"chegada": item['voo']['horario_chegada'].isoformat(),
-						"companhia": item['voo']['companhia'],
-						"preco": item['preco'],
-						"classe": classe
-					} for item in melhor_rota]
-
+					voos_formatados = []
+					for i, v in enumerate(melhor_rota):
+						origem = rota[i]
+						destino = rota[i + 1]
+						voos_formatados.append({
+							"origem": origem,
+							"destino": destino,
+							"partida": v['voo']['horario_partida'].isoformat(),
+							"chegada": v['voo']['horario_chegada'].isoformat(),
+							"companhia": v['voo']['companhia'],
+							"preco": v['preco'],
+							"classe": classe
+						})
+						
+					if usuario:
+						insere_rota_pesquisada(usuario, rota[0], rota[-1], tipo_busca, preco_total, voos_formatados)
+					
 					return Response({
-						"rota": rota,
-						"voos": voos_formatados,
-						"precoTotal": preco_total
+				      	"aeroporto_partida": rota[0],
+						"aeroporto_chegada": rota[-1],
+						"tipo_busca": tipo_busca,
+						"total": preco_total,
+						"trajetos": voos_formatados
 					})
 			except Exception as e:
 				return Response({"erro": str(e)}, status=500)

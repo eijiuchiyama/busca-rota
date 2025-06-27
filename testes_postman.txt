@@ -90,3 +90,5 @@ http://localhost:8000/api/atualiza_senha/
 	"username": "eiji",
 	"nova_senha": "1234"
 }
+
+http://localhost:8000/api/pesquisa/?partida=POA&chegada=MCZ&tipo_busca=distancia&username=eiji
