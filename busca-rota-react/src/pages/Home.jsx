@@ -10,8 +10,16 @@ function Home() {
   const [airportList, setAirportList] = useState([]);
   const [routeAirports, setRouteAirports] = useState(null);
   const [flights, setFlights] = useState([]);
+  const [total, setTotal] = useState(null);
 
-  const options = ['Menor distância', 'Menor custo', 'Menor Tempo'];
+  // 1. Atualize as opções
+  const options = [
+    'Menor Distância',
+    'Menor Tempo',
+    'Menor Custo Econômico',
+    'Menor Custo Executivo',
+    'Menor Custo Primeira Classe',
+  ];
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [searchOption, setSearchOption] = useState(options[0]);
 
@@ -30,9 +38,22 @@ function Home() {
 
   function formatDateTime(dtString) {
     if (!dtString) return '';
-    const dt = new Date(dtString);
-    const pad = n => n.toString().padStart(2, '0');
-    return `${dt.getFullYear()}-${pad(dt.getMonth() + 1)}-${pad(dt.getDate())} ${pad(dt.getHours())}:${pad(dt.getMinutes())}:${pad(dt.getSeconds())}`;
+    // Se for formato ISO
+    if (dtString.includes('T')) {
+      const dt = new Date(dtString);
+      const pad = n => n.toString().padStart(2, '0');
+      return `${dt.getFullYear()}-${pad(dt.getMonth() + 1)}-${pad(dt.getDate())} ${pad(dt.getHours())}:${pad(dt.getMinutes())}:${pad(dt.getSeconds())}`;
+    }
+    // Se for HH:MM:SS ou H:MM:SS.ssssss
+    const parts = dtString.split(':');
+    if (parts.length >= 3) {
+      const [h, m, s] = parts;
+      const sInt = s.split('.')[0];
+      const pad = n => n.toString().padStart(2, '0');
+      return `${pad(h)}:${pad(m)}:${pad(sInt)}`;
+    }
+    // Caso não reconheça o formato, retorna original
+    return dtString;
   }
 
   async function onSearch() {
@@ -43,16 +64,25 @@ function Home() {
     setSearchOption(selectedOption);
 
     let tipo_busca = '';
-    if (selectedOption === 'Menor distância') tipo_busca = 'distancia';
-    else if (selectedOption === 'Menor custo') tipo_busca = 'preco';
+    let classe = '';
+    if (selectedOption === 'Menor Distância') tipo_busca = 'distancia';
     else if (selectedOption === 'Menor Tempo') tipo_busca = 'tempo';
+    else if (selectedOption.startsWith('Menor Custo')) {
+      tipo_busca = 'preco';
+      if (selectedOption === 'Menor Custo Econômico') classe = 'economica';
+      else if (selectedOption === 'Menor Custo Executivo') classe = 'executiva';
+      else if (selectedOption === 'Menor Custo Primeira Classe') classe = 'primeira';
+    }
 
-    const classe = 'economica';
-
+    const username = localStorage.getItem('username');
     let url = `http://localhost:8000/api/pesquisa/?partida=${encodeURIComponent(departure)}&chegada=${encodeURIComponent(destination)}&tipo_busca=${tipo_busca}`;
     if (tipo_busca === 'preco') {
       url += `&classe=${classe}`;
     }
+    if (username) {
+      url += `&username=${encodeURIComponent(username)}`;
+    }
+    console.log('url:', url);
 
     try {
       const res = await fetch(url);
@@ -74,39 +104,30 @@ function Home() {
         }
       }
 
-      async function mapFlights(voos, distancia_total) {
-        return Promise.all(
-          (voos || []).map(async v => {
+      setTotal(data.total ?? null);
+
+      if (Array.isArray(data.trajetos) && data.trajetos.length > 0) {
+        const rotaIatas = [data.trajetos[0].origem, ...data.trajetos.map(t => t.destino)];
+        setRouteAirports(
+          airportList.filter(a => rotaIatas.includes(a.iata))
+        );
+        const mappedFlights = await Promise.all(
+          data.trajetos.map(async v => {
             const companhiaNome = await getCompanhiaNome(v.companhia);
             return {
-              precoEconomico: v.preco_economica,
-              precoExecutivo: v.preco_executiva,
-              precoPrimeiraClasse: v.preco_primeira,
-              horarioPartida: formatDateTime(v.horario_partida),
-              horarioChegada: formatDateTime(v.horario_chegada),
+              horarioPartida: formatDateTime(v.partida),
+              horarioChegada: formatDateTime(v.chegada),
               companhiaAerea: companhiaNome,
               companhiaID: v.companhia,
-              distancia: distancia_total,
+              distancia: v.distancia,
+              tempoVoo: formatDateTime(v.tempo),
+              classe: v.classe,
+              preco: v.preco,
             };
           })
         );
-      }
-
-      if (data.rota && Array.isArray(data.rota) && data.rota.length > 0) {
-        setRouteAirports(
-          airportList.filter(a => data.rota.includes(a.iata))
-        );
-        const mappedFlights = await mapFlights(data.voos, data.distancia_total);
         setFlights(mappedFlights);
-      }
-      else if (data.rotas && data.rotas.length > 0) {
-        setRouteAirports(
-          airportList.filter(a => data.rotas[0].rota && data.rotas[0].rota.includes(a.iata))
-        );
-        const mappedFlights = await mapFlights(data.rotas[0].voos, data.distancia_total);
-        setFlights(mappedFlights);
-      }
-      else {
+      } else {
         setRouteAirports(null);
         setFlights([]);
         alert('Nenhuma rota encontrada!');
@@ -115,6 +136,23 @@ function Home() {
       console.error('Erro ao buscar rotas:', error);
       alert('Erro ao buscar rotas. Tente novamente mais tarde.');
     }
+  }
+
+  function formatSecondsToDuration(totalSeconds) {
+    if (!totalSeconds || isNaN(totalSeconds)) return '0s';
+    totalSeconds = Math.floor(totalSeconds);
+
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    let result = [];
+    if (days > 0) result.push(`${days} dia${days > 1 ? 's' : ''}`);
+    if (hours > 0) result.push(`${hours}h`);
+    if (minutes > 0) result.push(`${minutes}min`);
+    if (seconds > 0 || result.length === 0) result.push(`${seconds}s`);
+    return result.join(' ');
   }
 
   return (
@@ -140,6 +178,7 @@ function Home() {
           options={options}
           selectedOption={selectedOption}
           onOptionChange={e => setSelectedOption(e.target.value)}
+          style={{ minWidth: 320, maxWidth: 340 }}
         />
         <button
           onClick={onSearch}
@@ -162,6 +201,15 @@ function Home() {
           selectedOption={searchOption}
           style={{ height: 800, width: '100%', marginTop: 32, borderRadius: 16 }}
         />
+        {total !== null && (
+          <div style={{ textAlign: 'center', marginTop: 32, fontSize: 28, fontWeight: 600 }}>
+            {searchOption === 'Menor Distância' && <>Total de distância: {total} km</>}
+            {searchOption === 'Menor Tempo' && <>Total de tempo: {formatSecondsToDuration(total)}</>}
+            {searchOption === 'Menor Custo Econômico' && <>Total de custo econômico: R$ {total}</>}
+            {searchOption === 'Menor Custo Executivo' && <>Total de custo executivo: R$ {total}</>}
+            {searchOption === 'Menor Custo Primeira Classe' && <>Total de custo primeira classe: R$ {total}</>}
+          </div>
+        )}
       </div>
     </div>
   );

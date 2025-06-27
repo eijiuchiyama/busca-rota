@@ -73,16 +73,25 @@ function PolylineWithPopup({ positions, info, selectedOption }) {
             info.companhiaAerea || info.companhiaID || 'Desconhecida'
           )}
         </div>
-        <div><strong>Modelo de Avião:</strong> {info.modeloAviao || 'Desconhecido'}</div>
-        {selectedOption === 'Menor distância' && (
+        {selectedOption === 'Menor Distância' && (
           <div><strong>Distância:</strong> {info.distancia || 'Desconhecida'} km</div>
         )}
         {selectedOption === 'Menor Tempo' && (
           <div><strong>Tempo de Voo:</strong> {info.tempoVoo || 'Desconhecido'}</div>
         )}
-        <div><strong>Preço Econômico:</strong> {info.precoEconomico ? `R$ ${info.precoEconomico}` : 'Desconhecido'}</div>
-        <div><strong>Preço Executivo:</strong> {info.precoExecutivo ? `R$ ${info.precoExecutivo}` : 'Desconhecido'}</div>
-        <div><strong>Preço Primeira Classe:</strong> {info.precoPrimeiraClasse ? `R$ ${info.precoPrimeiraClasse}` : 'Desconhecido'}</div>
+        {selectedOption.startsWith('Menor Custo') && (
+          <>
+            {info.classe === 'economica' && (
+              <div><strong>Preço Econômico:</strong> {info.preco ? `R$ ${info.preco}` : 'Desconhecido'}</div>
+            )}
+            {info.classe === 'executiva' && (
+              <div><strong>Preço Executivo:</strong> {info.preco ? `R$ ${info.preco}` : 'Desconhecido'}</div>
+            )}
+            {info.classe === 'primeira' && (
+              <div><strong>Preço Primeira Classe:</strong> {info.preco ? `R$ ${info.preco}` : 'Desconhecido'}</div>
+            )}
+          </>
+        )}
       </div>
     );
   }

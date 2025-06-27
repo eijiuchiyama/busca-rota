@@ -1,6 +1,6 @@
 import React from 'react';
 
-const OptionsDropdown = ({ options, selectedOption, onOptionChange }) => {
+const OptionsDropdown = ({ options, selectedOption, onOptionChange, style }) => {
   return (
     <select
       value={selectedOption}
@@ -13,6 +13,7 @@ const OptionsDropdown = ({ options, selectedOption, onOptionChange }) => {
         outline: 'none',
         width: '260px',
         boxSizing: 'border-box',
+        ...style,
       }}
     >
       {options.map((option, index) => (
