@@ -16,6 +16,7 @@ function UserProfile() {
   const [history, setHistory] = useState([]);
   const [historyLoading, setHistoryLoading] = useState(false);
   const [historyError, setHistoryError] = useState('');
+  const [historyAmount, setHistoryAmount] = useState(5);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,7 +38,7 @@ function UserProfile() {
     if (activeTab !== 'history' || !username) return;
     setHistoryLoading(true);
     setHistoryError('');
-    fetch(`http://localhost:8000/api/retorna_rotas/?username=${encodeURIComponent(username)}&quantidade=10`)
+    fetch(`http://localhost:8000/api/retorna_rotas/?username=${encodeURIComponent(username)}&quantidade=${historyAmount}`)
       .then(res => res.json())
       .then(data => {
         setHistory(data.rotas || []);
@@ -48,7 +49,7 @@ function UserProfile() {
         setHistoryError('Erro ao carregar histórico.');
         setHistoryLoading(false);
       });
-  }, [activeTab, username]);
+  }, [activeTab, username, historyAmount]);
 
   function handleLogout() {
     localStorage.removeItem('username');
@@ -79,6 +80,14 @@ function UserProfile() {
     if (seconds > 0 || result.length === 0) result.push(`${seconds}s`);
     return result.join(' ');
   }
+
+  // Função para formatar ISO em tempo legível
+  function formatDateTime(dtString) {
+  if (!dtString) return '';
+  const dt = new Date(dtString);
+  const pad = n => n.toString().padStart(2, '0');
+  return `${dt.getFullYear()}-${pad(dt.getMonth() + 1)}-${pad(dt.getDate())} ${pad(dt.getHours())}:${pad(dt.getMinutes())}:${pad(dt.getSeconds())}`;
+}
 
   // Função para traduzir tipo_busca para label amigável
   function tipoBuscaLabel(tipo, classe) {
@@ -153,6 +162,26 @@ function UserProfile() {
     }
   }
 
+  async function handleClearHistory() {
+    if (!window.confirm('Tem certeza que deseja excluir todo o seu histórico?')) return;
+    try {
+      const res = await fetch('http://localhost:8000/api/exclui_historico/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setHistory([]);
+        alert('Histórico excluído com sucesso!');
+      } else {
+        alert(data.erro || data.Erro || 'Erro ao excluir histórico');
+      }
+    } catch {
+      alert('Erro ao conectar ao servidor');
+    }
+  }
+
   return (
     <div>
       <GoBackButton />
@@ -209,45 +238,84 @@ function UserProfile() {
           </button>
         </div>
         {activeTab === 'history' && (
-          <div style={{ background: '#fff', border: '1px solid #eee', borderRadius: 8, padding: 16, minHeight: 120 }}>
-            {historyLoading && <p>Carregando histórico...</p>}
-            {historyError && <p style={{ color: 'red' }}>{historyError}</p>}
-            {!historyLoading && !historyError && history.length === 0 && (
-              <p>Nenhum histórico de pesquisa encontrada.</p>
-            )}
-            {!historyLoading && !historyError && history.length > 0 && (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                {history.map((item, idx) => (
-                  <div
-                    key={idx}
-                    onClick={() => handleHistoryClick(item)}
-                    style={{
-                      cursor: 'pointer',
-                      border: '1px solid #1976d2',
-                      borderRadius: 8,
-                      padding: 16,
-                      background: '#f5faff',
-                      transition: 'background 0.2s',
-                      boxShadow: '0 2px 8px #1976d220',
-                      fontSize: 18,
-                      fontWeight: 500,
-                    }}
-                  >
-                    <div>
-                      <span style={{ fontWeight: 700 }}>{item.aeroporto_partida}</span>
-                      {' '}→{' '}
-                      <span style={{ fontWeight: 700 }}>{item.aeroporto_chegada}</span>
-                    </div>
-                    <div style={{ marginTop: 4, color: '#1976d2' }}>
-                      {tipoBuscaLabel(item.tipo_busca, item.trajetos[0].classe)}
-                    </div>
-                    <div style={{ marginTop: 4 }}>
-                      {formatTotal(item.tipo_busca, item.total)}
-                    </div>
-                  </div>
-                ))}
+          <div>
+            <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div>
+                <label htmlFor="historyAmount" style={{ marginRight: 8 }}>Mostrar:</label>
+                <select
+                  id="historyAmount"
+                  value={historyAmount}
+                  onChange={e => setHistoryAmount(Number(e.target.value))}
+                  style={{ padding: '6px 12px', borderRadius: 6, fontSize: 16 }}
+                >
+                  <option value={5}>5 mais recentes</option>
+                  <option value={10}>10 mais recentes</option>
+                  <option value={20}>20 mais recentes</option>
+                  <option value={50}>50 mais recentes</option>
+                </select>
               </div>
-            )}
+              <button
+                onClick={handleClearHistory}
+                style={{
+                  padding: '6px 18px',
+                  background: '#d32f2f',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: 6,
+                  fontWeight: 'bold',
+                  fontSize: 15,
+                  cursor: 'pointer'
+                }}
+              >
+                Limpar Histórico
+              </button>
+            </div>
+            <div style={{ background: '#fff', border: '1px solid #eee', borderRadius: 8, padding: 16, minHeight: 120 }}>
+              {historyLoading && <p>Carregando histórico...</p>}
+              {historyError && <p style={{ color: 'red' }}>{historyError}</p>}
+              {!historyLoading && !historyError && history.length === 0 && (
+                <p>Nenhum histórico de pesquisa encontrada.</p>
+              )}
+              {!historyLoading && !historyError && history.length > 0 && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                  {history
+                    .slice()
+                    .sort((a, b) => new Date(b.hora_pesquisa) - new Date(a.hora_pesquisa))
+                    .map((item, idx) => (
+                      <div
+                        key={idx}
+                        onClick={() => handleHistoryClick(item)}
+                        style={{
+                          cursor: 'pointer',
+                          border: '1px solid #1976d2',
+                          borderRadius: 8,
+                          padding: 16,
+                          background: '#f5faff',
+                          transition: 'background 0.2s',
+                          boxShadow: '0 2px 8px #1976d220',
+                          fontSize: 18,
+                          fontWeight: 500,
+                        }}
+                      >
+                        <div>
+                          <span style={{ fontWeight: 700 }}>{item.aeroporto_partida}</span>
+                          {' '}→{' '}
+                          <span style={{ fontWeight: 700 }}>{item.aeroporto_chegada}</span>
+                        </div>
+                        <div style={{ marginTop: 4, color: '#1976d2' }}>
+                          {tipoBuscaLabel(item.tipo_busca, item.trajetos[0].classe)}
+                        </div>
+                        <div style={{ marginTop: 4 }}>
+                          {formatTotal(item.tipo_busca, item.total)}
+                        </div>
+                        <div style={{ marginTop: 4, fontSize: 14, color: '#555' }}>
+                          Pesquisado em: {formatDateTime(item.hora_pesquisa)}
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              )}
+            </div>
           </div>
         )}
         {activeTab === 'password' && (
