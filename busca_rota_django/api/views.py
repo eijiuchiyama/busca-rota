@@ -170,7 +170,6 @@ def verifica_usuario(request):
 			'username': openapi.Schema(type=openapi.TYPE_STRING),
 			'senha': openapi.Schema(type=openapi.TYPE_STRING),
 			'nickname': openapi.Schema(type=openapi.TYPE_STRING),
-			'hora_pesquisa': openapi.Schema(type=openapi.TYPE_STRING, format=openapi.FORMAT_DATETIME),
 		},
 		required=['username', 'senha', 'nickname']
 	)
@@ -180,8 +179,7 @@ def insere_usuario(request):
 	usuario = request.data.get("username")
 	senha = request.data.get("senha")
 	nickname = request.data.get("nickname")
-	hora_pesquisa = request.data.get("hora_pesquisa")
-	if usuario and senha and nickname and hora_pesquisa:
+	if usuario and senha and nickname:
 		try:
 			with connection.cursor() as cursor: #Adiciona no postgres
 				cursor.execute(""" 
@@ -194,7 +192,7 @@ def insere_usuario(request):
 			return Response({"erro": "Dados inválidos ou conflito no banco"}, status=status.HTTP_400_BAD_REQUEST)
 		except Exception as e:
 			return Response({"erro": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-	return Response({"Erro": "Informe 'username', 'senha', 'nickname' e 'hora_pesquisa'"}, status=400)
+	return Response({"Erro": "Informe 'username', 'senha', 'nickname'"}, status=400)
 	
 @swagger_auto_schema(
 	methods=['post'],
