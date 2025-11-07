@@ -1,10 +1,12 @@
 # Busca-Rota
 
-## Sobre
+## Sobre/About
 
 O Busca-Rota é um site web que permite a seus usuários pesquisar rotas aéreas filtrando por preço, distância ou tempo. 
 
-## Ferramentas utilizadas
+Busca-Rota is a website that allows its users to search for air routes by filtering by price, distance, or time.
+
+## Ferramentas utilizadas/Used tools
 
 - Docker
 
@@ -24,17 +26,17 @@ O Busca-Rota é um site web que permite a seus usuários pesquisar rotas aéreas
 
 - Figma (para desenhar a interface do site). Pode ser acessada em https://www.figma.com/design/5V03kHDpmly6HUDlb7EesI/MAC0439?node-id=0-1&t=RQk9BKGAHISiwMu8-1
 
-## Linguagens utilizadas
+## Linguagens utilizadas/Used programming languages
 
-- JavaScript (para React)
+- JavaScript (para React/for React)
 
-- Python (para Django)
+- Python (para Django/for Django)
 
-- SQL (para PostgreSQL)
+- SQL (para PostgreSQL/for PostgreSQL)
 
-- Cypher (para o Neo4J)
+- Cypher (para o Neo4J/for Neo4J)
 
-## Como executar
+## Como executar/How to run
 
 O projeto foi containerizado com o uso do Docker. Para executar o projeto, é preciso instalar o Docker juntamente com o 
 Docker Compose (v2) e após isso, no diretório raiz do projeto, executar:
@@ -89,22 +91,78 @@ Para usar o pgAdmin, deve-se criar um novo server e preencher com os dados do ba
 
 Para acessar os dados do MongoDB de forma visual é preciso instalar o MongoDB Compass.
 
-## Senhas e usuários:
+---
+
+The project was containerized using Docker. To run the project, you need to install Docker along with Docker Compose (v2) and then, in the project's root directory, run:
+
+```
+sudo docker compose up --build
+```
+
+To stop the container, use:
+
+```
+sudo docker compose down
+```
+
+And to remove the data from the databases, use:
+
+```
+sudo docker compose down -v
+```
+
+The relational database data is added only the first time the volume is created. To test again, you need to use the command above to delete the database and start Docker again.
+
+The following ports are used:
+
+- Back-end: 8000
+
+- Front-end: 3000
+
+- PostgreSQL: 5432
+
+- MongoDB: 27017
+
+- Neo4J: 7474
+
+- pgAdmin: 8080
+
+- Swagger: 8000/swagger
+
+By accessing localhost:\<service port\>, we can use the service or view the databases. In the case of PostgreSQL, we use pgAdmin to view the tables and data.
+
+To use pgAdmin, you must create a new server and fill it with the PostgreSQL database information:
+
+- Host name/address: busca-rota-postgres-1
+
+- Port: 5432
+
+- Maintenance database: busca-rota-postgres
+
+- Username: postgres
+
+- Password: postgres
+
+To access MongoDB data visually, you need to install MongoDB Compass.
+
+## Senhas e usuários/Passwords and usernames
 
 ### pgAdmin:
 
-- Usuário: admin@teste.com
-- Senha: admin123
+- Usuário/Username: admin@teste.com
+- Senha/Password: admin123
 
 ### Neo4J:
 
 - Connect URL: bolt://localhost:7687
-- Usuário: neo4j
-- Senha: neo4jneo4j
+- Usuário/Username: neo4j
+- Senha/Password: neo4jneo4j
 
-## Testes
+## Testes/Tests
 
 Podem ser executados com os seguintes comandos:
+
+Can be executed with the following commands:
 
 ### Postgres
 
@@ -118,7 +176,7 @@ sudo docker compose exec -T postgres psql -U postgres -d busca-rota-postgres < t
 sudo docker exec -i busca-rota-neo4j-1 cypher-shell -u neo4j -p neo4jneo4j < testes_neo4j.cypher
 ```
 
-## Uso do Postman
+## Uso do Postman/Postman usage
 
 O Postman foi utilizado para verificar as saídas das APIs a partir de requisições do tipo get e post
 
@@ -138,3 +196,28 @@ o seu valor é o valor, como no exemplo.
 
 Foi criado um documento em txt com algumas consultas a serem feitas no Postman, 
 de modo que o comportamento das APIs possa ser mais facilmente visualizado.
+
+---
+
+Postman was used to verify the API outputs from GET and POST requests.
+
+To use it, you can click on 'Send an API request' and choose whether your request is GET or POST.
+
+After that, add the API URL in the corresponding field. For GET requests, insert the parameters in the URL itself,
+
+while for POST requests, insert parameters in raw JSON format, where the parameter name is the key and its value is the value, as in the example.
+
+```
+{
+
+"content": "I loved the airport",
+
+"username": "eiji",
+
+"iata": "GRU"
+
+}
+```
+
+A text document was created with some queries to be made in Postman,
+so that the behavior of the APIs can be more easily visualized.
